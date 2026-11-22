@@ -369,6 +369,43 @@
   @keyframes gfIn { from { opacity:0; transform:translateY(24px) scale(.96); } }
   @media (max-width: 760px) { .g-monde { left:38%; } .gf-boite { grid-template-columns:1fr; } .gf-img { padding:18px; } .gf-info { padding:26px 22px 28px; } .gf-actions .btn { width:100%; } .g-aide { font-size:11px; } }
 
+  /* Accueil 3D */
+  .particules { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+  .scene { perspective:1600px; }
+  .scene3d { position:relative; transform-style:preserve-3d; will-change:transform; }
+  .scene3d .ordi { transform:translateZ(0); }
+  .scene3d .tel { transform:translateZ(90px); }
+  .scene3d .socle { transform:translateZ(-1px); }
+
+  /* Transformation au défilement */
+  #transformation { padding-bottom:40px; }
+  .tr-piste { position:relative; height:300vh; }
+  .tr-collant { position:sticky; top:72px; height:calc(100vh - 72px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; overflow:hidden; perspective:1400px; }
+  .tr-ecran { position:relative; width:min(1000px, 92vw); aspect-ratio:16/10; transform-style:preserve-3d; }
+  .tr-couche { position:absolute; inset:0; display:grid; grid-template-columns:repeat(var(--c),1fr); grid-template-rows:repeat(var(--r),1fr); transform-style:preserve-3d; }
+  .tr-couche i { display:block; background-repeat:no-repeat; will-change:transform,opacity; backface-visibility:hidden; }
+  .tr-etat { position:relative; height:30px; width:100%; text-align:center; font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+  .tr-etat span { position:absolute; left:0; right:0; transition:opacity .4s, transform .4s; }
+  .tr-a { color:var(--doux); } .tr-b { color:var(--or); opacity:0; transform:translateY(8px); }
+  .tr-collant.fini .tr-a { opacity:0; transform:translateY(-8px); } .tr-collant.fini .tr-b { opacity:1; transform:none; }
+  .tr-aide { color:var(--doux); font-size:14px; text-align:center; padding:0 20px; }
+  .tr-ecran::after { content:""; position:absolute; inset:-1px; border-radius:6px; pointer-events:none; box-shadow:0 50px 120px -40px rgba(255,150,40,.45); opacity:var(--lueur,0); transition:opacity .3s; }
+
+  /* Globe */
+  .monde { overflow:hidden; }
+  .monde-grille { display:grid; grid-template-columns:.9fr 1.1fr; gap:40px; align-items:center; }
+  .monde p { color:var(--doux); font-size:18px; margin-top:18px; }
+  .mo-villes { list-style:none; display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+  .mo-villes li { border:1px solid var(--ligne); border-radius:999px; padding:6px 12px; font-size:13.5px; color:var(--doux); }
+  .mo-villes li:first-child { border-color:rgba(255,181,71,.5); color:var(--or); }
+  .globe-boite { position:relative; aspect-ratio:1; width:100%; max-width:600px; margin-inline:auto; }
+  .globe-boite::before { content:""; position:absolute; inset:8%; border-radius:50%; background:radial-gradient(circle at 40% 35%, rgba(255,181,71,.10), transparent 60%); filter:blur(10px); }
+  #globe { position:relative; width:100%; height:100%; cursor:grab; touch-action:pan-y; }
+  #globe:active { cursor:grabbing; }
+  .globe-astuce { position:absolute; bottom:2%; left:50%; transform:translateX(-50%); font-size:12px; color:var(--doux); opacity:.7; white-space:nowrap; }
+  @media (max-width: 960px) { .monde-grille { grid-template-columns:1fr; } }
+  @media (max-width: 640px) { .tr-piste { height:240vh; } .scene3d .tel { transform:translateZ(50px); } }
+
   /* WhatsApp flottant */
   .wa { position:fixed; right:20px; bottom:20px; z-index:30; width:58px; height:58px; border-radius:50%; background:#25D366; display:grid; place-items:center; box-shadow:0 12px 30px rgba(0,0,0,.45); }
   .wa svg { width:30px; height:30px; fill:#fff; }
@@ -424,6 +461,7 @@
 <main id="contenu">
   <!-- Accroche -->
   <div class="hero">
+    <canvas class="particules" id="particules" aria-hidden="true"></canvas>
     <div class="bloc">
       <div class="pastille app"><b data-t="badge">Kampala</b><span data-t="badge2">Sites web en français et en anglais</span></div>
       <h1 class="app" data-t="h1">Votre entreprise, <em>dans la lumière.</em></h1>
@@ -444,10 +482,10 @@
           <button type="button" role="tab" data-d="hotel"><span data-t="d2h">Hôtel & lodge</span><i></i></button>
           <button type="button" role="tab" data-d="clinique"><span data-t="d3h">Clinique</span><i></i></button>
         </div>
-        <div class="scene">
+        <div class="scene"><div class="scene3d" id="scene3d">
           <div class="ordi"><div class="lcran"><div class="lbar"><i></i><i></i><i></i><span class="url">lumen-web-africa.onrender.com/demos/restaurant</span></div>
             <div class="defil"><img class="v-pc" src="vitrine/pc-restaurant-fr.webp" width="880" height="3178" alt="Aperçu d'un site réalisé par Lumen Web, sur ordinateur" fetchpriority="low"></div></div><div class="socle"></div></div>
-          <div class="tel"><div class="defil"><img class="v-tel" src="vitrine/tel-restaurant-fr.webp" width="300" height="3538" alt="Le même site sur téléphone" fetchpriority="low"></div></div>
+          <div class="tel"><div class="defil"><img class="v-tel" src="vitrine/tel-restaurant-fr.webp" width="300" height="3538" alt="Le même site sur téléphone" fetchpriority="low"></div></div></div>
         </div>
         <a class="voir-demo" id="v-lien" href="demos/restaurant/" target="_blank" rel="noopener"><span data-t="v-open">Ouvrir cette démonstration</span> →</a>
       </div>
@@ -504,15 +542,17 @@
       <div class="titre app">
         <div class="surtitre" data-t="aa-k">Avant / Après</div>
         <h2 data-t="aa-h">Le même restaurant, <em>deux impressions.</em></h2>
-        <p data-t="aa-p">Faites glisser la barre pour voir la transformation.</p>
+        <p data-t="aa-p2">Faites défiler : regardez un site dépassé se transformer en site Lumen Web.</p>
       </div>
-      <div class="comparer app" id="comparer">
-        <img class="apres" src="vitrine/apres-fr.webp" width="1200" height="750" alt="Après : site moderne réalisé par Lumen Web" loading="lazy" decoding="async">
-        <img class="avant" src="vitrine/avant-fr.webp" width="1200" height="750" alt="Avant : ancien site dépassé" loading="lazy" decoding="async">
-        <div class="poignee"><span>‹ ›</span></div>
-        <span class="lbl lbl-avant" data-t="aa-av">Avant</span><span class="lbl lbl-apres" data-t="aa-ap">Après · Lumen Web</span>
-        <input type="range" min="0" max="100" value="50" step="0.5" aria-label="Comparer avant et après">
+    </div>
+    <div class="tr-piste" id="tr-piste">
+      <div class="tr-collant">
+        <div class="tr-etat"><span class="tr-a" data-t="tr-a">2019 · un modèle générique</span><span class="tr-b" data-t="tr-b">2026 · Lumen Web</span></div>
+        <div class="tr-ecran" id="tr-ecran"><div class="tr-couche tr-vieux"></div><div class="tr-couche tr-neuf"></div></div>
+        <div class="tr-aide" data-t="tr-aide">Faites défiler : le vieux site se démonte, le nouveau se construit.</div>
       </div>
+    </div>
+    <div class="bloc">
       <div class="diff">
         <div class="moins app"><h3 data-t="aa-av">Avant</h3><ul data-t="aa-l1"><li>Modèle générique, comme des milliers d'autres</li><li>Photo floue, menu à télécharger en PDF</li><li>Aucun bouton pour réserver ni WhatsApp</li><li>Dernière actualité publiée en 2019</li></ul></div>
         <div class="plus app"><h3 data-t="aa-ap">Après · Lumen Web</h3><ul data-t="aa-l2"><li>Parfait sur téléphone, tablette et ordinateur</li><li>Menu en photos, lisible en un coup d'œil</li><li>Réservation WhatsApp en un geste</li><li>Visible sur Google, en français et en anglais</li></ul></div>
@@ -604,6 +644,19 @@
         <p data-t="qz-p">3 questions, 20 secondes : nous vous recommandons l'offre la plus adaptée, avec son prix exact.</p>
       </div>
       <div class="q-carte app" id="q-carte" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Globe -->
+  <section id="monde" class="monde">
+    <div class="bloc monde-grille">
+      <div class="app">
+        <div class="surtitre" data-t="mo-k">Partout, à distance</div>
+        <h2 data-t="mo-h">De Kampala <em>au monde entier.</em></h2>
+        <p data-t="mo-p">Basés à Kampala, nous travaillons entièrement à distance : un appel, des messages WhatsApp, et votre site prend vie, où que vous soyez. En français comme en anglais.</p>
+        <ul class="mo-villes" data-t="mo-v"><li>Kampala</li><li>Kinshasa</li><li>Nairobi</li><li>Kigali</li><li>Abidjan</li><li>Dakar</li><li>Douala</li><li>Paris</li><li>Bruxelles</li><li>Montréal</li></ul>
+      </div>
+      <div class="globe-boite app"><canvas id="globe" aria-label="Globe : Kampala relié aux grandes villes d'Afrique et du monde" role="img"></canvas><span class="globe-astuce" data-t="mo-a">Faites-le tourner du doigt</span></div>
     </div>
   </section>
 
@@ -823,6 +876,9 @@
     "au-l":"<li>Loading speed on mobile</li><li>Readability on phone, tablet and desktop</li><li>Presence on Google</li><li>How easily customers can contact you</li><li>The 3 priority improvements</li>",
     "a-url":"Your website address *", "ph-url":"www.your-business.com", "a-wa":"Get the review on WhatsApp", "a-mail":"By email", "a-note":"Free, no commitment. Report in English or French.",
     "re-h2":"Step into <em>the gallery.</em>", "re-p2":"Scroll to walk through, tap a piece to open it. One real project and demos, clearly labelled as such.", "g-aide":"Scroll to walk · tap a piece",
+    "aa-p2":"Scroll down: watch an outdated website turn into a Lumen Web site.", "tr-a":"2019 · a generic template", "tr-b":"2026 · Lumen Web", "tr-aide":"Keep scrolling: the old site falls apart, the new one builds itself.",
+    "mo-k":"Everywhere, remotely", "mo-h":"From Kampala <em>to the whole world.</em>", "mo-p":"Based in Kampala, we work fully remotely: a call, a few WhatsApp messages, and your website comes to life, wherever you are. In English and French.",
+    "mo-v":"<li>Kampala</li><li>Kinshasa</li><li>Nairobi</li><li>Kigali</li><li>Abidjan</li><li>Dakar</li><li>Douala</li><li>Paris</li><li>Brussels</li><li>Montreal</li>", "mo-a":"Spin it with your finger",
     foot:"Design & development: Lumen Web · <a href=\"mailto:lumenwebafrica@gmail.com\">lumenwebafrica@gmail.com</a>"
   };
   const MSG = { fr:"Bonjour Lumen Web, je voudrais un devis pour un site.", en:"Hello Lumen Web, I'd like a quote for a website." };
@@ -908,17 +964,117 @@
   vObs.observe(vit);
   let vTimer; addEventListener("resize", () => { clearTimeout(vTimer); vTimer = setTimeout(() => vAnims.length && vJouer(), 250); });
 
-  // ---------- Avant / Après ----------
-  const cmp = document.getElementById("comparer"), cmpIn = cmp.querySelector("input");
-  const posAA = v => cmp.style.setProperty("--pos", v + "%");
-  cmpIn.addEventListener("input", () => { cmp.dataset.touche = 1; posAA(cmpIn.value); });
-  if (!calme) {
-    const aObs = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; aObs.disconnect();
-      const t0 = performance.now(), anim = t => { if (cmp.dataset.touche) return; const k = Math.min((t - t0) / 2600, 1);
-        const v = 50 - 30 * Math.sin(k * Math.PI * 2) * (1 - k * .3); posAA(k < 1 ? v : 50); cmpIn.value = 50; if (k < 1) requestAnimationFrame(anim); };
-      setTimeout(() => requestAnimationFrame(t => { requestAnimationFrame(anim); }), 500); }, { threshold:.5 });
-    aObs.observe(cmp);
+  // ---------- Transformation au défilement (vieux site → Lumen Web) ----------
+  const trPiste = document.getElementById("tr-piste"), trEcran = document.getElementById("tr-ecran"), trCol = trPiste.querySelector(".tr-collant");
+  const TRC = innerWidth < 640 ? 6 : 8, TRR = innerWidth < 640 ? 4 : 5;
+  const alea = (s => () => (s = (s * 16807) % 2147483647) / 2147483647)(7);
+  function trTuiles(couche, img) {
+    couche.style.setProperty("--c", TRC); couche.style.setProperty("--r", TRR); couche.innerHTML = "";
+    const t = [];
+    for (let r = 0; r < TRR; r++) for (let c = 0; c < TRC; c++) {
+      const i = document.createElement("i");
+      i.style.backgroundImage = `url(${img})`; i.style.backgroundSize = `${TRC * 100}% ${TRR * 100}%`;
+      i.style.backgroundPosition = `${TRC > 1 ? c / (TRC - 1) * 100 : 0}% ${TRR > 1 ? r / (TRR - 1) * 100 : 0}%`;
+      const cx = (c + .5) / TRC - .5, cy = (r + .5) / TRR - .5;
+      i._v = { x:(cx * 2 + (alea() - .5)) * 700, y:(cy * 2 + (alea() - .5)) * 500 - 120, z:300 + alea() * 900, rx:(alea() - .5) * 220, ry:(alea() - .5) * 220, rz:(alea() - .5) * 90, d:alea() * .25 };
+      couche.appendChild(i); t.push(i);
+    }
+    return t;
   }
+  let trV = [], trN = [];
+  function trConstruire() { trV = trTuiles(trEcran.querySelector(".tr-vieux"), `vitrine/avant-${lang}.webp`); trN = trTuiles(trEcran.querySelector(".tr-neuf"), `vitrine/apres-${lang}.webp`); trMaj(); }
+  const lisse = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x);
+  function trMaj() {
+    const r = trPiste.getBoundingClientRect(), tot = r.height - (innerHeight - 72);
+    const p = calme ? 1 : Math.max(0, Math.min(1, (72 - r.top) / tot));
+    trV.forEach(i => { const v = i._v, e = lisse((p - .05 - v.d * .5) / .35);
+      i.style.transform = e ? `translate3d(${v.x * e}px,${v.y * e}px,${v.z * e}px) rotateX(${v.rx * e}deg) rotateY(${v.ry * e}deg) rotateZ(${v.rz * e}deg)` : "";
+      i.style.opacity = 1 - e; });
+    trN.forEach(i => { const v = i._v, f = 1 - lisse((p - .3 - v.d * .5) / .45);
+      i.style.transform = f ? `translate3d(${-v.x * f}px,${v.y * f}px,${v.z * f}px) rotateX(${-v.rx * f}deg) rotateY(${v.ry * f}deg) rotateZ(${-v.rz * f}deg)` : "";
+      i.style.opacity = 1 - f; });
+    trCol.classList.toggle("fini", p > .55); trEcran.style.setProperty("--lueur", lisse((p - .85) / .15));
+  }
+  let trRaf = 0; const trDemande = () => { if (!trRaf) trRaf = requestAnimationFrame(() => { trRaf = 0; trMaj(); }); };
+  new IntersectionObserver(es => { if (es[0].isIntersecting && !trV.length) trConstruire(); }, { rootMargin:"600px 0px" }).observe(trPiste);
+  addEventListener("scroll", () => { if (trV.length) trDemande(); }, { passive:true });
+
+  // ---------- Globe lumineux ----------
+  (function () {
+    const cv = document.getElementById("globe"), ctx = cv.getContext("2d");
+    const VILLES = [["Kampala",.35,32.58,1],["Kinshasa",-4.32,15.31],["Nairobi",-1.29,36.82,0,1],["Kigali",-1.95,30.06,0,1],["Abidjan",5.36,-4.01],["Dakar",14.69,-17.45],["Douala",4.05,9.77],["Paris",48.86,2.35],["Bruxelles",50.85,4.35],["Montréal",45.5,-73.57]];
+    let T = null, W = 0, R = 0, lon0 = -22, vit = .06, lat0 = -12, actif = false, glisse = null, t0 = performance.now();
+    const rad = Math.PI / 180;
+    function taille() { const b = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2); W = b.width; cv.width = W * d; cv.height = W * d; ctx.setTransform(d, 0, 0, d, 0, 0); R = W * .42; }
+    function proj(la, lo) { const a = la * rad, b = (lo + lon0) * rad, c0 = Math.cos(lat0 * rad), s0 = Math.sin(lat0 * rad);
+      const x = Math.cos(a) * Math.sin(b), y = Math.sin(a), z = Math.cos(a) * Math.cos(b);
+      return [x, y * c0 - z * s0, y * s0 + z * c0]; }
+    function arc(A, B, k) { // point k (0..1) d'un grand cercle surélevé
+      const p1 = [Math.cos(A[1]*rad)*Math.cos(A[2]*rad), Math.sin(A[1]*rad), Math.cos(A[1]*rad)*Math.sin(A[2]*rad)];
+      const p2 = [Math.cos(B[1]*rad)*Math.cos(B[2]*rad), Math.sin(B[1]*rad), Math.cos(B[1]*rad)*Math.sin(B[2]*rad)];
+      const d = Math.acos(Math.min(1, p1[0]*p2[0]+p1[1]*p2[1]+p1[2]*p2[2])), s = Math.sin(d) || 1;
+      const a = Math.sin((1 - k) * d) / s, b = Math.sin(k * d) / s, v = [a*p1[0]+b*p2[0], a*p1[1]+b*p2[1], a*p1[2]+b*p2[2]];
+      const la = Math.asin(v[1]) / rad, lo = Math.atan2(v[2], v[0]) / rad, h = 1 + Math.sin(k * Math.PI) * Math.min(.35, d * .18);
+      const q = proj(la, lo); return [q[0] * h, q[1] * h, q[2] * h];
+    }
+    function dessiner(t) {
+      if (!T) return; const cx = W / 2, cy = W / 2; ctx.clearRect(0, 0, W, W);
+      const g = ctx.createRadialGradient(cx - R * .3, cy - R * .35, R * .1, cx, cy, R * 1.08);
+      g.addColorStop(0, "rgba(30,60,110,.55)"); g.addColorStop(.75, "rgba(14,33,68,.35)"); g.addColorStop(1, "rgba(10,26,54,0)");
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R * 1.08, 0, 7); ctx.fill();
+      ctx.strokeStyle = "rgba(255,181,71,.18)"; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.stroke();
+      for (let i = 0; i < T.length; i += 2) { const q = proj(T[i], T[i + 1]); if (q[2] <= 0) continue;
+        ctx.fillStyle = `rgba(245,241,232,${.18 + q[2] * .62})`; const s = .7 + q[2] * 1.1; ctx.fillRect(cx + q[0] * R - s / 2, cy - q[1] * R - s / 2, s, s); }
+      const K = VILLES[0];
+      VILLES.slice(1).forEach((V, n) => {
+        ctx.beginPath(); let premier = true, vis = false;
+        for (let k = 0; k <= 1.0001; k += .04) { const q = arc(K, V, k); if (q[2] < -.05) { premier = true; continue; } vis = true;
+          const X = cx + q[0] * R, Y = cy - q[1] * R; premier ? ctx.moveTo(X, Y) : ctx.lineTo(X, Y); premier = false; }
+        if (vis) { ctx.strokeStyle = "rgba(255,181,71,.38)"; ctx.lineWidth = 1.2; ctx.stroke(); }
+        const k = ((t / 2600) + n * .13) % 1, q = arc(K, V, k);
+        if (q[2] > 0) { ctx.fillStyle = "#FFE3A3"; ctx.shadowColor = "#FFB547"; ctx.shadowBlur = 10; ctx.beginPath(); ctx.arc(cx + q[0] * R, cy - q[1] * R, 2.2, 0, 7); ctx.fill(); ctx.shadowBlur = 0; }
+      });
+      ctx.font = "600 11px Inter, sans-serif";
+      VILLES.forEach(([nom, la, lo, maison, discret]) => { const q = proj(la, lo); if (q[2] <= 0) return; const X = cx + q[0] * R, Y = cy - q[1] * R;
+        const pul = maison ? 4 + 3 * Math.sin(t / 400) : 0;
+        ctx.fillStyle = maison ? "rgba(255,181,71,.25)" : "rgba(255,181,71,.15)"; ctx.beginPath(); ctx.arc(X, Y, (maison ? 9 : 5) + pul, 0, 7); ctx.fill();
+        ctx.fillStyle = maison ? "#FFB547" : "#FFD58A"; ctx.beginPath(); ctx.arc(X, Y, maison ? 3.6 : 2.4, 0, 7); ctx.fill();
+        if (discret) return; ctx.globalAlpha = Math.min(1, q[2] * 1.6); ctx.fillStyle = maison ? "#FFB547" : "rgba(245,241,232,.85)"; ctx.fillText(nom, X + 7, Y - 6); ctx.globalAlpha = 1; });
+    }
+    function boucle(t) { if (!actif) return; if (!glisse) lon0 += vit; dessiner(t); requestAnimationFrame(boucle); }
+    function charger() { if (window.TERRE) { T = window.TERRE; return Promise.resolve(); }
+      return new Promise(ok => { const s = document.createElement("script"); s.src = "terre.js"; s.onload = () => { T = window.TERRE; ok(); }; document.head.appendChild(s); }); }
+    new IntersectionObserver(es => { const v = es[0].isIntersecting;
+      if (v && !actif) charger().then(() => { taille(); actif = !calme; if (calme) dessiner(0); else requestAnimationFrame(boucle); });
+      else if (!v) actif = false; }, { rootMargin:"200px" }).observe(cv);
+    addEventListener("resize", () => { if (T) { taille(); dessiner(performance.now()); } });
+    cv.addEventListener("pointerdown", e => { glisse = { x:e.clientX, l:lon0 }; cv.setPointerCapture(e.pointerId); });
+    cv.addEventListener("pointermove", e => { if (glisse) { lon0 = glisse.l + (e.clientX - glisse.x) * .4; if (calme) dessiner(0); } });
+    const fin = () => { glisse = null; }; cv.addEventListener("pointerup", fin); cv.addEventListener("pointercancel", fin);
+  })();
+
+  // ---------- Accueil en 3D : appareils qui pivotent + particules de lumière ----------
+  (function () {
+    const s3 = document.getElementById("scene3d"); if (!s3 || calme) return;
+    let cx = 0, cy = 0, tx = 0, ty = 0;
+    if (matchMedia("(pointer:fine)").matches) addEventListener("pointermove", e => { tx = (e.clientX / innerWidth - .5); ty = (e.clientY / innerHeight - .5); }, { passive:true });
+    function anim() {
+      const r = s3.getBoundingClientRect(), vis = Math.max(0, Math.min(1, (innerHeight - r.top) / (innerHeight * .9)));
+      cx += (tx - cx) * .06; cy += (ty - cy) * .06;
+      if (r.bottom > -100 && r.top < innerHeight + 100) s3.style.transform = `rotateX(${(1 - vis) * 22 - cy * 8}deg) rotateY(${cx * 14}deg) translateZ(0)`;
+      requestAnimationFrame(anim);
+    }
+    requestAnimationFrame(anim);
+    const cv = document.getElementById("particules"), c = cv.getContext("2d"); let P = [], w, hh, on = true;
+    function tl() { const d = Math.min(devicePixelRatio || 1, 2); w = cv.offsetWidth; hh = cv.offsetHeight; cv.width = w * d; cv.height = hh * d; c.setTransform(d, 0, 0, d, 0, 0);
+      const n = innerWidth < 640 ? 28 : 60; P = Array.from({ length:n }, () => ({ x:Math.random() * w, y:Math.random() * hh, r:.6 + Math.random() * 1.8, v:.15 + Math.random() * .45, a:Math.random() * 6.28 })); }
+    function pa() { if (!on) return; c.clearRect(0, 0, w, hh);
+      P.forEach(p => { p.y -= p.v; p.a += .01; p.x += Math.sin(p.a) * .25; if (p.y < -10) { p.y = hh + 10; p.x = Math.random() * w; }
+        const al = .25 + .35 * Math.sin(p.a * 2); c.fillStyle = `rgba(255,${190 + (p.r * 20 | 0)},110,${al})`; c.beginPath(); c.arc(p.x, p.y, p.r, 0, 7); c.fill(); });
+      requestAnimationFrame(pa); }
+    tl(); addEventListener("resize", tl);
+    new IntersectionObserver(es => { on = es[0].isIntersecting; if (on) requestAnimationFrame(pa); }).observe(cv);
+  })();
 
   // ---------- Quiz ----------
   const OFFRES = {
@@ -978,7 +1134,7 @@
 
   // Images qui dépendent de la langue (vitrine, avant/après, aperçus) + quiz
   function imagesLangue() {
-    cmp.querySelector(".apres").src = `vitrine/apres-${lang}.webp`; cmp.querySelector(".avant").src = `vitrine/avant-${lang}.webp`;
+    if (trV.length) trConstruire();
     document.querySelectorAll("img.long[data-v]").forEach(i => i.src = src("pc", i.dataset.v));
   }
   imagesLangue();

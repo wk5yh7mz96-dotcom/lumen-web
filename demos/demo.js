@@ -42,12 +42,12 @@
     '<div class="lw-actions"><a class="lw-cta" href="../../?utm_campaign=demo#commander"></a><button type="button" class="lw-fermer"></button></div></div>';
   document.body.appendChild(modal);
   var st = document.createElement("style");
-  st.textContent = ".lw-modal{position:fixed;inset:0;z-index:100;background:rgba(5,8,15,.62);backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px}" +
-    ".lw-modal[hidden]{display:none}.lw-boite{background:#0F1422;color:#F5F1E8;border:1px solid #2A3350;border-radius:22px;max-width:440px;padding:30px;font-family:Inter,system-ui,sans-serif;box-shadow:0 30px 80px rgba(0,0,0,.5);animation:lwIn .25s ease}" +
+  st.textContent = ".lw-modal{position:fixed;inset:0;z-index:100;background:rgba(5,14,32,.62);backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px}" +
+    ".lw-modal[hidden]{display:none}.lw-boite{background:#0E2144;color:#F5F1E8;border:1px solid #2A4272;border-radius:22px;max-width:440px;padding:30px;font-family:Inter,system-ui,sans-serif;box-shadow:0 30px 80px rgba(0,0,0,.5);animation:lwIn .25s ease}" +
     "@keyframes lwIn{from{opacity:0;transform:translateY(12px) scale(.98)}}.lw-ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#FFB547,#F27A1A);color:#1A0E02;font-weight:900;margin-bottom:14px}" +
     ".lw-boite h3{font:700 20px Inter,sans-serif;margin-bottom:8px}.lw-p{color:#C9CFDE;line-height:1.6}.lw-sub{color:#8A93AB;font-size:13px;margin-top:10px}" +
     ".lw-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.lw-cta{background:linear-gradient(135deg,#FFB547,#F27A1A);color:#1A0E02;font-weight:800;padding:12px 18px;border-radius:999px;text-decoration:none}" +
-    ".lw-fermer{background:none;border:1px solid #2A3350;color:#F5F1E8;padding:12px 18px;border-radius:999px;font:600 14px Inter,sans-serif;cursor:pointer}";
+    ".lw-fermer{background:none;border:1px solid #2A4272;color:#F5F1E8;padding:12px 18px;border-radius:999px;font:600 14px Inter,sans-serif;cursor:pointer}";
   document.head.appendChild(st);
   var dernierFocus = null;
   function ouvrir(kind) {

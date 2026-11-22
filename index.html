@@ -379,8 +379,8 @@
 
   /* Transformation au défilement */
   #transformation { padding-bottom:40px; }
-  .tr-piste { position:relative; height:300vh; }
-  .tr-collant { position:sticky; top:72px; height:calc(100vh - 72px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; overflow:hidden; perspective:1400px; }
+  .tr-piste { position:relative; }
+  .tr-collant { position:relative; padding:10px 0 30px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; overflow:hidden; perspective:1400px; }
   .tr-ecran { position:relative; width:min(1000px, 92vw); aspect-ratio:16/10; transform-style:preserve-3d; }
   .tr-couche { position:absolute; inset:0; display:grid; grid-template-columns:repeat(var(--c),1fr); grid-template-rows:repeat(var(--r),1fr); transform-style:preserve-3d; }
   .tr-couche i { display:block; background-repeat:no-repeat; will-change:transform,opacity; backface-visibility:hidden; }
@@ -389,6 +389,8 @@
   .tr-a { color:var(--doux); } .tr-b { color:var(--or); opacity:0; transform:translateY(8px); }
   .tr-collant.fini .tr-a { opacity:0; transform:translateY(-8px); } .tr-collant.fini .tr-b { opacity:1; transform:none; }
   .tr-aide { color:var(--doux); font-size:14px; text-align:center; padding:0 20px; }
+  .tr-rejouer { border:1px solid var(--ligne); background:var(--carte); color:var(--texte); font:600 14px var(--sans); padding:10px 18px; border-radius:999px; cursor:pointer; opacity:0; pointer-events:none; transition:opacity .4s; }
+  .tr-collant.fini .tr-rejouer { opacity:1; pointer-events:auto; }
   .tr-ecran::after { content:""; position:absolute; inset:-1px; border-radius:6px; pointer-events:none; box-shadow:0 50px 120px -40px rgba(255,150,40,.45); opacity:var(--lueur,0); transition:opacity .3s; }
 
   /* Globe */
@@ -404,7 +406,7 @@
   #globe:active { cursor:grabbing; }
   .globe-astuce { position:absolute; bottom:2%; left:50%; transform:translateX(-50%); font-size:12px; color:var(--doux); opacity:.7; white-space:nowrap; }
   @media (max-width: 960px) { .monde-grille { grid-template-columns:1fr; } }
-  @media (max-width: 640px) { .tr-piste { height:240vh; } .scene3d .tel { transform:translateZ(50px); } }
+  @media (max-width: 640px) { .scene3d .tel { transform:translateZ(50px); } }
 
   /* WhatsApp flottant */
   .wa { position:fixed; right:20px; bottom:20px; z-index:30; width:58px; height:58px; border-radius:50%; background:#25D366; display:grid; place-items:center; box-shadow:0 12px 30px rgba(0,0,0,.45); }
@@ -542,14 +544,14 @@
       <div class="titre app">
         <div class="surtitre" data-t="aa-k">Avant / Après</div>
         <h2 data-t="aa-h">Le même restaurant, <em>deux impressions.</em></h2>
-        <p data-t="aa-p2">Faites défiler : regardez un site dépassé se transformer en site Lumen Web.</p>
+        <p data-t="aa-p2">Regardez un site dépassé se briser et devenir un site Lumen Web.</p>
       </div>
     </div>
     <div class="tr-piste" id="tr-piste">
       <div class="tr-collant">
         <div class="tr-etat"><span class="tr-a" data-t="tr-a">2019 · un modèle générique</span><span class="tr-b" data-t="tr-b">2026 · Lumen Web</span></div>
         <div class="tr-ecran" id="tr-ecran"><div class="tr-couche tr-vieux"></div><div class="tr-couche tr-neuf"></div></div>
-        <div class="tr-aide" data-t="tr-aide">Faites défiler : le vieux site se démonte, le nouveau se construit.</div>
+        <button type="button" class="tr-rejouer" id="tr-rejouer" data-t="tr-re">↻ Revoir la transformation</button>
       </div>
     </div>
     <div class="bloc">
@@ -876,7 +878,7 @@
     "au-l":"<li>Loading speed on mobile</li><li>Readability on phone, tablet and desktop</li><li>Presence on Google</li><li>How easily customers can contact you</li><li>The 3 priority improvements</li>",
     "a-url":"Your website address *", "ph-url":"www.your-business.com", "a-wa":"Get the review on WhatsApp", "a-mail":"By email", "a-note":"Free, no commitment. Report in English or French.",
     "re-h2":"Step into <em>the gallery.</em>", "re-p2":"Scroll to walk through, tap a piece to open it. One real project and demos, clearly labelled as such.", "g-aide":"Scroll to walk · tap a piece",
-    "aa-p2":"Scroll down: watch an outdated website turn into a Lumen Web site.", "tr-a":"2019 · a generic template", "tr-b":"2026 · Lumen Web", "tr-aide":"Keep scrolling: the old site falls apart, the new one builds itself.",
+    "aa-p2":"Watch an outdated website break apart and turn into a Lumen Web site.", "tr-a":"2019 · a generic template", "tr-b":"2026 · Lumen Web", "tr-re":"↻ Replay the transformation",
     "mo-k":"Everywhere, remotely", "mo-h":"From Kampala <em>to the whole world.</em>", "mo-p":"Based in Kampala, we work fully remotely: a call, a few WhatsApp messages, and your website comes to life, wherever you are. In English and French.",
     "mo-v":"<li>Kampala</li><li>Kinshasa</li><li>Nairobi</li><li>Kigali</li><li>Abidjan</li><li>Dakar</li><li>Douala</li><li>Paris</li><li>Brussels</li><li>Montreal</li>", "mo-a":"Spin it with your finger",
     foot:"Design & development: Lumen Web · <a href=\"mailto:lumenwebafrica@gmail.com\">lumenwebafrica@gmail.com</a>"
@@ -966,7 +968,7 @@
 
   // ---------- Transformation au défilement (vieux site → Lumen Web) ----------
   const trPiste = document.getElementById("tr-piste"), trEcran = document.getElementById("tr-ecran"), trCol = trPiste.querySelector(".tr-collant");
-  const TRC = innerWidth < 640 ? 6 : 8, TRR = innerWidth < 640 ? 4 : 5;
+  const TRC = innerWidth < 640 ? 4 : 6, TRR = innerWidth < 640 ? 3 : 4, TRK = Math.min(1, innerWidth / 1100);
   const alea = (s => () => (s = (s * 16807) % 2147483647) / 2147483647)(7);
   function trTuiles(couche, img) {
     couche.style.setProperty("--c", TRC); couche.style.setProperty("--r", TRR); couche.innerHTML = "";
@@ -976,17 +978,16 @@
       i.style.backgroundImage = `url(${img})`; i.style.backgroundSize = `${TRC * 100}% ${TRR * 100}%`;
       i.style.backgroundPosition = `${TRC > 1 ? c / (TRC - 1) * 100 : 0}% ${TRR > 1 ? r / (TRR - 1) * 100 : 0}%`;
       const cx = (c + .5) / TRC - .5, cy = (r + .5) / TRR - .5;
-      i._v = { x:(cx * 2 + (alea() - .5)) * 700, y:(cy * 2 + (alea() - .5)) * 500 - 120, z:300 + alea() * 900, rx:(alea() - .5) * 220, ry:(alea() - .5) * 220, rz:(alea() - .5) * 90, d:alea() * .25 };
+      i._v = { x:(cx * 2 + (alea() - .5)) * 700 * TRK, y:((cy * 2 + (alea() - .5)) * 500 - 120) * TRK, z:(300 + alea() * 900) * TRK, rx:(alea() - .5) * 220, ry:(alea() - .5) * 220, rz:(alea() - .5) * 90, d:alea() * .25 };
       couche.appendChild(i); t.push(i);
     }
     return t;
   }
   let trV = [], trN = [];
-  function trConstruire() { trV = trTuiles(trEcran.querySelector(".tr-vieux"), `vitrine/avant-${lang}.webp`); trN = trTuiles(trEcran.querySelector(".tr-neuf"), `vitrine/apres-${lang}.webp`); trMaj(); }
+  function trConstruire() { trV = trTuiles(trEcran.querySelector(".tr-vieux"), `vitrine/avant-${lang}.webp`); trN = trTuiles(trEcran.querySelector(".tr-neuf"), `vitrine/apres-${lang}.webp`); trMaj(trP); }
   const lisse = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x);
-  function trMaj() {
-    const r = trPiste.getBoundingClientRect(), tot = r.height - (innerHeight - 72);
-    const p = calme ? 1 : Math.max(0, Math.min(1, (72 - r.top) / tot));
+  let trP = calme ? 1 : 0, trEnCours = false;
+  function trMaj(p) {
     trV.forEach(i => { const v = i._v, e = lisse((p - .05 - v.d * .5) / .35);
       i.style.transform = e ? `translate3d(${v.x * e}px,${v.y * e}px,${v.z * e}px) rotateX(${v.rx * e}deg) rotateY(${v.ry * e}deg) rotateZ(${v.rz * e}deg)` : "";
       i.style.opacity = 1 - e; });
@@ -995,9 +996,17 @@
       i.style.opacity = 1 - f; });
     trCol.classList.toggle("fini", p > .55); trEcran.style.setProperty("--lueur", lisse((p - .85) / .15));
   }
-  let trRaf = 0; const trDemande = () => { if (!trRaf) trRaf = requestAnimationFrame(() => { trRaf = 0; trMaj(); }); };
+  // Se brise tout seul quand on arrive dessus (environ 4 secondes)
+  function trJouer() {
+    if (trEnCours || calme) return; trEnCours = true; trP = 0; trMaj(0);
+    const t0 = performance.now() + 700, D = 4200;
+    const pas = t => { trP = Math.max(0, Math.min(1, (t - t0) / D)); trMaj(trP); if (trP < 1) requestAnimationFrame(pas); else trEnCours = false; };
+    requestAnimationFrame(pas);
+  }
   new IntersectionObserver(es => { if (es[0].isIntersecting && !trV.length) trConstruire(); }, { rootMargin:"600px 0px" }).observe(trPiste);
-  addEventListener("scroll", () => { if (trV.length) trDemande(); }, { passive:true });
+  const trObs = new IntersectionObserver(es => { if (es[0].isIntersecting) { trObs.disconnect(); if (!trV.length) trConstruire(); trJouer(); } }, { threshold:.55 });
+  trObs.observe(trEcran);
+  document.getElementById("tr-rejouer").addEventListener("click", trJouer);
 
   // ---------- Globe lumineux ----------
   (function () {

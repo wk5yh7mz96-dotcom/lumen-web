@@ -9,9 +9,9 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lumen Web · Votre entreprise, dans la lumière.">
 <meta property="og:description" content="Sites web modernes, rapides et visibles sur Google. En français et en anglais.">
-<meta property="og:image" content="https://lumen-web-africa.netlify.app/partage.jpg">
-<meta property="og:url" content="https://lumen-web-africa.netlify.app/">
-<link rel="canonical" href="https://lumen-web-africa.netlify.app/">
+<meta property="og:image" content="https://lumen-web-africa.onrender.com/partage.jpg">
+<meta property="og:url" content="https://lumen-web-africa.onrender.com/">
+<link rel="canonical" href="https://lumen-web-africa.onrender.com/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -209,7 +209,7 @@
   .eng h3 { font-size:18px; margin-bottom:6px; } .eng p { color:var(--doux); font-size:15px; }
   footer a { color:var(--or); }
   @media (max-width: 960px) { .apropos { grid-template-columns:1fr; gap:40px; } }
-  @media (max-width: 640px) { .engagements { grid-template-columns:1fr; } .wa { bottom:84px; } }
+  @media (max-width: 640px) { .engagements { grid-template-columns:1fr; } }
 
   /* Vitrine animée (ordinateur + téléphone) */
   .vitrine { margin:68px auto 0; max-width:980px; }
@@ -394,7 +394,7 @@
           <button type="button" role="tab" data-d="clinique"><span data-t="d3h">Clinique</span><i></i></button>
         </div>
         <div class="scene">
-          <div class="ordi"><div class="lcran"><div class="lbar"><i></i><i></i><i></i><span class="url">lumen-web-africa.netlify.app/demos/restaurant</span></div>
+          <div class="ordi"><div class="lcran"><div class="lbar"><i></i><i></i><i></i><span class="url">lumen-web-africa.onrender.com/demos/restaurant</span></div>
             <div class="defil"><img class="v-pc" src="vitrine/pc-restaurant-fr.webp" width="880" height="3178" alt="Aperçu d'un site réalisé par Lumen Web, sur ordinateur" fetchpriority="low"></div></div><div class="socle"></div></div>
           <div class="tel"><div class="defil"><img class="v-tel" src="vitrine/tel-restaurant-fr.webp" width="300" height="3538" alt="Le même site sur téléphone" fetchpriority="low"></div></div>
         </div>
@@ -835,7 +835,7 @@
     if (i === vIdx && !force) return;
     vIdx = i; const d = DEMOS[i];
     vit.querySelectorAll(".onglets button").forEach((b, j) => { b.classList.toggle("on", j === i); b.setAttribute("aria-selected", j === i); });
-    vit.querySelector(".url").textContent = "lumen-web-africa.netlify.app/demos/" + d;
+    vit.querySelector(".url").textContent = "lumen-web-africa.onrender.com/demos/" + d;
     document.getElementById("v-lien").href = "demos/" + d + "/";
     let restant = 2;
     [vPc, vTel].forEach(img => {

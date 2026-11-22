@@ -65,7 +65,7 @@
   header .btn { padding:10px 18px; font-size:14px; }
 
   /* Accroche */
-  .hero { padding:110px 0 90px; position:relative; }
+  .hero { padding:110px 0 90px; position:relative; overflow-x:clip; }
   .hero::before { content:""; position:absolute; top:-120px; left:50%; width:900px; height:900px; transform:translateX(-50%); pointer-events:none;
                   background:radial-gradient(closest-side, rgba(255,160,50,.20), rgba(255,160,50,.05) 55%, transparent); }
   .hero .bloc { position:relative; text-align:center; }
@@ -211,6 +211,113 @@
   @media (max-width: 960px) { .apropos { grid-template-columns:1fr; gap:40px; } }
   @media (max-width: 640px) { .engagements { grid-template-columns:1fr; } .wa { bottom:84px; } }
 
+  /* Vitrine animée (ordinateur + téléphone) */
+  .vitrine { margin:68px auto 0; max-width:980px; }
+  .onglets { display:inline-flex; gap:4px; padding:4px; border:1px solid var(--ligne); border-radius:999px; background:var(--nuit2); margin-bottom:30px; }
+  .onglets button { border:0; background:none; color:var(--doux); font:600 14px var(--sans); padding:9px 18px; border-radius:999px; cursor:pointer; position:relative; overflow:hidden; }
+  .onglets button.on { background:rgba(255,181,71,.14); color:var(--texte); }
+  .onglets button i { position:absolute; left:0; bottom:0; height:2px; width:0; background:var(--or); }
+  .scene { position:relative; padding-right:8%; }
+  .lcran { background:#0E1322; border:10px solid #1B2235; border-bottom-width:12px; border-radius:18px 18px 6px 6px; overflow:hidden;
+           box-shadow:0 60px 140px -50px rgba(255,150,40,.45), 0 30px 60px -30px rgba(0,0,0,.8); }
+  .lbar { height:30px; background:#1A2135; display:flex; align-items:center; gap:6px; padding:0 12px; }
+  .lbar i { width:9px; height:9px; border-radius:50%; background:#39425E; flex:none; }
+  .lbar span { margin-left:10px; flex:1; max-width:380px; background:#0E1322; border-radius:6px; font-size:11.5px; color:var(--doux); padding:3px 10px; text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .defil { position:relative; overflow:hidden; aspect-ratio:16/9.2; background:#0E1322; }
+  .defil img { width:100%; position:absolute; top:0; left:0; transition:opacity .45s ease; will-change:transform; }
+  .defil img.cache { opacity:0; }
+  .socle { height:16px; margin:0 -5%; background:linear-gradient(#2A3350,#121827); border-radius:0 0 24px 24px; position:relative; }
+  .socle::before { content:""; position:absolute; left:50%; top:0; width:16%; height:6px; transform:translateX(-50%); background:#0B0F1A; border-radius:0 0 10px 10px; }
+  .tel { position:absolute; right:0; bottom:-30px; width:21%; border:7px solid #1B2235; border-radius:30px; background:#0E1322; overflow:hidden;
+         box-shadow:-24px 30px 70px -20px rgba(0,0,0,.85), 0 0 0 1px #2A3350; }
+  .tel .defil { aspect-ratio:9/19; }
+  .tel::before { content:""; position:absolute; z-index:2; top:6px; left:50%; transform:translateX(-50%); width:34%; height:12px; border-radius:10px; background:#1B2235; }
+  .voir-demo { display:inline-flex; gap:8px; margin-top:52px; color:var(--or); font-weight:700; }
+  .voir-demo:hover { text-decoration:underline; }
+
+  /* Garantie */
+  .garantie { padding:10px 0 0; }
+  .g-in { display:flex; align-items:center; gap:22px; border:1px solid rgba(75,227,166,.35); border-radius:24px; padding:24px 28px;
+          background:linear-gradient(100deg, rgba(48,209,140,.14), rgba(21,28,46,.7) 60%); }
+  .bouclier { width:60px; height:60px; flex:none; border-radius:17px; display:grid; place-items:center; color:#4BE3A6; background:rgba(48,209,140,.14); border:1px solid rgba(75,227,166,.4); }
+  .bouclier svg { width:30px; height:30px; }
+  .g-in b { display:block; font-size:19px; margin-bottom:3px; }
+  .g-in span { color:var(--doux); font-size:15.5px; }
+  .g-in .btn { margin-left:auto; flex:none; }
+  .ruban { display:flex; align-items:center; justify-content:center; gap:10px; color:#4BE3A6; font-weight:600; margin:-30px auto 40px; text-align:center; }
+  .ruban svg { width:20px; height:20px; flex:none; }
+
+  /* Avant / Après */
+  .comparer { position:relative; aspect-ratio:16/10; border-radius:22px; overflow:hidden; border:1px solid var(--ligne); max-width:1000px; margin:0 auto;
+              box-shadow:0 40px 100px -50px rgba(255,150,40,.5); --pos:50%; user-select:none; -webkit-user-select:none; touch-action:pan-y; }
+  .comparer img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; }
+  .comparer .avant { clip-path:inset(0 calc(100% - var(--pos)) 0 0); }
+  .poignee { position:absolute; top:0; bottom:0; left:var(--pos); width:3px; margin-left:-1.5px; background:var(--or); pointer-events:none; box-shadow:0 0 18px rgba(255,181,71,.8); }
+  .poignee span { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg,var(--or),var(--orange));
+                  color:#1A0E02; display:grid; place-items:center; font-weight:900; font-size:17px; letter-spacing:-1px; box-shadow:0 8px 24px rgba(0,0,0,.5); }
+  .lbl { position:absolute; top:16px; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; pointer-events:none; }
+  .lbl-avant { left:16px; background:rgba(0,0,0,.7); color:#fff; }
+  .lbl-apres { right:16px; background:var(--or); color:#1A0E02; }
+  .comparer input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:ew-resize; margin:0; }
+  .diff { display:grid; grid-template-columns:1fr 1fr; gap:18px; max-width:1000px; margin:24px auto 0; }
+  .diff > div { border:1px solid var(--ligne); border-radius:18px; padding:24px; background:var(--carte); }
+  .diff h3 { font-size:15px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px; }
+  .diff ul { list-style:none; display:grid; gap:9px; color:var(--doux); font-size:15.5px; }
+  .diff li { display:flex; gap:10px; }
+  .diff .moins h3 { color:#FF7B6B; } .diff .moins li::before { content:"✕"; color:#FF7B6B; font-weight:800; }
+  .diff .plus { border-color:rgba(255,181,71,.45); } .diff .plus h3 { color:var(--or); } .diff .plus li::before { content:"✓"; color:var(--or); font-weight:800; }
+  .illus { text-align:center; color:var(--doux); font-size:13px; margin-top:16px; opacity:.8; }
+
+  /* Aperçus vivants des démos */
+  .mini .ecran img.long { object-fit:cover; object-position:50% 0; transition:object-position 7s ease-in-out; }
+  a.mini:hover .ecran img.long, a.mini:focus-visible .ecran img.long { object-position:50% 100%; }
+  @media (hover:none) { .mini .ecran img.long { animation:monte 10s ease-in-out infinite alternate; } }
+  @keyframes monte { 0%,10% { object-position:50% 0; } 90%,100% { object-position:50% 100%; } }
+  .survol { display:inline-block; margin-top:8px; font-size:13px; color:var(--or); font-weight:600; }
+
+  /* Quiz */
+  .quiz { display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; align-items:center; }
+  .quiz .cote p { color:var(--doux); font-size:18px; margin-top:16px; }
+  .q-carte { background:radial-gradient(90% 70% at 100% 0%, rgba(255,181,71,.12), transparent 60%), var(--carte); border:1px solid var(--ligne); border-radius:26px; padding:34px; min-height:380px; }
+  .q-prog { height:4px; background:var(--nuit2); border-radius:4px; margin-bottom:28px; overflow:hidden; }
+  .q-prog i { display:block; height:100%; width:33.3%; background:linear-gradient(90deg,var(--or),var(--orange)); transition:width .45s ease; }
+  .q-num { font-size:12.5px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--or); margin-bottom:10px; }
+  .q-carte h3 { font-family:var(--serif); font-weight:500; font-size:clamp(22px,2.6vw,28px); line-height:1.2; margin-bottom:24px; }
+  .q-choix { display:grid; gap:12px; }
+  .q-choix button { text-align:left; border:1px solid var(--ligne); background:var(--nuit2); color:var(--texte); font:500 16px var(--sans); padding:17px 20px; border-radius:15px; cursor:pointer;
+                    display:flex; justify-content:space-between; align-items:center; gap:14px; transition:border-color .2s, transform .2s, background .2s; }
+  .q-choix button::after { content:"→"; color:var(--or); font-weight:700; }
+  .q-choix button:hover { border-color:var(--or); transform:translateX(4px); background:rgba(255,181,71,.06); }
+  .q-etape { animation:qIn .35s ease; }
+  @keyframes qIn { from { opacity:0; transform:translateX(18px); } }
+  .q-retour { background:none; border:0; color:var(--doux); font:500 14px var(--sans); cursor:pointer; margin-top:18px; }
+  .r-prix { font-family:var(--serif); font-size:clamp(44px,6vw,58px); font-weight:700; line-height:1; }
+  .r-prix small { font:500 15px var(--sans); color:var(--doux); }
+  .r-ugx { color:var(--doux); margin:8px 0 18px; }
+  .r-pourquoi { color:var(--texte); opacity:.9; margin-bottom:24px; }
+  .q-res .actions { justify-content:flex-start; }
+  .q-res .note { margin-top:16px; color:#4BE3A6; }
+
+  /* Audit gratuit */
+  .audit { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; border:1px solid rgba(255,181,71,.35); border-radius:32px; padding:56px;
+           background:radial-gradient(70% 90% at 0% 0%, rgba(255,181,71,.16), transparent 60%), var(--nuit2); }
+  .audit .cote p { color:var(--doux); font-size:17.5px; margin-top:16px; }
+  .a-liste { list-style:none; display:grid; gap:10px; margin-top:22px; }
+  .a-liste li { display:flex; gap:12px; font-size:16px; }
+  .a-liste li::before { content:"✓"; color:var(--or); font-weight:800; }
+
+  @media (max-width: 960px) { .quiz, .audit { grid-template-columns:1fr; gap:36px; } .audit { padding:34px; } }
+  @media (max-width: 640px) {
+    .vitrine { margin-top:48px; } .scene { padding-right:12%; } .tel { width:30%; border-width:5px; border-radius:20px; bottom:-20px; }
+    .lcran { border-width:6px; border-bottom-width:8px; border-radius:12px 12px 4px 4px; } .lbar { height:22px; } .lbar span { font-size:9.5px; }
+    .onglets button { padding:8px 12px; font-size:13px; }
+    .g-in { flex-direction:column; align-items:flex-start; padding:24px; } .g-in .btn { margin-left:0; width:100%; }
+    .diff { grid-template-columns:1fr; } .comparer { aspect-ratio:4/3.4; border-radius:16px; } .poignee span { width:42px; height:42px; }
+    .envois:has(.email-seul:not([style*="none"])) { grid-template-columns:1fr; }
+    .q-carte { padding:24px; min-height:0; } .audit { padding:26px; border-radius:24px; } .ruban { margin-top:-24px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .mini .ecran img.long { animation:none; transition:none; } }
+
   /* WhatsApp flottant */
   .wa { position:fixed; right:20px; bottom:20px; z-index:30; width:58px; height:58px; border-radius:50%; background:#25D366; display:grid; place-items:center; box-shadow:0 12px 30px rgba(0,0,0,.45); }
   .wa svg { width:30px; height:30px; fill:#fff; }
@@ -278,6 +385,31 @@
         <span data-t="p1">Site prêt en 48 à 72 h</span>
         <span data-t="p2">Visible sur Google</span>
         <span data-t="p3">Français · English</span>
+        <span data-t="p4">Payez seulement si ça vous plaît</span>
+      </div>
+      <div class="vitrine app" id="vitrine">
+        <div class="onglets" role="tablist" aria-label="Démonstrations">
+          <button type="button" role="tab" data-d="restaurant" class="on"><span data-t="d1h">Restaurant</span><i></i></button>
+          <button type="button" role="tab" data-d="hotel"><span data-t="d2h">Hôtel & lodge</span><i></i></button>
+          <button type="button" role="tab" data-d="clinique"><span data-t="d3h">Clinique</span><i></i></button>
+        </div>
+        <div class="scene">
+          <div class="ordi"><div class="lcran"><div class="lbar"><i></i><i></i><i></i><span class="url">lumen-web-africa.netlify.app/demos/restaurant</span></div>
+            <div class="defil"><img class="v-pc" src="vitrine/pc-restaurant-fr.webp" width="880" height="3178" alt="Aperçu d'un site réalisé par Lumen Web, sur ordinateur" fetchpriority="low"></div></div><div class="socle"></div></div>
+          <div class="tel"><div class="defil"><img class="v-tel" src="vitrine/tel-restaurant-fr.webp" width="300" height="3538" alt="Le même site sur téléphone" fetchpriority="low"></div></div>
+        </div>
+        <a class="voir-demo" id="v-lien" href="demos/restaurant/" target="_blank" rel="noopener"><span data-t="v-open">Ouvrir cette démonstration</span> →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Garantie -->
+  <div class="garantie">
+    <div class="bloc">
+      <div class="g-in app">
+        <div class="bouclier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div><b data-t="g-h">Garantie Lumen Web : vous ne payez que si le site vous plaît.</b><span data-t="g-p">Nous créons votre site complet, vous le découvrez en ligne, et vous payez seulement une fois satisfait. Aucune avance, aucun risque.</span></div>
+        <a class="btn btn-or" href="#commander" data-t="g-cta">Commencer</a>
       </div>
     </div>
   </div>
@@ -315,6 +447,29 @@
     </div>
   </section>
 
+  <!-- Avant / Après -->
+  <section id="transformation">
+    <div class="bloc">
+      <div class="titre app">
+        <div class="surtitre" data-t="aa-k">Avant / Après</div>
+        <h2 data-t="aa-h">Le même restaurant, <em>deux impressions.</em></h2>
+        <p data-t="aa-p">Faites glisser la barre pour voir la transformation.</p>
+      </div>
+      <div class="comparer app" id="comparer">
+        <img class="apres" src="vitrine/apres-fr.webp" width="1200" height="750" alt="Après : site moderne réalisé par Lumen Web" loading="lazy" decoding="async">
+        <img class="avant" src="vitrine/avant-fr.webp" width="1200" height="750" alt="Avant : ancien site dépassé" loading="lazy" decoding="async">
+        <div class="poignee"><span>‹ ›</span></div>
+        <span class="lbl lbl-avant" data-t="aa-av">Avant</span><span class="lbl lbl-apres" data-t="aa-ap">Après · Lumen Web</span>
+        <input type="range" min="0" max="100" value="50" step="0.5" aria-label="Comparer avant et après">
+      </div>
+      <div class="diff">
+        <div class="moins app"><h3 data-t="aa-av">Avant</h3><ul data-t="aa-l1"><li>Illisible sur téléphone</li><li>Menu en PDF de 4 Mo</li><li>Numéro caché sur une autre page</li><li>Dernière mise à jour en 2014</li></ul></div>
+        <div class="plus app"><h3 data-t="aa-ap">Après · Lumen Web</h3><ul data-t="aa-l2"><li>Parfait sur téléphone, tablette et ordinateur</li><li>Menu en photos, lisible en un coup d'œil</li><li>Réservation WhatsApp en un geste</li><li>Visible sur Google, en français et en anglais</li></ul></div>
+      </div>
+      <p class="illus" data-t="aa-note">Exemple illustratif, réalisé à partir de notre démonstration « Restaurant ».</p>
+    </div>
+  </section>
+
   <!-- Réalisations -->
   <section id="realisations">
     <div class="bloc">
@@ -335,16 +490,16 @@
         </article>
         <div class="demos">
           <a class="projet mini app" href="demos/restaurant/" target="_blank" rel="noopener">
-            <div class="ecran"><img src="demos/restaurant/apercu.webp" width="640" height="400" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
-            <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d1h">Restaurant</h3><p data-t="d1p">Menu en photos, réservation par WhatsApp, horaires et plan d'accès.</p></div>
+            <div class="ecran"><img class="long" data-v="restaurant" src="vitrine/pc-restaurant-fr.webp" width="880" height="3178" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%"></div>
+            <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d1h">Restaurant</h3><p data-t="d1p">Menu en photos, réservation par WhatsApp, horaires et plan d'accès.</p><span class="survol" data-t="hov">Ouvrir la démo →</span></div>
           </a>
           <a class="projet mini app" href="demos/hotel/" target="_blank" rel="noopener">
-            <div class="ecran"><img src="demos/hotel/apercu.webp" width="640" height="400" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
-            <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d2h">Hôtel & lodge</h3><p data-t="d2p">Chambres, galerie, avis clients et demande de réservation.</p></div>
+            <div class="ecran"><img class="long" data-v="hotel" src="vitrine/pc-hotel-fr.webp" width="880" height="3178" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%"></div>
+            <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d2h">Hôtel & lodge</h3><p data-t="d2p">Chambres, galerie, avis clients et demande de réservation.</p><span class="survol" data-t="hov">Ouvrir la démo →</span></div>
           </a>
           <a class="projet mini app" href="demos/clinique/" target="_blank" rel="noopener">
-            <div class="ecran"><img src="demos/clinique/apercu.webp" width="640" height="400" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
-            <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d3h">Clinique</h3><p data-t="d3p">Services, équipe, prise de rendez-vous et urgences en un clic.</p></div>
+            <div class="ecran"><img class="long" data-v="clinique" src="vitrine/pc-clinique-fr.webp" width="880" height="3178" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%"></div>
+            <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d3h">Clinique</h3><p data-t="d3p">Services, équipe, prise de rendez-vous et urgences en un clic.</p><span class="survol" data-t="hov">Ouvrir la démo →</span></div>
           </a>
         </div>
       </div>
@@ -387,6 +542,18 @@
     </div>
   </section>
 
+  <!-- Quiz -->
+  <section id="quiz">
+    <div class="bloc quiz">
+      <div class="cote app">
+        <div class="surtitre" data-t="qz-k">Votre site idéal</div>
+        <h2 data-t="qz-h">Quel site pour <em>votre entreprise ?</em></h2>
+        <p data-t="qz-p">3 questions, 20 secondes : nous vous recommandons l'offre la plus adaptée, avec son prix exact.</p>
+      </div>
+      <div class="q-carte app" id="q-carte" aria-live="polite"></div>
+    </div>
+  </section>
+
   <!-- Offres -->
   <section id="offres">
     <div class="bloc">
@@ -394,6 +561,7 @@
         <div class="surtitre" data-t="of-k">Tarifs</div>
         <h2 data-t="of-h">Des prix <em>clairs</em>, sans surprise.</h2>
       </div>
+      <p class="ruban app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg><span data-t="rb">Vous ne payez qu'après avoir vu votre site terminé, et seulement s'il vous plaît.</span></p>
       <div class="offres">
         <div class="offre app">
           <h3 data-t="o1h">Essentiel</h3><p class="pour" data-t="o1p">Pour exister en ligne rapidement.</p>
@@ -411,10 +579,31 @@
           <h3 data-t="o3h">Entreprise</h3><p class="pour" data-t="o3p">Refonte complète pour les entreprises établies.</p>
           <div class="prix"><small data-t="from">à partir de</small> $249.99</div><div class="ugx" data-t="o3u">≈ 1 050 000 UGX · sur devis · audit offert</div>
           <ul><li data-t="o3a">Audit de votre site actuel</li><li data-t="o3b">Design premium sur mesure</li><li data-t="o3c">Pages multiples, galerie, formulaires</li><li data-t="o3d">Accompagnement prioritaire</li></ul>
-          <a class="btn btn-ligne wa-lien" href="#" data-t="audit">Demander un audit</a>
+          <a class="btn btn-ligne" href="#audit" data-t="audit">Demander un audit</a>
         </div>
       </div>
       <p class="suivi app"><span data-t="follow"><b>Suivi mensuel</b> à partir de $9.99 / mois (≈ 42 000 UGX) : mises à jour, sécurité et rapport de visites.</span><br><small style="opacity:.7" data-t="rate">Montants en UGX indicatifs (1 $ ≈ 4 200 UGX, novembre 2026).</small></p>
+    </div>
+  </section>
+
+  <!-- Audit gratuit -->
+  <section id="audit">
+    <div class="bloc">
+      <div class="audit">
+        <div class="cote app">
+          <div class="surtitre" data-t="au-k">Offert</div>
+          <h2 data-t="au-h">Vous avez déjà un site ? <em>Analyse gratuite en 24 h.</em></h2>
+          <p data-t="au-p">Envoyez-nous son adresse. Sous 24 heures, vous recevez un rapport clair, sans jargon :</p>
+          <ul class="a-liste" data-t="au-l"><li>Vitesse d'affichage sur téléphone</li><li>Lisibilité sur téléphone, tablette et ordinateur</li><li>Présence sur Google</li><li>Facilité pour vos clients à vous contacter</li><li>Les 3 améliorations prioritaires</li></ul>
+        </div>
+        <form class="carte-form app" id="audit-form">
+          <div class="champ"><label for="a-url" data-t="a-url">Adresse de votre site *</label><input id="a-url" required data-tp="ph-url" placeholder="www.votre-entreprise.com"></div>
+          <div class="champ"><label for="a-nom" data-t="f-nom">Nom de l'entreprise *</label><input id="a-nom" required></div>
+          <div class="champ"><label for="a-qui" data-t="f-qui">Votre prénom *</label><input id="a-qui" required></div>
+          <div class="envois"><button class="btn btn-or" type="submit" name="via" value="wa"><span data-t="a-wa">Recevoir l'analyse sur WhatsApp</span></button><button class="btn btn-ligne email-seul" type="submit" name="via" value="mail"><span data-t="a-mail">Par e-mail</span></button></div>
+          <p class="note" data-t="a-note">Gratuit et sans engagement. Rapport en français ou en anglais.</p>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -569,6 +758,17 @@
     ap2h:"Built for every screen", ap2p:"Every page is designed and tested on phone, tablet and desktop before delivery.",
     ap3h:"Visible on Google", ap3p:"SEO-friendly structure, sitemap, and polished sharing on WhatsApp and social media.",
     ap4h:"Full transparency", ap4p:"A price agreed upfront, a website shown before any payment, and a site you own.",
+    p4:"Pay only if you love it", "v-open":"Open this demo",
+    "g-h":"The Lumen Web guarantee: you only pay if you love your website.", "g-p":"We build your complete website, you see it live online, and you pay only once you're happy. No deposit, no risk.", "g-cta":"Get started",
+    rb:"You only pay after seeing your finished website, and only if you love it.",
+    "aa-k":"Before / After", "aa-h":"Same restaurant, <em>two impressions.</em>", "aa-p":"Drag the bar to see the transformation.", "aa-av":"Before", "aa-ap":"After · Lumen Web",
+    "aa-l1":"<li>Unreadable on mobile</li><li>4 MB PDF menu</li><li>Phone number hidden on another page</li><li>Last updated in 2014</li>",
+    "aa-l2":"<li>Perfect on mobile, tablet and desktop</li><li>Photo menu, clear at a glance</li><li>One-tap WhatsApp booking</li><li>Visible on Google, in English and French</li>",
+    "aa-note":"Illustrative example, based on our “Restaurant” demo.", hov:"Open the demo →",
+    "qz-k":"Your ideal website", "qz-h":"Which website for <em>your business?</em>", "qz-p":"3 questions, 20 seconds: we recommend the right plan, with its exact price.",
+    "au-k":"Free", "au-h":"Already have a website? <em>Free review in 24 h.</em>", "au-p":"Send us its address. Within 24 hours, you get a clear report, no jargon:",
+    "au-l":"<li>Loading speed on mobile</li><li>Readability on phone, tablet and desktop</li><li>Presence on Google</li><li>How easily customers can contact you</li><li>The 3 priority improvements</li>",
+    "a-url":"Your website address *", "ph-url":"www.your-business.com", "a-wa":"Get the review on WhatsApp", "a-mail":"By email", "a-note":"Free, no commitment. Report in English or French.",
     foot:"Design & development: Lumen Web · <a href=\"mailto:lumenwebafrica@gmail.com\">lumenwebafrica@gmail.com</a>"
   };
   const MSG = { fr:"Bonjour Lumen Web, je voudrais un devis pour un site.", en:"Hello Lumen Web, I'd like a quote for a website." };
@@ -612,6 +812,123 @@
     if (e.submitter && e.submitter.value === "mail" && EMAIL) location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(L[0] + " · " + v("f-nom")) + "&body=" + encodeURIComponent(t);
     else window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t), "_blank", "noopener");
   });
+
+
+  // ---------- Vitrine animée : les démos défilent dans l'ordinateur et le téléphone ----------
+  const DEMOS = ["restaurant", "hotel", "clinique"], DUREE = 11000;
+  const vit = document.getElementById("vitrine"), vPc = vit.querySelector(".v-pc"), vTel = vit.querySelector(".v-tel");
+  const calme = new URLSearchParams(location.search).has("capture") || matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let vIdx = 0, vAnims = [], vSurvol = false;
+  const src = (k, d) => `vitrine/${k}-${d}-${lang}.webp`;
+  function vJouer() {
+    vAnims.forEach(a => a.cancel()); vAnims = [];
+    if (calme) return;
+    const bouge = img => { const dist = img.offsetHeight - img.parentNode.offsetHeight; if (dist <= 0) return;
+      vAnims.push(img.animate([{ transform:"translateY(0)" }, { transform:"translateY(0)", offset:.12 }, { transform:`translateY(${-dist}px)`, offset:.9 }, { transform:`translateY(${-dist}px)` }], { duration:DUREE, easing:"ease-in-out" })); };
+    bouge(vPc); bouge(vTel);
+    const barre = vit.querySelector(".onglets .on i");
+    vAnims.push(barre.animate([{ width:"0%" }, { width:"100%" }], { duration:DUREE, easing:"linear" }));
+    vAnims[vAnims.length - 1].onfinish = () => vMontrer((vIdx + 1) % DEMOS.length);
+    if (vSurvol) vAnims.forEach(a => a.pause());
+  }
+  function vMontrer(i, force) {
+    if (i === vIdx && !force) return;
+    vIdx = i; const d = DEMOS[i];
+    vit.querySelectorAll(".onglets button").forEach((b, j) => { b.classList.toggle("on", j === i); b.setAttribute("aria-selected", j === i); });
+    vit.querySelector(".url").textContent = "lumen-web-africa.netlify.app/demos/" + d;
+    document.getElementById("v-lien").href = "demos/" + d + "/";
+    let restant = 2;
+    [vPc, vTel].forEach(img => {
+      img.classList.add("cache");
+      setTimeout(() => { const n = new Image(); n.src = src(img === vPc ? "pc" : "tel", d);
+        n.decode().catch(() => {}).then(() => { img.src = n.src; img.classList.remove("cache"); if (--restant === 0) vJouer(); }); }, 300);
+    });
+    // Précharge la démo suivante
+    const s = DEMOS[(i + 1) % DEMOS.length]; new Image().src = src("pc", s); new Image().src = src("tel", s);
+  }
+  vit.querySelectorAll(".onglets button").forEach((b, j) => b.addEventListener("click", () => vMontrer(j)));
+  vit.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") { vSurvol = true; vAnims.forEach(a => a.pause()); } });
+  vit.addEventListener("pointerleave", () => { vSurvol = false; vAnims.forEach(a => a.play()); });
+  // Démarre seulement quand la vitrine est visible
+  const vObs = new IntersectionObserver(es => { if (es[0].isIntersecting) { vObs.disconnect(); vMontrer(0, true); } }, { rootMargin:"200px" });
+  vObs.observe(vit);
+  let vTimer; addEventListener("resize", () => { clearTimeout(vTimer); vTimer = setTimeout(() => vAnims.length && vJouer(), 250); });
+
+  // ---------- Avant / Après ----------
+  const cmp = document.getElementById("comparer"), cmpIn = cmp.querySelector("input");
+  const posAA = v => cmp.style.setProperty("--pos", v + "%");
+  cmpIn.addEventListener("input", () => { cmp.dataset.touche = 1; posAA(cmpIn.value); });
+  if (!calme) {
+    const aObs = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; aObs.disconnect();
+      const t0 = performance.now(), anim = t => { if (cmp.dataset.touche) return; const k = Math.min((t - t0) / 2600, 1);
+        const v = 50 - 30 * Math.sin(k * Math.PI * 2) * (1 - k * .3); posAA(k < 1 ? v : 50); cmpIn.value = 50; if (k < 1) requestAnimationFrame(anim); };
+      setTimeout(() => requestAnimationFrame(t => { requestAnimationFrame(anim); }), 500); }, { threshold:.5 });
+    aObs.observe(cmp);
+  }
+
+  // ---------- Quiz ----------
+  const OFFRES = {
+    ess: { nom:"Essentiel", prix:"$44.99", ugx:{ fr:"≈ 189 000 UGX · paiement unique", en:"≈ 189,000 UGX · one-off payment" }, sel:1,
+           pq:{ fr:"Un site d'une page, clair et rapide : vos clients vous trouvent sur Google et vous écrivent sur WhatsApp en un geste.", en:"A clear, fast one-page website: customers find you on Google and message you on WhatsApp in one tap." } },
+    pro: { nom:"Pro", prix:"$89.99", ugx:{ fr:"≈ 378 000 UGX · paiement unique", en:"≈ 378,000 UGX · one-off payment" }, sel:2,
+           pq:{ fr:"Jusqu'à 5 sections (menu, galerie, réservations…), textes rédigés pour vous, fiche Google Maps et version bilingue.", en:"Up to 5 sections (menu, gallery, bookings…), copywriting included, Google Maps listing and a bilingual version." } },
+    ent: { nom:{ fr:"Entreprise", en:"Business" }, prix:"$249.99", from:true, ugx:{ fr:"≈ 1 050 000 UGX · sur devis", en:"≈ 1,050,000 UGX · custom quote" }, sel:3,
+           pq:{ fr:"Un site complet de plusieurs pages, au design premium sur mesure, avec accompagnement prioritaire.", en:"A complete multi-page website with a premium custom design and priority support." } }
+  };
+  const QZ = {
+    fr:{ q:"Question", sur:"sur", res:"Notre recommandation", cmd:"Commander cette offre", re:"Recommencer", back:"← Retour", from:"à partir de",
+         site:" Comme vous avez déjà un site, nous l'analysons gratuitement avant de commencer.", g:"Vous ne payez que si le site vous plaît.",
+         qs:[["Avez-vous déjà un site internet ?", [["non","Non, pas encore"],["oui","Oui, mais il est dépassé"]]],
+             ["De quoi votre entreprise a-t-elle besoin ?", [["simple","Une page claire pour être trouvé et contacté"],["sections","Plusieurs sections : menu, galerie, réservations…"],["complet","Un site complet de plusieurs pages, haut de gamme"]]],
+             ["En quelles langues ?", [["1","Une seule langue"],["2","Français et anglais"]]]] },
+    en:{ q:"Question", sur:"of", res:"Our recommendation", cmd:"Order this plan", re:"Start again", back:"← Back", from:"from",
+         site:" Since you already have a website, we review it for free before we start.", g:"You only pay if you love your website.",
+         qs:[["Do you already have a website?", [["non","No, not yet"],["oui","Yes, but it's outdated"]]],
+             ["What does your business need?", [["simple","A clear page to be found and contacted"],["sections","Several sections: menu, gallery, bookings…"],["complet","A complete, premium multi-page website"]]],
+             ["Which languages?", [["1","One language"],["2","English and French"]]]] }
+  };
+  const qc = document.getElementById("q-carte"); let qRep = [];
+  const esc = s => s.replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+  function quiz() {
+    const T = QZ[lang], n = qRep.length;
+    if (n < 3) {
+      const [titre, choix] = T.qs[n];
+      qc.innerHTML = `<div class="q-prog"><i style="width:${(n + 1) * 33.34}%"></i></div><div class="q-etape"><p class="q-num">${T.q} ${n + 1} ${T.sur} 3</p><h3>${titre}</h3>
+        <div class="q-choix">${choix.map(([v, t]) => `<button type="button" data-v="${v}">${t}</button>`).join("")}</div>${n ? `<button type="button" class="q-retour">${T.back}</button>` : ""}</div>`;
+      qc.querySelectorAll(".q-choix button").forEach(b => b.addEventListener("click", () => { qRep.push(b.dataset.v); quiz(); }));
+      const r = qc.querySelector(".q-retour"); if (r) r.addEventListener("click", () => { qRep.pop(); quiz(); });
+      return;
+    }
+    const k = qRep[1] === "complet" ? "ent" : (qRep[1] === "sections" || qRep[2] === "2") ? "pro" : "ess", o = OFFRES[k];
+    const nom = typeof o.nom === "string" ? o.nom : o.nom[lang];
+    qc.innerHTML = `<div class="q-prog"><i style="width:100%"></i></div><div class="q-etape q-res"><p class="q-num">${T.res}</p><h3>${esc(nom)}</h3>
+      <div class="r-prix">${o.from ? `<small>${T.from}</small> ` : ""}${o.prix}</div><div class="r-ugx">${o.ugx[lang]}</div>
+      <p class="r-pourquoi">${o.pq[lang]}${qRep[0] === "oui" ? T.site : ""}</p>
+      <div class="actions"><a class="btn btn-or" href="#commander">${T.cmd}</a><button type="button" class="btn btn-ligne q-re">${T.re}</button></div>
+      <p class="note">✓ ${T.g}</p></div>`;
+    qc.querySelector(".btn-or").addEventListener("click", () => { document.getElementById("f-offre").selectedIndex = o.sel; });
+    qc.querySelector(".q-re").addEventListener("click", () => { qRep = []; quiz(); });
+  }
+  quiz();
+
+  // ---------- Analyse gratuite ----------
+  document.getElementById("audit-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    const t = lang === "en"
+      ? `Free website review request (Lumen Web)\n\nWebsite: ${v("a-url")}\nBusiness: ${v("a-nom")}\nName: ${v("a-qui")}`
+      : `Demande d'analyse gratuite (Lumen Web)\n\nSite : ${v("a-url")}\nEntreprise : ${v("a-nom")}\nPrénom : ${v("a-qui")}`;
+    if (e.submitter && e.submitter.value === "mail" && EMAIL) location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(t.split("\n")[0] + " · " + v("a-nom")) + "&body=" + encodeURIComponent(t);
+    else window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t), "_blank", "noopener");
+  });
+
+  // Images qui dépendent de la langue (vitrine, avant/après, aperçus) + quiz
+  function imagesLangue() {
+    cmp.querySelector(".apres").src = `vitrine/apres-${lang}.webp`; cmp.querySelector(".avant").src = `vitrine/avant-${lang}.webp`;
+    document.querySelectorAll("img.long[data-v]").forEach(i => i.src = src("pc", i.dataset.v));
+  }
+  imagesLangue();
+  document.querySelectorAll(".langue button").forEach(b => b.addEventListener("click", () => { imagesLangue(); quiz(); if (vAnims.length || calme) vMontrer(vIdx, true); }));
 
   // Lumière qui suit la souris
   const halo = document.getElementById("halo");

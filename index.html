@@ -116,7 +116,8 @@
   .projet p { color:var(--doux); font-size:15px; }
   .projet a.lien { display:inline-flex; gap:6px; margin-top:14px; color:var(--or); font-weight:700; font-size:15px; }
   .demos { display:grid; gap:22px; }
-  .mini { display:grid; grid-template-columns:150px 1fr; }
+  .mini { display:grid; grid-template-columns:150px 1fr; transition:border-color .25s; }
+  a.mini:hover { border-color:rgba(255,181,71,.55); }
   .mini .ecran { aspect-ratio:auto; border-bottom:0; border-right:1px solid var(--ligne); }
   .maquette { position:absolute; inset:0; padding:14px; display:flex; flex-direction:column; gap:7px; }
   .maquette i { display:block; border-radius:4px; background:rgba(255,255,255,.08); }
@@ -173,6 +174,25 @@
   footer { border-top:1px solid var(--ligne); padding:34px 0 40px; color:var(--doux); font-size:14px; }
   footer .bloc { display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; }
 
+
+  /* Formulaire « Décris ton site » */
+  .brief { display:grid; grid-template-columns:.9fr 1.1fr; gap:40px; align-items:start; }
+  .brief .cote p { color:var(--doux); margin-top:16px; font-size:17px; }
+  .brief .cote ol { margin:22px 0 0 20px; color:var(--doux); display:grid; gap:8px; }
+  form.carte-form { background:var(--carte); border:1px solid var(--ligne); border-radius:26px; padding:30px; display:grid; gap:16px; }
+  .champ label { display:block; font-weight:600; font-size:14.5px; margin-bottom:7px; }
+  .champ input:not([type=checkbox]), .champ textarea, .champ select { width:100%; background:var(--nuit2); border:1px solid var(--ligne); border-radius:12px; color:var(--texte); font:15.5px var(--sans); padding:12px 14px; }
+  .champ textarea { min-height:90px; resize:vertical; }
+  .champ input:focus, .champ textarea:focus, .champ select:focus { outline:none; border-color:var(--or); }
+  .duo2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .coches { display:flex; flex-wrap:wrap; gap:8px; }
+  .coches label { display:inline-flex; align-items:center; gap:7px; border:1px solid var(--ligne); border-radius:999px; padding:7px 13px; font-size:14px; cursor:pointer; font-weight:500; }
+  .coches input { accent-color:var(--or); width:16px; height:16px; flex:none; }
+  section[id], .hero { scroll-margin-top:80px; }
+  .note { font-size:13px; color:var(--doux); }
+  @media (max-width: 960px) { .brief { grid-template-columns:1fr; } }
+  @media (max-width: 640px) { .duo2 { grid-template-columns:1fr; } form.carte-form { padding:22px; } }
+
   /* WhatsApp flottant */
   .wa { position:fixed; right:20px; bottom:20px; z-index:30; width:58px; height:58px; border-radius:50%; background:#25D366; display:grid; place-items:center; box-shadow:0 12px 30px rgba(0,0,0,.45); }
   .wa svg { width:30px; height:30px; fill:#fff; }
@@ -212,6 +232,7 @@
       <a href="#realisations" data-t="nav2">Réalisations</a>
       <a href="#methode" data-t="nav3">Méthode</a>
       <a href="#offres" data-t="nav4">Tarifs</a>
+      <a href="#commander" data-t="nav5">Commander</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="droite">
@@ -294,18 +315,18 @@
           </div>
         </article>
         <div class="demos">
-          <article class="projet mini app">
-            <div class="ecran"><div class="maquette" style="background:linear-gradient(160deg,#2A1A10,#120B07)"><i style="height:10px;width:60%;background:#E9B872"></i><i style="height:34px;margin-top:6px;background:rgba(233,184,114,.25)"></i><i style="height:6px;width:80%"></i><i style="height:6px;width:70%"></i><i style="height:14px;width:45%;margin-top:auto;background:#E9B872;border-radius:20px"></i></div></div>
+          <a class="projet mini app" href="demos/restaurant/" target="_blank" rel="noopener">
+            <div class="ecran"><img src="demos/restaurant/apercu.jpg" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
             <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d1h">Restaurant</h3><p data-t="d1p">Menu en photos, réservation par WhatsApp, horaires et plan d'accès.</p></div>
-          </article>
-          <article class="projet mini app">
-            <div class="ecran"><div class="maquette" style="background:linear-gradient(160deg,#0F2A24,#08140F)"><i style="height:10px;width:55%;background:#7FD8B4"></i><i style="height:34px;margin-top:6px;background:rgba(127,216,180,.22)"></i><i style="height:6px;width:80%"></i><i style="height:6px;width:60%"></i><i style="height:14px;width:45%;margin-top:auto;background:#7FD8B4;border-radius:20px"></i></div></div>
+          </a>
+          <a class="projet mini app" href="demos/hotel/" target="_blank" rel="noopener">
+            <div class="ecran"><img src="demos/hotel/apercu.jpg" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
             <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d2h">Hôtel & lodge</h3><p data-t="d2p">Chambres, galerie, avis clients et demande de réservation.</p></div>
-          </article>
-          <article class="projet mini app">
-            <div class="ecran"><div class="maquette" style="background:linear-gradient(160deg,#0E1B33,#070C18)"><i style="height:10px;width:50%;background:#8FB4FF"></i><i style="height:34px;margin-top:6px;background:rgba(143,180,255,.22)"></i><i style="height:6px;width:75%"></i><i style="height:6px;width:65%"></i><i style="height:14px;width:45%;margin-top:auto;background:#8FB4FF;border-radius:20px"></i></div></div>
+          </a>
+          <a class="projet mini app" href="demos/clinique/" target="_blank" rel="noopener">
+            <div class="ecran"><img src="demos/clinique/apercu.jpg" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
             <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d3h">Clinique</h3><p data-t="d3p">Services, équipe, prise de rendez-vous et urgences en un clic.</p></div>
-          </article>
+          </a>
         </div>
       </div>
     </div>
@@ -371,6 +392,46 @@
         <p data-t="quote">« Un bon site ne se contente pas d'être beau : il fait venir des clients. C'est ce que nous construisons. »</p>
         <small>— Lumen Web</small>
       </div>
+    </div>
+  </section>
+
+
+  <!-- Décris ton site -->
+  <section id="commander">
+    <div class="bloc brief">
+      <div class="cote app">
+        <div class="surtitre" data-t="br-k">Commander</div>
+        <h2 data-t="br-h">Décrivez votre site, <em>on s'occupe du reste.</em></h2>
+        <p data-t="br-p">Remplissez ce formulaire en 2 minutes. Votre demande arrive directement sur notre WhatsApp.</p>
+        <ol data-t="br-ol"><li>Vous décrivez votre projet</li><li>Nous créons votre site</li><li>Vous le découvrez en ligne</li><li>Vous payez seulement s'il vous plaît, et nous le livrons</li></ol>
+      </div>
+      <form class="carte-form app" id="brief">
+        <div class="duo2">
+          <div class="champ"><label for="f-nom" data-t="f-nom">Nom de l'entreprise *</label><input id="f-nom" required></div>
+          <div class="champ"><label for="f-act" data-t="f-act">Activité *</label><input id="f-act" required data-tp="ph-act" placeholder="Restaurant, boutique, école…"></div>
+        </div>
+        <div class="duo2">
+          <div class="champ"><label for="f-ville" data-t="f-ville">Ville et pays *</label><input id="f-ville" required data-tp="ph-ville" placeholder="Kinshasa, RDC"></div>
+          <div class="champ"><label for="f-offre" data-t="f-offre">Offre souhaitée</label><select id="f-offre"><option data-t="opt0">Je ne sais pas encore</option><option>Essentiel · $44.99</option><option>Pro · $89.99</option><option data-t="opt3">Entreprise · sur devis</option></select></div>
+        </div>
+        <div class="champ"><label data-t="f-quoi">Ce que vous voulez sur votre site</label>
+          <div class="coches" id="f-quoi">
+            <label><input type="checkbox" value="menu"><span data-t="k1">Menu / catalogue</span></label>
+            <label><input type="checkbox" value="galerie"><span data-t="k2">Galerie photos</span></label>
+            <label><input type="checkbox" value="reservation"><span data-t="k3">Réservation / rendez-vous</span></label>
+            <label><input type="checkbox" value="prix"><span data-t="k4">Prix</span></label>
+            <label><input type="checkbox" value="avis"><span data-t="k5">Avis clients</span></label>
+            <label><input type="checkbox" value="carte"><span data-t="k6">Plan d'accès</span></label>
+          </div></div>
+        <div class="duo2">
+          <div class="champ"><label for="f-lang" data-t="f-lang">Langues du site</label><select id="f-lang"><option data-t="l1">Français</option><option data-t="l2">Anglais</option><option data-t="l3">Français + anglais</option></select></div>
+          <div class="champ"><label for="f-style" data-t="f-style">Couleurs ou style</label><input id="f-style" data-tp="ph-style" placeholder="Élégant, coloré, sobre…"></div>
+        </div>
+        <div class="champ"><label for="f-desc" data-t="f-desc">Décrivez votre projet avec vos mots</label><textarea id="f-desc" data-tp="ph-desc" placeholder="Ce que vous vendez, vos clients, ce qui vous rend unique… Un site que vous aimez ?"></textarea></div>
+        <div class="champ"><label for="f-qui" data-t="f-qui">Votre prénom *</label><input id="f-qui" required></div>
+        <button class="btn btn-or" type="submit"><span data-t="f-send">Envoyer ma demande sur WhatsApp</span></button>
+        <p class="note" data-t="f-note">Gratuit et sans engagement. Vous payez seulement si le site vous plaît.</p>
+      </form>
     </div>
   </section>
 
@@ -453,6 +514,13 @@
     q4:"Do I own the website?", a4:"Yes. The site and its content are yours. Basic hosting is free; a custom domain name is optional.",
     q5:"Do you work outside Uganda?", a5:"Yes, everything can be done remotely: Kinshasa, Kigali, Nairobi, Abidjan, Paris… in English or French.",
     "fn-h":"Ready to put your business <em>in the spotlight?</em>", "fn-p":"Message us: we reply quickly, with a first idea for your website.",
+    nav5:"Order", "br-k":"Order", "br-h":"Describe your website, <em>we handle the rest.</em>", "br-p":"Fill in this form in 2 minutes. Your request goes straight to our WhatsApp.",
+    "br-ol":"<li>You describe your project</li><li>We build your website</li><li>You see it live online</li><li>You pay only if you love it, and we deliver</li>",
+    "f-nom":"Business name *", "f-act":"Activity *", "f-ville":"City and country *", "f-offre":"Plan", opt0:"Not sure yet", opt3:"Business · custom quote",
+    "f-quoi":"What you want on your website", k1:"Menu / catalogue", k2:"Photo gallery", k3:"Bookings / appointments", k4:"Prices", k5:"Customer reviews", k6:"Map",
+    "f-lang":"Website languages", l1:"French", l2:"English", l3:"French + English", "f-style":"Colours or style", "f-desc":"Describe your project in your own words",
+    "f-qui":"Your first name *", "f-send":"Send my request on WhatsApp", "f-note":"Free, no commitment. You pay only if you love the website.",
+    "ph-act":"Restaurant, shop, school…", "ph-ville":"Kampala, Uganda", "ph-style":"Elegant, colourful, minimal…", "ph-desc":"What you sell, your customers, what makes you unique… A website you like?",
     foot:"Made by Lumen Web, with the help of AI."
   };
   const MSG = { fr:"Bonjour Lumen Web, je voudrais un devis pour un site.", en:"Hello Lumen Web, I'd like a quote for a website." };
@@ -473,6 +541,24 @@
   document.querySelectorAll(".langue button").forEach(b => b.addEventListener("click", () => appliquer(b.dataset.l)));
   appliquer(lang);
 
+
+
+  // Textes d'aide des champs (placeholders) en FR/EN
+  const PH = {}; document.querySelectorAll("[data-tp]").forEach(el => PH[el.dataset.tp] = el.placeholder);
+  const majPH = () => document.querySelectorAll("[data-tp]").forEach(el => el.placeholder = lang === "en" ? EN[el.dataset.tp] : PH[el.dataset.tp]);
+  document.querySelectorAll(".langue button").forEach(b => b.addEventListener("click", majPH)); majPH();
+
+  // Formulaire « Décris ton site » → message WhatsApp
+  document.getElementById("brief").addEventListener("submit", e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    const quoi = [...document.querySelectorAll("#f-quoi input:checked")].map(c => c.nextElementSibling.textContent).join(", ");
+    const L = lang === "en"
+      ? ["New website request (Lumen Web)", "Business", "Activity", "City", "Plan", "Wanted", "Languages", "Style", "Project", "Name"]
+      : ["Nouvelle demande de site (Lumen Web)", "Entreprise", "Activité", "Ville", "Offre", "Souhaits", "Langues", "Style", "Projet", "Prénom"];
+    const t = `${L[0]}\n\n${L[1]} : ${v("f-nom")}\n${L[2]} : ${v("f-act")}\n${L[3]} : ${v("f-ville")}\n${L[4]} : ${document.getElementById("f-offre").selectedOptions[0].textContent}\n${L[5]} : ${quoi || "-"}\n${L[6]} : ${document.getElementById("f-lang").selectedOptions[0].textContent}\n${L[7]} : ${v("f-style") || "-"}\n${L[8]} : ${v("f-desc") || "-"}\n${L[9]} : ${v("f-qui")}`;
+    window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t), "_blank", "noopener");
+  });
 
   // Lumière qui suit la souris
   const halo = document.getElementById("halo");

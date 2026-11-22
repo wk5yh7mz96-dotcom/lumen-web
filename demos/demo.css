@@ -1,0 +1,31 @@
+/* Feuille commune des démonstrations Lumen Web */
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:var(--sans,Inter,system-ui,sans-serif);background:var(--fond);color:var(--texte);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}.bloc{width:min(1140px,100% - 40px);margin-inline:auto}
+.bandeau{background:#0B0F1A;color:#F5F1E8;font:600 13px Inter,sans-serif;text-align:center;padding:8px 14px}
+.bandeau a{color:#FFB547;font-weight:800}
+header{position:sticky;top:0;z-index:10;background:color-mix(in oklab,var(--fond) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--ligne)}
+header .bloc{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.nom{font:var(--titre-poids,700) 24px var(--titre);letter-spacing:-.01em}
+nav{display:flex;gap:26px;font-size:15px;color:var(--doux)}nav a:hover{color:var(--texte)}
+.lg{display:flex;border:1px solid var(--ligne);border-radius:999px;padding:3px}.lg button{border:0;background:none;color:var(--doux);font:700 12px Inter,sans-serif;padding:6px 10px;border-radius:999px;cursor:pointer}.lg button.on{background:var(--accent);color:var(--sur-accent)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:999px;font-weight:700;background:var(--accent);color:var(--sur-accent);transition:transform .2s}.btn:hover{transform:translateY(-2px)}
+.btn.ligne{background:none;border:1px solid var(--ligne);color:var(--texte)}
+.hero{padding:90px 0 80px;background:var(--hero-fond)}.hero .bloc{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.sur{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font:var(--titre-poids,700) clamp(42px,6.5vw,76px)/1.04 var(--titre);letter-spacing:-.02em}h1 em{font-style:italic;color:var(--accent)}
+.hero p{color:var(--doux);font-size:19px;margin:22px 0 32px;max-width:46ch}.actions{display:flex;flex-wrap:wrap;gap:12px}
+.visuel{aspect-ratio:4/5;border-radius:28px;background:var(--visuel);position:relative;overflow:hidden;box-shadow:0 40px 90px -40px rgba(0,0,0,.6)}
+.visuel span{position:absolute;inset:0;display:grid;place-items:center;font-size:min(30vw,150px)}
+.visuel small{position:absolute;left:18px;bottom:18px;background:rgba(0,0,0,.55);color:#fff;font-size:12px;padding:5px 10px;border-radius:999px}
+section{padding:90px 0}h2{font:var(--titre-poids,700) clamp(32px,4.6vw,50px)/1.1 var(--titre);letter-spacing:-.015em;margin-bottom:12px}h2 em{font-style:italic;color:var(--accent)}
+.intro{color:var(--doux);max-width:60ch;margin-bottom:44px;font-size:18px}
+.grille{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.carte{background:var(--carte);border:1px solid var(--ligne);border-radius:22px;padding:28px}.carte .em{font-size:36px;margin-bottom:14px}.carte h3{font-size:19px;margin-bottom:6px}.carte p{color:var(--doux);font-size:15.5px}
+.prix{display:flex;justify-content:space-between;gap:14px;border-bottom:1px dashed var(--ligne);padding:14px 0}.prix b{color:var(--accent);white-space:nowrap}.prix small{display:block;color:var(--doux)}
+.avis{font-family:var(--titre);font-size:21px;line-height:1.45}.avis small{display:block;font-family:Inter,sans-serif;font-size:14px;color:var(--doux);margin-top:14px}
+.infos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.contact{text-align:center;border-radius:30px;padding:70px 24px;background:var(--hero-fond);border:1px solid var(--ligne)}.contact p{color:var(--doux);margin:12px 0 28px}
+footer{padding:30px 0;color:var(--doux);font-size:14px;border-top:1px solid var(--ligne)}footer .bloc{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.35);z-index:20}.wa svg{width:28px;height:28px;fill:#fff}
+@media(max-width:900px){nav{display:none}.hero .bloc,.grille,.infos{grid-template-columns:1fr}.visuel{aspect-ratio:16/11}.hero{padding:60px 0}section{padding:66px 0}}

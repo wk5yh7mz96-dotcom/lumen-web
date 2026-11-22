@@ -323,6 +323,52 @@
   }
   @media (prefers-reduced-motion: reduce) { .mini .ecran img.long { animation:none; transition:none; } }
 
+  /* Galerie 3D (Réalisations) : un mur courbe, comme une galerie d'art */
+  .galerie-sec { padding-bottom:0; background:linear-gradient(180deg, var(--nuit) 0, #E9ECF2 340px); }
+  .galerie-sec .titre h2, .galerie-sec .titre p { color:var(--texte); }
+  .g-piste { position:relative; height:380vh; }
+  .g-collant { position:sticky; top:72px; height:calc(100vh - 72px); overflow:hidden;
+               background:linear-gradient(180deg, #F3F4F8 0, #E9ECF2 58%, #D6DAE3 58.2%, #C9CED9 100%); }
+  .g-collant::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(70% 60% at 50% 40%, transparent 55%, rgba(10,26,54,.18)); }
+  .g-scene { position:absolute; inset:0; perspective:var(--P,900px); perspective-origin:50% 44%; }
+  .g-monde { position:absolute; left:50%; top:44%; transform-style:preserve-3d; }
+  .g-oeuvre { position:absolute; transform-style:preserve-3d; cursor:pointer; will-change:transform; }
+  .g-oeuvre .cadre { display:block; width:100%; height:100%; background:#fff; padding:5%; box-shadow:0 30px 50px -24px rgba(10,26,54,.45), 0 2px 6px rgba(10,26,54,.12); transition:transform .35s ease, box-shadow .35s ease; }
+  .g-oeuvre img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; background:#DDE2EC; }
+  .g-oeuvre:hover .cadre, .g-oeuvre:focus-visible .cadre { transform:translateZ(30px); box-shadow:0 40px 60px -24px rgba(10,26,54,.55); }
+  .g-oeuvre .cart { position:absolute; left:0; right:0; top:104%; text-align:center; font:600 11px var(--sans); letter-spacing:.14em; text-transform:uppercase; color:#3A4F7D; white-space:nowrap; }
+  .g-oeuvre .cart small { display:block; font-weight:500; letter-spacing:.04em; text-transform:none; color:#7A869F; margin-top:3px; font-size:11px; }
+  .g-leg { position:absolute; left:0; right:0; bottom:7%; text-align:center; color:#0A1A36; pointer-events:none; }
+  .g-leg b { display:block; font:500 clamp(22px,3vw,34px) var(--serif); letter-spacing:-.01em; }
+  .g-leg span { display:block; margin-top:4px; font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#B8430A; }
+  .g-aide { position:absolute; left:50%; top:20px; transform:translateX(-50%); display:flex; align-items:center; gap:10px; font-size:12.5px; font-weight:600; color:#3A4F7D; background:rgba(255,255,255,.75); border:1px solid #D6DAE3; padding:7px 14px; border-radius:999px; white-space:nowrap; }
+  .g-aide i { width:60px; height:3px; border-radius:3px; background:#D6DAE3; position:relative; overflow:hidden; }
+  .g-aide i::after { content:""; position:absolute; inset:0; width:var(--prog,0%); background:var(--orange); }
+  .g-liste { display:none; gap:12px; flex-wrap:wrap; justify-content:center; padding-bottom:60px; }
+  .g-liste a { border:1px solid var(--ligne); padding:10px 16px; border-radius:999px; color:var(--texte); }
+  .sans3d .g-piste { display:none; } .sans3d .g-liste { display:flex; }
+
+  /* Fiche d'une œuvre */
+  .g-fiche { position:fixed; inset:0; z-index:60; background:rgba(5,14,32,.72); backdrop-filter:blur(8px); display:grid; place-items:center; padding:20px; }
+  .g-fiche[hidden] { display:none; }
+  .gf-boite { position:relative; width:min(1040px,100%); max-height:calc(100vh - 40px); overflow:auto; background:#F5F6FA; color:#0A1A36; border-radius:24px; display:grid; grid-template-columns:1.25fr 1fr; box-shadow:0 40px 120px rgba(0,0,0,.5); }
+  .gf-img { background:#E3E7EF; padding:28px; display:grid; place-items:center; }
+  .gf-img img { width:100%; max-height:70vh; object-fit:contain; box-shadow:0 24px 50px -20px rgba(10,26,54,.5); background:#fff; }
+  .gf-info { padding:40px 34px; display:flex; flex-direction:column; }
+  .gf-info .etiquette { align-self:flex-start; }
+  .gf-info .etiquette.reel { background:rgba(10,26,54,.08); color:#0A1A36; border-color:#C9CED9; }
+  .gf-info .etiquette.demo { background:rgba(242,122,26,.12); color:#B8430A; border-color:rgba(242,122,26,.35); }
+  .gf-info h3 { font:500 clamp(28px,3.2vw,38px)/1.1 var(--serif); letter-spacing:-.015em; margin:4px 0 14px; }
+  .gf-desc { color:#46557A; font-size:16px; }
+  .gf-pts { list-style:none; display:grid; gap:9px; margin:22px 0 28px; border-top:1px solid #DCE0E8; padding-top:20px; }
+  .gf-pts li { display:flex; gap:10px; font-size:15px; } .gf-pts li::before { content:"✓"; color:var(--orange); font-weight:800; }
+  .gf-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:auto; }
+  .gf-actions .btn-ligne { color:#0A1A36; border-color:#C9CED9; background:#fff; }
+  .gf-x { position:absolute; top:14px; right:14px; z-index:2; width:40px; height:40px; border-radius:50%; border:0; background:#fff; color:#0A1A36; font-size:16px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.15); }
+  .gf-boite { animation:gfIn .45s cubic-bezier(.2,.8,.2,1); }
+  @keyframes gfIn { from { opacity:0; transform:translateY(24px) scale(.96); } }
+  @media (max-width: 760px) { .g-monde { left:38%; } .gf-boite { grid-template-columns:1fr; } .gf-img { padding:18px; } .gf-info { padding:26px 22px 28px; } .gf-actions .btn { width:100%; } .g-aide { font-size:11px; } }
+
   /* WhatsApp flottant */
   .wa { position:fixed; right:20px; bottom:20px; z-index:30; width:58px; height:58px; border-radius:50%; background:#25D366; display:grid; place-items:center; box-shadow:0 12px 30px rgba(0,0,0,.45); }
   .wa svg { width:30px; height:30px; fill:#fff; }
@@ -475,41 +521,43 @@
     </div>
   </section>
 
-  <!-- Réalisations -->
-  <section id="realisations">
+  <!-- Réalisations : galerie 3D -->
+  <section id="realisations" class="galerie-sec">
     <div class="bloc">
       <div class="titre app">
         <div class="surtitre" data-t="re-k">Réalisations</div>
-        <h2 data-t="re-h">Du travail réel, <em>en ligne.</em></h2>
-        <p data-t="re-p">Un projet réel, et des démonstrations clairement indiquées comme telles.</p>
-      </div>
-      <div class="projets">
-        <article class="projet app">
-          <div class="ecran"><div class="barre"><i></i><i></i><i></i></div><img src="projet-stagiaire.webp" srcset="projet-stagiaire-720.webp 720w, projet-stagiaire.webp 1200w" sizes="(max-width:760px) 100vw, 60vw" width="1200" height="750" decoding="async" alt="Site Le Stagiaire & l'IA" loading="lazy" style="position:absolute;top:28px;left:0;width:100%"></div>
-          <div class="infos">
-            <span class="etiquette reel" data-t="real">Projet réel</span>
-            <h3>Le Stagiaire & l'IA</h3>
-            <p data-t="r1p">Site d'une chaîne YouTube éducative : design sur mesure, parfait sur téléphone, indexé par Google, image de partage WhatsApp et statistiques de visites.</p>
-            <a class="lien" href="https://lestagiaire-ia.netlify.app" target="_blank" rel="noopener"><span data-t="visit">Voir le site</span> →</a>
-          </div>
-        </article>
-        <div class="demos">
-          <a class="projet mini app" href="demos/restaurant/" target="_blank" rel="noopener">
-            <div class="ecran"><img class="long" data-v="restaurant" src="vitrine/pc-restaurant-fr.webp" width="880" height="3178" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%"></div>
-            <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d1h">Restaurant</h3><p data-t="d1p">Menu en photos, réservation par WhatsApp, horaires et plan d'accès.</p><span class="survol" data-t="hov">Ouvrir la démo →</span></div>
-          </a>
-          <a class="projet mini app" href="demos/hotel/" target="_blank" rel="noopener">
-            <div class="ecran"><img class="long" data-v="hotel" src="vitrine/pc-hotel-fr.webp" width="880" height="3178" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%"></div>
-            <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d2h">Hôtel & lodge</h3><p data-t="d2p">Chambres, galerie, avis clients et demande de réservation.</p><span class="survol" data-t="hov">Ouvrir la démo →</span></div>
-          </a>
-          <a class="projet mini app" href="demos/clinique/" target="_blank" rel="noopener">
-            <div class="ecran"><img class="long" data-v="clinique" src="vitrine/pc-clinique-fr.webp" width="880" height="3178" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%"></div>
-            <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d3h">Clinique</h3><p data-t="d3p">Services, équipe, prise de rendez-vous et urgences en un clic.</p><span class="survol" data-t="hov">Ouvrir la démo →</span></div>
-          </a>
-        </div>
+        <h2 data-t="re-h2">Entrez dans <em>la galerie.</em></h2>
+        <p data-t="re-p2">Faites défiler pour avancer, touchez une œuvre pour l'ouvrir. Un projet réel et des démonstrations, clairement indiquées comme telles.</p>
       </div>
     </div>
+    <div class="g-piste" id="g-piste">
+      <div class="g-collant">
+        <div class="g-scene" id="g-scene" aria-label="Galerie des réalisations"><div class="g-monde" id="g-monde"></div></div>
+        <div class="g-leg" id="g-leg" aria-live="polite"><b></b><span></span></div>
+        <div class="g-aide"><span data-t="g-aide">Faites défiler pour avancer · touchez une œuvre</span><i></i></div>
+      </div>
+    </div>
+    <div class="bloc g-liste" id="g-liste">
+      <a href="https://lestagiaire-ia.netlify.app" target="_blank" rel="noopener">Le Stagiaire & l'IA</a>
+      <a href="demos/restaurant/" target="_blank" rel="noopener" data-t="d1h">Restaurant</a>
+      <a href="demos/hotel/" target="_blank" rel="noopener" data-t="d2h">Hôtel & lodge</a>
+      <a href="demos/clinique/" target="_blank" rel="noopener" data-t="d3h">Clinique</a>
+    </div>
   </section>
+
+  <div class="g-fiche" id="g-fiche" role="dialog" aria-modal="true" aria-labelledby="gf-titre" hidden>
+    <div class="gf-boite">
+      <button type="button" class="gf-x" aria-label="Fermer">✕</button>
+      <div class="gf-img"><img alt=""></div>
+      <div class="gf-info">
+        <span class="etiquette"></span>
+        <h3 id="gf-titre"></h3>
+        <p class="gf-desc"></p>
+        <ul class="gf-pts"></ul>
+        <div class="gf-actions"><a class="btn btn-or gf-voir" target="_blank" rel="noopener"></a><a class="btn btn-ligne gf-veux" href="#commander"></a></div>
+      </div>
+    </div>
+  </div>
 
   <!-- Méthode -->
   <section id="methode" class="alt">
@@ -774,6 +822,7 @@
     "au-k":"Free", "au-h":"Already have a website? <em>Free review in 24 h.</em>", "au-p":"Send us its address. Within 24 hours, you get a clear report, no jargon:",
     "au-l":"<li>Loading speed on mobile</li><li>Readability on phone, tablet and desktop</li><li>Presence on Google</li><li>How easily customers can contact you</li><li>The 3 priority improvements</li>",
     "a-url":"Your website address *", "ph-url":"www.your-business.com", "a-wa":"Get the review on WhatsApp", "a-mail":"By email", "a-note":"Free, no commitment. Report in English or French.",
+    "re-h2":"Step into <em>the gallery.</em>", "re-p2":"Scroll to walk through, tap a piece to open it. One real project and demos, clearly labelled as such.", "g-aide":"Scroll to walk · tap a piece",
     foot:"Design & development: Lumen Web · <a href=\"mailto:lumenwebafrica@gmail.com\">lumenwebafrica@gmail.com</a>"
   };
   const MSG = { fr:"Bonjour Lumen Web, je voudrais un devis pour un site.", en:"Hello Lumen Web, I'd like a quote for a website." };
@@ -934,6 +983,100 @@
   }
   imagesLangue();
   document.querySelectorAll(".langue button").forEach(b => b.addEventListener("click", () => { imagesLangue(); quiz(); if (vAnims.length || calme) vMontrer(vIdx, true); }));
+
+
+  // ---------- Galerie 3D des réalisations ----------
+  const PROJETS = {
+    stagiaire: { url:"https://lestagiaire-ia.netlify.app", reel:true,
+      fr:{ t:"Le Stagiaire & l'IA", d:"Site d'une chaîne YouTube éducative, en ligne et utilisé chaque semaine.", p:["Design sur mesure, parfait sur téléphone","Indexé par Google","Image de partage soignée sur WhatsApp","Statistiques de visites"], v:"Voir le site" },
+      en:{ t:"Le Stagiaire & l'IA", d:"Website for an educational YouTube channel, live and used every week.", p:["Custom design, perfect on mobile","Indexed by Google","Polished WhatsApp share preview","Visitor analytics"], v:"Visit the site" } },
+    restaurant: { url:"demos/restaurant/",
+      fr:{ t:"Chez Mama Nkosi", d:"Démonstration d'un site de restaurant : on a faim avant même d'avoir réservé.", p:["Menu en photos et carte élégante","Réservation par WhatsApp, e-mail ou SMS","Galerie, avis et événements","Français et anglais"], v:"Ouvrir la démo" },
+      en:{ t:"Chez Mama Nkosi", d:"Restaurant website demo: you're hungry before you've even booked.", p:["Photo menu and elegant carte","Bookings by WhatsApp, email or SMS","Gallery, reviews and events","English and French"], v:"Open the demo" } },
+    hotel: { url:"demos/hotel/",
+      fr:{ t:"Kivu Horizon", d:"Démonstration d'un site de lodge : le calme du lac dès la première image.", p:["Barre de réservation dès l'accueil","Chambres avec photos et prix","Expériences et restaurant","Avis clients et FAQ"], v:"Ouvrir la démo" },
+      en:{ t:"Kivu Horizon", d:"Lodge website demo: the calm of the lake from the very first image.", p:["Booking bar right on the homepage","Rooms with photos and prices","Experiences and restaurant","Guest reviews and FAQ"], v:"Open the demo" } },
+    clinique: { url:"demos/clinique/",
+      fr:{ t:"Clinique Espoir+", d:"Démonstration d'un site de clinique : rassurant, clair, et rendez-vous en 30 secondes.", p:["Prise de rendez-vous immédiate","Services, médecins et horaires","Urgences joignables en un geste","Pensé d'abord pour le téléphone"], v:"Ouvrir la démo" },
+      en:{ t:"Clinique Espoir+", d:"Clinic website demo: reassuring, clear, and appointments in 30 seconds.", p:["Instant appointment booking","Services, doctors and opening hours","Emergencies reachable in one tap","Designed mobile-first"], v:"Open the demo" } }
+  };
+  const OEUVRES = [
+    ["stagiaire","stagiaire",0,{fr:"Accueil",en:"Home"}],
+    ["r-accueil","restaurant",0,{fr:"Accueil",en:"Home"}],["r-tel","restaurant",1,{fr:"Sur téléphone",en:"On mobile"}],["r-plats","restaurant",0,{fr:"Plats signature",en:"Signature dishes"}],
+    ["r-carte","restaurant",0,{fr:"La carte",en:"The menu"}],["r-galerie","restaurant",0,{fr:"Galerie",en:"Gallery"}],
+    ["h-accueil","hotel",0,{fr:"Accueil",en:"Home"}],["h-chambres","hotel",0,{fr:"Chambres",en:"Rooms"}],["h-tel","hotel",1,{fr:"Sur téléphone",en:"On mobile"}],["h-exp","hotel",0,{fr:"Expériences",en:"Experiences"}],
+    ["c-accueil","clinique",0,{fr:"Accueil",en:"Home"}],["c-services","clinique",0,{fr:"Services",en:"Services"}],["c-tel","clinique",1,{fr:"Sur téléphone",en:"On mobile"}],["c-medecins","clinique",0,{fr:"Médecins",en:"Doctors"}]
+  ];
+  const gImg = (id) => id === "stagiaire" ? "galerie/stagiaire.webp" : `galerie/${id}-${lang}.webp`;
+  const gMonde = document.getElementById("g-monde"), gPiste = document.getElementById("g-piste"), gLeg = document.getElementById("g-leg");
+  const sup3d = CSS.supports("transform-style","preserve-3d");
+  if (!sup3d) document.getElementById("realisations").classList.add("sans3d");
+  const gEls = OEUVRES.map(([id, pr, tel, sous], i) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "g-oeuvre" + (tel ? " tel" : ""); b.dataset.i = i;
+    b.innerHTML = `<span class="cadre"><img alt="" decoding="async"></span><span class="cart"></span>`;
+    b.addEventListener("click", () => gOuvrir(i)); gMonde.appendChild(b); return b;
+  });
+  function gTextes() {
+    gEls.forEach((b, i) => { const [id, pr, , sous] = OEUVRES[i], P = PROJETS[pr][lang];
+      b.querySelector(".cart").innerHTML = `${P.t}<small>${sous[lang]}${PROJETS[pr].reel ? "" : " · " + (lang === "en" ? "demo" : "démo")}</small>`;
+      b.setAttribute("aria-label", P.t + " · " + sous[lang]);
+      if (b.dataset.charge) b.querySelector("img").src = gImg(id); });
+  }
+  let G = {}, gCible = 0, gCour = 0, gActif = false, gFocus = -1;
+  function gMesures() {
+    const mob = innerWidth < 760, k = mob ? .62 : Math.max(.6, Math.min(1, innerWidth / 1400));
+    G = { k, R: 1500 * k, cx: -1011 * k, cz: 450 * k, P: 900 * k, F: 1.107, W: mob ? Math.min(290, innerWidth * .72) : 520 * k };
+    G.H = G.W * .625; G.D = (G.W + 80 * k) / G.R;
+    document.getElementById("g-scene").style.setProperty("--P", G.P + "px");
+    gEls.forEach((b, i) => { const tel = OEUVRES[i][2]; const w = tel ? G.H * .56 : G.W, hh = tel ? G.H * 1.2 : G.H;
+      b.style.width = w + "px"; b.style.height = hh + "px"; b.style.left = -w / 2 + "px"; b.style.top = -hh / 2 + "px"; });
+  }
+  function gPlacer(s) {
+    let meilleur = -1, dmin = 1e9;
+    gEls.forEach((b, i) => {
+      const th = G.F - i * G.D + s, x = G.cx + G.R * Math.sin(th), z = G.cz - G.R * Math.cos(th);
+      const proche = Math.max(0, Math.min(1, (-60 * G.k - z) / (160 * G.k))), loin = Math.max(0, Math.min(1, (th - (G.F - 1.45)) / .3));
+      const o = Math.min(proche, loin), cache = o <= 0;
+      b.style.transform = `translate3d(${x.toFixed(1)}px,0,${z.toFixed(1)}px) rotateY(${(-th).toFixed(4)}rad)`;
+      b.style.opacity = o; b.style.visibility = cache ? "hidden" : "visible"; b.tabIndex = cache ? -1 : 0;
+      const d = Math.abs(th - G.F); if (d < dmin) { dmin = d; meilleur = i; }
+      if (!b.dataset.charge && th > G.F - 1.6 && th < G.F + .5 && gActif) { b.dataset.charge = 1; b.querySelector("img").src = gImg(OEUVRES[i][0]); }
+    });
+    if (meilleur !== gFocus) { gFocus = meilleur; const [, pr, , sous] = OEUVRES[meilleur], P = PROJETS[pr][lang];
+      gLeg.querySelector("b").textContent = P.t; gLeg.querySelector("span").textContent = (PROJETS[pr].reel ? (lang === "en" ? "Real project" : "Projet réel") : (lang === "en" ? "Demo" : "Démonstration")) + " · " + sous[lang]; }
+  }
+  function gProgression() {
+    const r = gPiste.getBoundingClientRect(), tot = r.height - (innerHeight - 72);
+    const p = Math.max(0, Math.min(1, (72 - r.top) / tot));
+    gCible = p * (OEUVRES.length - 1) * G.D; gPiste.style.setProperty("--prog", (p * 100) + "%");
+    document.querySelector(".g-aide i").style.setProperty("--prog", (p * 100) + "%");
+  }
+  function gBoucle() { if (!gActif) return; gCour += (gCible - gCour) * .12; if (Math.abs(gCible - gCour) < 1e-4) gCour = gCible; gPlacer(gCour); requestAnimationFrame(gBoucle); }
+  if (sup3d) {
+    gMesures(); gTextes();
+    const capt = new URLSearchParams(location.search).has("capture");
+    new IntersectionObserver(es => { const v = es[0].isIntersecting; if (v && !gActif) { gActif = true; gProgression(); gCour = gCible; requestAnimationFrame(gBoucle); } else if (!v) gActif = false; }, { rootMargin:"400px 0px" }).observe(gPiste);
+    addEventListener("scroll", gProgression, { passive:true });
+    addEventListener("resize", () => { gMesures(); gProgression(); gCour = gCible; gPlacer(gCour); });
+    if (capt) { gActif = true; gEls.forEach((b, i) => { b.dataset.charge = 1; b.querySelector("img").src = gImg(OEUVRES[i][0]); }); gPlacer(G.D * 2); gActif = false; }
+  }
+  // Fiche
+  const gf = document.getElementById("g-fiche"); let gfAvant = null;
+  function gOuvrir(i) {
+    const [id, pr] = OEUVRES[i], Pj = PROJETS[pr], P = Pj[lang]; gfAvant = document.activeElement;
+    gf.querySelector(".gf-img img").src = gImg(id);
+    const et = gf.querySelector(".etiquette"); et.className = "etiquette " + (Pj.reel ? "reel" : "demo"); et.textContent = Pj.reel ? (lang === "en" ? "Real project" : "Projet réel") : (lang === "en" ? "Demo" : "Démonstration");
+    gf.querySelector("h3").textContent = P.t; gf.querySelector(".gf-desc").textContent = P.d;
+    gf.querySelector(".gf-pts").innerHTML = P.p.map(x => `<li>${x}</li>`).join("");
+    const v = gf.querySelector(".gf-voir"); v.href = Pj.url; v.textContent = P.v + " →";
+    gf.querySelector(".gf-veux").textContent = lang === "en" ? "I want one like this" : "Je veux le même";
+    gf.hidden = false; document.body.style.overflow = "hidden"; gf.querySelector(".gf-x").focus();
+  }
+  function gFermer() { gf.hidden = true; document.body.style.overflow = ""; if (gfAvant) gfAvant.focus(); }
+  gf.addEventListener("click", e => { if (e.target === gf || e.target.closest(".gf-x")) gFermer(); });
+  gf.querySelector(".gf-veux").addEventListener("click", () => gFermer());
+  addEventListener("keydown", e => { if (e.key === "Escape" && !gf.hidden) gFermer(); });
+  document.querySelectorAll(".langue button").forEach(b => b.addEventListener("click", () => { gTextes(); gFocus = -1; if (G.D) gPlacer(gCour); }));
 
   // Lumière qui suit la souris
   const halo = document.getElementById("halo");

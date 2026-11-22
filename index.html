@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>img{height:auto}
+  /* Règle 60-30-10 : 60 % nuit (fond), 30 % surfaces bleu-gris + texte crème, 10 % accent or/orange (boutons, mots clés, chiffres). Pas d'autre couleur, sauf le vert du bouton WhatsApp (repère universel). */
   :root {
     --nuit:#0B0F1A; --nuit2:#111726; --carte:#151C2E; --ligne:#232C44;
     --texte:#F5F1E8; --doux:#A9B1C6; --or:#FFB547; --orange:#F27A1A; --braise:#B8430A;
@@ -81,8 +82,11 @@
 
   /* Sections */
   section { padding:100px 0; }
+  section.alt { background:var(--nuit2); border-block:1px solid var(--ligne); }
+  section.alt .service, section.alt .etape, section.alt .q-carte { background:var(--carte); }
   .titre { text-align:center; max-width:720px; margin:0 auto 56px; }
-  .surtitre { font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--or); margin-bottom:14px; }
+  .surtitre { font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--doux); margin-bottom:14px; display:inline-flex; align-items:center; gap:10px; }
+  .surtitre::before { content:""; width:22px; height:2px; border-radius:2px; background:var(--or); }
   h2 { font-family:var(--serif); font-weight:500; font-size:clamp(34px, 5vw, 56px); line-height:1.06; letter-spacing:-.02em; }
   h2 em { font-style:italic; color:var(--or); }
   .titre p { color:var(--doux); margin-top:16px; font-size:18px; }
@@ -98,6 +102,8 @@
   .service { background:linear-gradient(180deg, var(--carte), var(--nuit2)); border:1px solid var(--ligne); border-radius:var(--r); padding:32px; transition:border-color .25s, transform .25s; }
   .service:hover { border-color:rgba(255,181,71,.55); transform:translateY(-4px); }
   .ico { width:52px; height:52px; border-radius:15px; display:grid; place-items:center; font-size:25px; background:rgba(255,181,71,.10); border:1px solid rgba(255,181,71,.3); margin-bottom:22px; }
+  .ico svg { width:25px; height:25px; color:var(--or); }
+  .constat b svg { width:42px; height:42px; color:var(--or); }
   .service h3 { font-size:20px; margin-bottom:8px; }
   .service p { color:var(--doux); font-size:15.5px; }
 
@@ -110,7 +116,7 @@
   .ecran iframe { border:0; width:1440px; height:1100px; transform-origin:0 0; position:absolute; top:28px; left:0; pointer-events:none; }
   .projet .infos { padding:24px 26px 26px; }
   .etiquette { display:inline-block; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:999px; margin-bottom:12px; }
-  .reel { background:rgba(48,209,140,.12); color:#4BE3A6; border:1px solid rgba(48,209,140,.35); }
+  .reel { background:rgba(245,241,232,.08); color:var(--texte); border:1px solid var(--ligne); }
   .demo { background:rgba(255,181,71,.10); color:var(--or); border:1px solid rgba(255,181,71,.35); }
   .projet h3 { font-size:20px; margin-bottom:6px; }
   .projet p { color:var(--doux); font-size:15px; }
@@ -237,15 +243,14 @@
 
   /* Garantie */
   .garantie { padding:10px 0 0; }
-  .g-in { display:flex; align-items:center; gap:22px; border:1px solid rgba(75,227,166,.35); border-radius:24px; padding:24px 28px;
-          background:linear-gradient(100deg, rgba(48,209,140,.14), rgba(21,28,46,.7) 60%); }
-  .bouclier { width:60px; height:60px; flex:none; border-radius:17px; display:grid; place-items:center; color:#4BE3A6; background:rgba(48,209,140,.14); border:1px solid rgba(75,227,166,.4); }
+  .g-in { display:flex; align-items:center; gap:22px; border:1px solid var(--ligne); border-radius:24px; padding:24px 28px; background:var(--carte); }
+  .bouclier { width:60px; height:60px; flex:none; border-radius:17px; display:grid; place-items:center; color:var(--or); background:rgba(255,181,71,.10); border:1px solid rgba(255,181,71,.3); }
   .bouclier svg { width:30px; height:30px; }
   .g-in b { display:block; font-size:19px; margin-bottom:3px; }
   .g-in span { color:var(--doux); font-size:15.5px; }
   .g-in .btn { margin-left:auto; flex:none; }
-  .ruban { display:flex; align-items:center; justify-content:center; gap:10px; color:#4BE3A6; font-weight:600; margin:-30px auto 40px; text-align:center; }
-  .ruban svg { width:20px; height:20px; flex:none; }
+  .ruban { display:flex; align-items:center; justify-content:center; gap:10px; color:var(--doux); font-weight:600; margin:-30px auto 40px; text-align:center; }
+  .ruban svg { width:20px; height:20px; flex:none; color:var(--or); }
 
   /* Avant / Après */
   .comparer { position:relative; aspect-ratio:16/10; border-radius:22px; overflow:hidden; border:1px solid var(--ligne); max-width:1000px; margin:0 auto;
@@ -264,7 +269,7 @@
   .diff h3 { font-size:15px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px; }
   .diff ul { list-style:none; display:grid; gap:9px; color:var(--doux); font-size:15.5px; }
   .diff li { display:flex; gap:10px; }
-  .diff .moins h3 { color:#FF7B6B; } .diff .moins li::before { content:"✕"; color:#FF7B6B; font-weight:800; }
+  .diff .moins h3 { color:var(--doux); } .diff .moins li::before { content:"✕"; color:#5C6680; font-weight:800; }
   .diff .plus { border-color:rgba(255,181,71,.45); } .diff .plus h3 { color:var(--or); } .diff .plus li::before { content:"✓"; color:var(--or); font-weight:800; }
   .illus { text-align:center; color:var(--doux); font-size:13px; margin-top:16px; opacity:.8; }
 
@@ -296,7 +301,7 @@
   .r-ugx { color:var(--doux); margin:8px 0 18px; }
   .r-pourquoi { color:var(--texte); opacity:.9; margin-bottom:24px; }
   .q-res .actions { justify-content:flex-start; }
-  .q-res .note { margin-top:16px; color:#4BE3A6; }
+  .q-res .note { margin-top:16px; color:var(--doux); }
 
   /* Audit gratuit */
   .audit { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; border:1px solid rgba(255,181,71,.35); border-radius:32px; padding:56px;
@@ -423,26 +428,26 @@
       </div>
       <div class="constats">
         <div class="constat app"><b>53 %</b><p data-t="c1">des visiteurs sur téléphone quittent une page qui met plus de 3 secondes à s'afficher (étude Google).</p></div>
-        <div class="constat app"><b>📱</b><p data-t="c2">La grande majorité de vos clients vous cherche depuis un téléphone. Un site illisible sur mobile, c'est une porte fermée.</p></div>
-        <div class="constat app"><b>🔍</b><p data-t="c3">Absent de Google, invisible pour vos futurs clients : ils trouveront un concurrent à la place.</p></div>
+        <div class="constat app"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></b><p data-t="c2">La grande majorité de vos clients vous cherche depuis un téléphone. Un site illisible sur mobile, c'est une porte fermée.</p></div>
+        <div class="constat app"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></b><p data-t="c3">Absent de Google, invisible pour vos futurs clients : ils trouveront un concurrent à la place.</p></div>
       </div>
     </div>
   </section>
 
   <!-- Services -->
-  <section id="services">
+  <section id="services" class="alt">
     <div class="bloc">
       <div class="titre app">
         <div class="surtitre" data-t="sv-k">Services</div>
         <h2 data-t="sv-h">Tout ce qu'il faut pour être <em>vu et choisi.</em></h2>
       </div>
       <div class="services">
-        <article class="service app"><div class="ico">✨</div><h3 data-t="s1h">Création de site</h3><p data-t="s1p">Un site moderne et élégant à votre image, parfait sur téléphone, tablette et ordinateur.</p></article>
-        <article class="service app"><div class="ico">🔁</div><h3 data-t="s2h">Refonte</h3><p data-t="s2p">Votre site existe mais il est lent ou démodé ? On le transforme, sans perdre ce qui marche.</p></article>
-        <article class="service app"><div class="ico">🔍</div><h3 data-t="s3h">Visibilité Google</h3><p data-t="s3p">Référencement de base, plan du site et inscription à Google Search Console.</p></article>
-        <article class="service app"><div class="ico">💬</div><h3 data-t="s4h">WhatsApp & QR code</h3><p data-t="s4p">Un bouton pour vous écrire en un geste, et un QR code pour vos vitrines et vos flyers.</p></article>
-        <article class="service app"><div class="ico">🌍</div><h3 data-t="s5h">Bilingue</h3><p data-t="s5p">Votre site en français et en anglais, pour toucher plus de clients.</p></article>
-        <article class="service app"><div class="ico">📈</div><h3 data-t="s6h">Suivi & statistiques</h3><p data-t="s6p">Mises à jour chaque mois et un rapport clair : combien de visiteurs, et d'où ils viennent.</p></article>
+        <article class="service app"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg></div><h3 data-t="s1h">Création de site</h3><p data-t="s1p">Un site moderne et élégant à votre image, parfait sur téléphone, tablette et ordinateur.</p></article>
+        <article class="service app"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></div><h3 data-t="s2h">Refonte</h3><p data-t="s2p">Votre site existe mais il est lent ou démodé ? On le transforme, sans perdre ce qui marche.</p></article>
+        <article class="service app"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></div><h3 data-t="s3h">Visibilité Google</h3><p data-t="s3p">Référencement de base, plan du site et inscription à Google Search Console.</p></article>
+        <article class="service app"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12Z"/></svg></div><h3 data-t="s4h">WhatsApp & QR code</h3><p data-t="s4p">Un bouton pour vous écrire en un geste, et un QR code pour vos vitrines et vos flyers.</p></article>
+        <article class="service app"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><h3 data-t="s5h">Bilingue</h3><p data-t="s5p">Votre site en français et en anglais, pour toucher plus de clients.</p></article>
+        <article class="service app"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h3 data-t="s6h">Suivi & statistiques</h3><p data-t="s6p">Mises à jour chaque mois et un rapport clair : combien de visiteurs, et d'où ils viennent.</p></article>
       </div>
     </div>
   </section>
@@ -507,7 +512,7 @@
   </section>
 
   <!-- Méthode -->
-  <section id="methode">
+  <section id="methode" class="alt">
     <div class="bloc">
       <div class="titre app">
         <div class="surtitre" data-t="me-k">Méthode</div>
@@ -543,7 +548,7 @@
   </section>
 
   <!-- Quiz -->
-  <section id="quiz">
+  <section id="quiz" class="alt">
     <div class="bloc quiz">
       <div class="cote app">
         <div class="surtitre" data-t="qz-k">Votre site idéal</div>
@@ -612,9 +617,9 @@
     <div class="bloc pourquoi">
       <div class="liste">
         <div class="surtitre app" data-t="wy-k">Pourquoi Lumen Web</div>
-        <div class="point app"><div class="ico">⚡</div><div><h3 data-t="w1h">Livré en 48 à 72 heures</h3><p data-t="w1p">Une méthode de travail éprouvée et des outils modernes nous permettent de livrer vite, sans rien sacrifier à la qualité.</p></div></div>
-        <div class="point app"><div class="ico">👁️</div><div><h3 data-t="w2h">Vous payez seulement si ça vous plaît</h3><p data-t="w2p">Vous voyez votre site terminé avant de payer quoi que ce soit. Aucun risque pour vous.</p></div></div>
-        <div class="point app"><div class="ico">🤝</div><div><h3 data-t="w3h">Proche de vous</h3><p data-t="w3p">Basé à Kampala, joignable sur WhatsApp, en français et en anglais.</p></div></div>
+        <div class="point app"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div><div><h3 data-t="w1h">Livré en 48 à 72 heures</h3><p data-t="w1p">Une méthode de travail éprouvée et des outils modernes nous permettent de livrer vite, sans rien sacrifier à la qualité.</p></div></div>
+        <div class="point app"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></div><div><h3 data-t="w2h">Vous payez seulement si ça vous plaît</h3><p data-t="w2p">Vous voyez votre site terminé avant de payer quoi que ce soit. Aucun risque pour vous.</p></div></div>
+        <div class="point app"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div><h3 data-t="w3h">Proche de vous</h3><p data-t="w3p">Basé à Kampala, joignable sur WhatsApp, en français et en anglais.</p></div></div>
       </div>
       <div class="citation app">
         <p data-t="quote">« Un bon site ne se contente pas d'être beau : il fait venir des clients. C'est ce que nous construisons. »</p>
@@ -664,7 +669,7 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq">
+  <section id="faq" class="alt">
     <div class="bloc">
       <div class="titre app"><div class="surtitre">FAQ</div><h2 data-t="fq-h">Vos <em>questions.</em></h2></div>
       <div class="faq">

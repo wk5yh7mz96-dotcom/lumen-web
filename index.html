@@ -75,6 +75,7 @@
   h1 { font-family:var(--serif); font-weight:700; font-size:clamp(46px, 8vw, 96px); line-height:1.02; letter-spacing:-.025em; margin:30px auto 0; max-width:14ch; }
   h1 em { font-style:normal; color:var(--texte); }
   h1 .pt { color:var(--or); }
+  h1 em { white-space:nowrap; }
   .hero p.intro { font-size:clamp(17px, 2.1vw, 21px); color:var(--doux); max-width:58ch; margin:26px auto 38px; }
   .actions { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; }
   .preuves { display:flex; flex-wrap:wrap; justify-content:center; gap:14px 40px; margin-top:56px; color:var(--doux); font-size:15px; }
@@ -442,7 +443,7 @@
   header .btn-or:hover { border-color:var(--or); color:var(--or); }
   @media (max-width: 1100px) { .face { grid-template-columns:1fr 1.2fr; } .f-col { display:none; } }
   .face > * { min-width:0; }
-  @media (max-width: 640px) { .chiffres { flex-wrap:wrap; row-gap:12px; } .chiffres span { font-size:12px; } .face .actions .btn { width:100%; } }
+  @media (max-width: 640px) { .chiffres { flex-wrap:nowrap; } .chiffres div { padding:0 10px; } .chiffres b { font-size:17px !important; } .chiffres span { font-size:11.5px; display:block; line-height:1.3; } .face .actions .btn { width:100%; } }
   @media (max-width: 860px) { .face { grid-template-columns:1fr; padding:34px 22px 40px; border-radius:26px; } .hero { padding:24px 0 60px; } .chiffres div { padding:0 12px; } .chiffres b { font-size:19px; } }
 
   /* Logo 3D : tuile extrudée corail → turquoise, avec le « L » et le point lumineux */
@@ -549,9 +550,9 @@
     <div class="bloc">
       <div class="face">
         <div class="f-txt">
-          <div class="f-sur app" data-t="f-sur">Studio web · Kampala</div>
-          <h1 class="app" data-t="h1">Votre entreprise, <em>dans la lumière</em><b class="pt">.</b></h1>
-          <p class="intro app" data-t="intro2">Des sites rapides, magnifiques sur chaque écran, visibles sur Google et reliés à WhatsApp. Pour que vos clients vous trouvent et vous choisissent.</p>
+          <div class="f-sur app" data-t="f-sur">Studio web · Africa</div>
+          <h1 class="app" data-t="h1">Votre entreprise dans la lumière, <em>à sa hauteur</em><b class="pt">.</b></h1>
+          <p class="intro app" data-t="intro2">Ne vous contentez pas d'exister, faites-vous remarquer. Des sites web modernes qui valorisent votre image, attirent des clients et font grandir votre activité.</p>
           <div class="actions app">
             <a class="btn btn-or wa-lien" href="#"><span data-t="cta1">Demander un devis gratuit</span> <span aria-hidden="true">→</span></a>
             <a class="btn btn-ligne" href="#realisations" data-t="cta2">Voir nos réalisations</a>
@@ -903,7 +904,7 @@
   const EN = {
     skip:"Skip to content", nav1:"Services", nav2:"Work", nav3:"Process", nav4:"Pricing",
     "cta-short":"Free quote", badge:"Kampala", badge2:"Websites in English and French",
-    h1:"Your business, <em>in the spotlight</em><b class=\"pt\">.</b>",
+    h1:"Your business in the spotlight, <em>where it belongs</em><b class=\"pt\">.</b>",
     intro:"We build and modernise business websites: fast, beautiful on mobile and desktop, visible on Google and connected to WhatsApp. So your customers find you, trust you and get in touch.",
     cta1:"Get a free quote", cta2:"See our work", p1:"Website ready in 48–72 h", p2:"Visible on Google", p3:"English · Français",
     "pb-k":"The reality", "pb-h":"If your website is missing or outdated, <em>customers go elsewhere.</em>",
@@ -974,7 +975,7 @@
     "aa-p2":"Watch an outdated website break apart and turn into a Lumen Web site.", "tr-a":"2019 · a generic template", "tr-b":"2026 · Lumen Web", "tr-re":"↻ Replay the transformation",
     "mo-k":"Everywhere, remotely", "mo-h":"From Kampala <em>to the whole world.</em>", "mo-p":"Based in Kampala, we work fully remotely: a call, a few WhatsApp messages, and your website comes to life, wherever you are. In English and French.",
     "mo-v":"<li>Kampala</li><li>Kinshasa</li><li>Nairobi</li><li>Kigali</li><li>Abidjan</li><li>Dakar</li><li>Douala</li><li>Paris</li><li>Brussels</li><li>Montreal</li>", "mo-a":"Spin it with your finger",
-    "f-sur":"Web studio · Kampala", intro2:"Fast websites, beautiful on every screen, visible on Google and connected to WhatsApp. So customers find you and choose you.",
+    "f-sur":"Web studio · Africa", intro2:"Don't just exist, get noticed. Modern websites that elevate your image, attract customers and grow your business.",
     ch1:"Website delivered", ch2:"Bilingual", ch3:"before seeing your site", fcol:"<li>Design</li><li>Development</li><li>Google</li><li class=\"ac\">WhatsApp</li>",
     fcol2:"Ideas<br>that bring<br>in new<br>customers.", fcol3:"Our process", "cta1":"Get a free quote",
     foot:"Design & development: Lumen Web · <a href=\"mailto:lumenwebafrica@gmail.com\">lumenwebafrica@gmail.com</a>"

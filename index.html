@@ -195,6 +195,22 @@
   @media (max-width: 960px) { .brief { grid-template-columns:1fr; } }
   @media (max-width: 640px) { .duo2 { grid-template-columns:1fr; } form.carte-form { padding:22px; } }
 
+
+  /* À propos */
+  .apropos { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start; }
+  .apropos h2 { margin-bottom:24px; }
+  .apropos p { color:var(--doux); font-size:17.5px; margin-bottom:16px; }
+  .signature { display:flex; align-items:center; gap:14px; margin-top:30px; padding-top:24px; border-top:1px solid var(--ligne); }
+  .signature .marque { width:46px; height:46px; border-radius:13px; }
+  .signature b { display:block; font-size:17px; } .signature span { color:var(--doux); font-size:14px; }
+  .engagements { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .eng { background:var(--carte); border:1px solid var(--ligne); border-radius:var(--r); padding:26px; }
+  .eng b { font-family:var(--serif); font-size:34px; color:var(--or); line-height:1; display:block; margin-bottom:14px; }
+  .eng h3 { font-size:18px; margin-bottom:6px; } .eng p { color:var(--doux); font-size:15px; }
+  footer a { color:var(--or); }
+  @media (max-width: 960px) { .apropos { grid-template-columns:1fr; gap:40px; } }
+  @media (max-width: 640px) { .engagements { grid-template-columns:1fr; } .wa { bottom:84px; } }
+
   /* WhatsApp flottant */
   .wa { position:fixed; right:20px; bottom:20px; z-index:30; width:58px; height:58px; border-radius:50%; background:#25D366; display:grid; place-items:center; box-shadow:0 12px 30px rgba(0,0,0,.45); }
   .wa svg { width:30px; height:30px; fill:#fff; }
@@ -233,6 +249,7 @@
       <a href="#services" data-t="nav1">Services</a>
       <a href="#realisations" data-t="nav2">Réalisations</a>
       <a href="#methode" data-t="nav3">Méthode</a>
+      <a href="#apropos" data-t="nav6">À propos</a>
       <a href="#offres" data-t="nav4">Tarifs</a>
       <a href="#commander" data-t="nav5">Commander</a>
       <a href="#faq">FAQ</a>
@@ -350,6 +367,26 @@
     </div>
   </section>
 
+
+  <!-- À propos -->
+  <section id="apropos">
+    <div class="bloc apropos">
+      <div class="app">
+        <div class="surtitre" data-t="ap-k">À propos</div>
+        <h2 data-t="ap-h">Un studio web exigeant, <em>au service des entreprises africaines.</em></h2>
+        <p data-t="ap-p1">Lumen Web conçoit des sites pour les entreprises qui veulent être prises au sérieux en ligne. Basés à Kampala, nous accompagnons des clients d'Afrique de l'Est et d'Afrique francophone, en français comme en anglais.</p>
+        <p data-t="ap-p2">Notre conviction : un site n'est pas une simple carte de visite, c'est un outil commercial. Chaque projet est pensé pour un seul objectif, transformer un visiteur en client, et construit selon les standards du web professionnel.</p>
+        <div class="signature"><span class="marque"><i></i></span><div><b>Lumen Web</b><span data-t="ap-sig">Studio de création web · Kampala</span></div></div>
+      </div>
+      <div class="engagements">
+        <div class="eng app"><b>01</b><h3 data-t="ap1h">Performance</h3><p data-t="ap1p">Des pages légères qui s'affichent en quelques secondes, même avec une connexion mobile modeste.</p></div>
+        <div class="eng app"><b>02</b><h3 data-t="ap2h">Pensé pour chaque écran</h3><p data-t="ap2p">Chaque page est conçue et testée sur téléphone, tablette et ordinateur avant d'être livrée.</p></div>
+        <div class="eng app"><b>03</b><h3 data-t="ap3h">Visible sur Google</h3><p data-t="ap3p">Structure optimisée pour le référencement, plan du site, et un partage soigné sur WhatsApp et les réseaux.</p></div>
+        <div class="eng app"><b>04</b><h3 data-t="ap4h">Transparence totale</h3><p data-t="ap4p">Un prix annoncé à l'avance, un site présenté avant tout paiement, et un site qui vous appartient.</p></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Offres -->
   <section id="offres">
     <div class="bloc">
@@ -386,7 +423,7 @@
     <div class="bloc pourquoi">
       <div class="liste">
         <div class="surtitre app" data-t="wy-k">Pourquoi Lumen Web</div>
-        <div class="point app"><div class="ico">⚡</div><div><h3 data-t="w1h">Rapide grâce à l'IA</h3><p data-t="w1p">Nous utilisons l'intelligence artificielle pour créer plus vite, et un regard humain pour vérifier chaque détail.</p></div></div>
+        <div class="point app"><div class="ico">⚡</div><div><h3 data-t="w1h">Livré en 48 à 72 heures</h3><p data-t="w1p">Une méthode de travail éprouvée et des outils modernes nous permettent de livrer vite, sans rien sacrifier à la qualité.</p></div></div>
         <div class="point app"><div class="ico">👁️</div><div><h3 data-t="w2h">Vous payez seulement si ça vous plaît</h3><p data-t="w2p">Vous voyez votre site terminé avant de payer quoi que ce soit. Aucun risque pour vous.</p></div></div>
         <div class="point app"><div class="ico">🤝</div><div><h3 data-t="w3h">Proche de vous</h3><p data-t="w3p">Basé à Kampala, joignable sur WhatsApp, en français et en anglais.</p></div></div>
       </div>
@@ -463,7 +500,7 @@
 </main>
 
 <footer>
-  <div class="bloc"><span>© 2026 Lumen Web · Kampala, Uganda</span><span data-t="foot">Créé par Lumen Web, avec l'aide de l'IA.</span></div>
+  <div class="bloc"><span>© 2026 Lumen Web · Kampala, Uganda</span><span data-t="foot">Conception et développement : Lumen Web · <a href="mailto:lumenwebafrica@gmail.com">lumenwebafrica@gmail.com</a></span></div>
 </footer>
 
 <a class="wa wa-lien" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
@@ -472,7 +509,7 @@
   // ⚠️ À REMPLIR : numéro WhatsApp de Jonathan au format international, sans + ni espaces (ex. 2567XXXXXXXX)
   const WHATSAPP = "256764968479";
   // ⚠️ À REMPLIR : adresse e-mail de l'entreprise (les boutons e-mail restent cachés tant qu'elle est vide)
-  const EMAIL = "";
+  const EMAIL = "lumenwebafrica@gmail.com";
   const EN = {
     skip:"Skip to content", nav1:"Services", nav2:"Work", nav3:"Process", nav4:"Pricing",
     "cta-short":"Free quote", badge:"Kampala", badge2:"Websites in English and French",
@@ -507,7 +544,7 @@
     o3h:"Business", o3p:"Full redesign for established companies.", from:"from", o3u:"≈ 1,050,000 UGX · custom quote · free audit",
     o3a:"Audit of your current site", o3b:"Premium custom design", o3c:"Multiple pages, gallery, forms", o3d:"Priority support", audit:"Request an audit",
     follow:"<b>Monthly care</b> from $9.99 / month (≈ 42,000 UGX): updates, security and visitor report.", rate:"UGX amounts are indicative (1 $ ≈ 4,200 UGX, November 2026).",
-    "wy-k":"Why Lumen Web", w1h:"Fast, thanks to AI", w1p:"We use artificial intelligence to build faster, and a human eye to check every detail.",
+    "wy-k":"Why Lumen Web", w1h:"Delivered in 48 to 72 hours", w1p:"A proven workflow and modern tools let us deliver fast, without compromising on quality.",
     w2h:"Pay only if you love it", w2p:"You see your finished website before paying anything. Zero risk for you.",
     w3h:"Close to you", w3p:"Based in Kampala, reachable on WhatsApp, in English and French.",
     quote:"“A great website doesn't just look good: it brings in customers. That's what we build.”",
@@ -525,7 +562,14 @@
     "f-lang":"Website languages", l1:"French", l2:"English", l3:"French + English", "f-style":"Colours or style", "f-desc":"Describe your project in your own words",
     "f-qui":"Your first name *", "f-send":"Send on WhatsApp", "f-mail":"Send by email", "cta-wa":"Message on WhatsApp", "cta-mail":"Write an email", "f-note":"Free, no commitment. You pay only if you love the website.",
     "ph-act":"Restaurant, shop, school…", "ph-ville":"Kampala, Uganda", "ph-style":"Elegant, colourful, minimal…", "ph-desc":"What you sell, your customers, what makes you unique… A website you like?",
-    foot:"Made by Lumen Web, with the help of AI."
+    nav6:"About", "ap-k":"About", "ap-h":"A demanding web studio, <em>serving African businesses.</em>",
+    "ap-p1":"Lumen Web designs websites for businesses that want to be taken seriously online. Based in Kampala, we work with clients across East Africa and French-speaking Africa, in English and French.",
+    "ap-p2":"Our belief: a website isn't just a business card, it's a sales tool. Every project is designed around one goal, turning a visitor into a customer, and built to professional web standards.",
+    "ap-sig":"Web design studio · Kampala", ap1h:"Performance", ap1p:"Lightweight pages that load in seconds, even on a modest mobile connection.",
+    ap2h:"Built for every screen", ap2p:"Every page is designed and tested on phone, tablet and desktop before delivery.",
+    ap3h:"Visible on Google", ap3p:"SEO-friendly structure, sitemap, and polished sharing on WhatsApp and social media.",
+    ap4h:"Full transparency", ap4p:"A price agreed upfront, a website shown before any payment, and a site you own.",
+    foot:"Design & development: Lumen Web · <a href=\"mailto:lumenwebafrica@gmail.com\">lumenwebafrica@gmail.com</a>"
   };
   const MSG = { fr:"Bonjour Lumen Web, je voudrais un devis pour un site.", en:"Hello Lumen Web, I'd like a quote for a website." };
   const FR = {}; document.querySelectorAll("[data-t]").forEach(el => FR[el.dataset.t] = el.innerHTML);

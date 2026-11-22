@@ -328,8 +328,8 @@
   /* Galerie 3D (Réalisations) : un mur courbe, comme une galerie d'art */
   .galerie-sec { padding-bottom:0; background:linear-gradient(180deg, var(--nuit) 0, #E9ECF2 340px); }
   .galerie-sec .titre h2, .galerie-sec .titre p { color:var(--texte); }
-  .g-piste { position:relative; height:380vh; }
-  .g-collant { position:sticky; top:72px; height:calc(100vh - 72px); overflow:hidden;
+  .g-piste { position:relative; }
+  .g-collant { position:relative; height:min(calc(100vh - 72px), 800px); min-height:560px; overflow:hidden;
                background:linear-gradient(180deg, #F3F4F8 0, #E9ECF2 58%, #D6DAE3 58.2%, #C9CED9 100%); }
   .g-collant::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(70% 60% at 50% 40%, transparent 55%, rgba(26,26,46,.18)); }
   .g-scene { position:absolute; inset:0; perspective:var(--P,900px); perspective-origin:50% 44%; }
@@ -488,6 +488,10 @@
   .g-leg b { font-size:clamp(28px,4vw,48px) !important; font-weight:700; }
   .g-leg span { color:var(--or) !important; }
   .g-leg em { display:block; font-style:normal; font-size:12px; letter-spacing:.3em; color:var(--turquoise); margin-bottom:6px; }
+  .g-fl { position:absolute; top:44%; z-index:5; width:54px; height:54px; margin-top:-27px; border-radius:50%; border:1px solid rgba(255,255,255,.25); background:rgba(26,26,46,.6); color:#F7FFF7; font-size:22px; cursor:pointer; backdrop-filter:blur(6px); transition:background .25s, border-color .25s; }
+  .g-fl:hover { background:var(--or); border-color:var(--or); color:#1A1A2E; }
+  .g-fl.g-av { left:24px; } .g-fl.g-ap { right:24px; }
+  @media (max-width: 760px) { .g-leg { bottom:82px !important; } .g-fl { top:auto; bottom:16px; width:46px; height:46px; margin:0; } .g-collant { height:min(calc(100vh - 72px), 640px); min-height:520px; } }
   .g-aide { background:rgba(26,26,46,.75) !important; border-color:rgba(255,255,255,.12) !important; color:#C9CEDC !important; }
   .g-aide i { background:rgba(255,255,255,.12) !important; } .g-aide i::after { background:var(--or) !important; }
 
@@ -663,14 +667,15 @@
       <div class="titre app">
         <div class="surtitre" data-t="re-k">Réalisations</div>
         <h2 data-t="re-h2">Entrez dans <em>la galerie.</em></h2>
-        <p data-t="re-p2">Faites défiler pour avancer, touchez une œuvre pour l'ouvrir. Un projet réel et des démonstrations, clairement indiquées comme telles.</p>
+        <p data-t="re-p2">La galerie défile toute seule : touchez une œuvre pour l'ouvrir. Un projet réel et des démonstrations, clairement indiquées comme telles.</p>
       </div>
     </div>
     <div class="g-piste" id="g-piste">
       <div class="g-collant">
         <div class="g-scene" id="g-scene" aria-label="Galerie des réalisations"><div class="g-monde" id="g-monde"></div></div>
         <div class="g-leg" id="g-leg" aria-live="polite"><em></em><b></b><span></span></div>
-        <div class="g-aide"><span data-t="g-aide">Faites défiler pour avancer · touchez une œuvre</span><i></i></div>
+        <div class="g-aide"><span data-t="g-aide2">Visite automatique · touchez une œuvre pour l'ouvrir</span><i></i></div>
+        <button type="button" class="g-fl g-av" aria-label="Œuvre précédente">‹</button><button type="button" class="g-fl g-ap" aria-label="Œuvre suivante">›</button>
       </div>
     </div>
     <div class="bloc g-liste" id="g-liste">
@@ -971,7 +976,7 @@
     "au-k":"Free", "au-h":"Already have a website? <em>Free review in 24 h.</em>", "au-p":"Send us its address. Within 24 hours, you get a clear report, no jargon:",
     "au-l":"<li>Loading speed on mobile</li><li>Readability on phone, tablet and desktop</li><li>Presence on Google</li><li>How easily customers can contact you</li><li>The 3 priority improvements</li>",
     "a-url":"Your website address *", "ph-url":"www.your-business.com", "a-wa":"Get the review on WhatsApp", "a-mail":"By email", "a-note":"Free, no commitment. Report in English or French.",
-    "re-h2":"Step into <em>the gallery.</em>", "re-p2":"Scroll to walk through, tap a piece to open it. One real project and demos, clearly labelled as such.", "g-aide":"Scroll to walk · tap a piece",
+    "re-h2":"Step into <em>the gallery.</em>", "re-p2":"The gallery moves on its own: tap a piece to open it. One real project and demos, clearly labelled as such.", "g-aide2":"Automatic tour · tap a piece to open it",
     "aa-p2":"Watch an outdated website break apart and turn into a Lumen Web site.", "tr-a":"2019 · a generic template", "tr-b":"2026 · Lumen Web", "tr-re":"↻ Replay the transformation",
     "mo-k":"Everywhere, remotely", "mo-h":"From Kampala <em>to the whole world.</em>", "mo-p":"Based in Kampala, we work fully remotely: a call, a few WhatsApp messages, and your website comes to life, wherever you are. In English and French.",
     "mo-v":"<li>Kampala</li><li>Kinshasa</li><li>Nairobi</li><li>Kigali</li><li>Abidjan</li><li>Dakar</li><li>Douala</li><li>Paris</li><li>Brussels</li><li>Montreal</li>", "mo-a":"Spin it with your finger",
@@ -1303,26 +1308,35 @@
       b.style.opacity = o; b.style.visibility = cache ? "hidden" : "visible"; b.tabIndex = cache ? -1 : 0;
       const d = Math.abs(th - G.F); if (d < dmin) { dmin = d; meilleur = i; }
       b.classList.toggle("focus", false);
-      if (!b.dataset.charge && th > G.F - 1.6 && th < G.F + .5 && gActif) { b.dataset.charge = 1; b.querySelector("img").src = gImg(OEUVRES[i][0]); }
+      if (!b.dataset.charge && th > G.F - 1.9 && th < G.F + .5 && gActif) { b.dataset.charge = 1; b.querySelector("img").src = gImg(OEUVRES[i][0]); }
     });
     gEls[meilleur].classList.add("focus");
     if (meilleur !== gFocus) { gFocus = meilleur; const [, pr, , sous] = OEUVRES[meilleur], P = PROJETS[pr][lang];
       gLeg.querySelector("em").textContent = String(meilleur + 1).padStart(2, "0") + " / " + String(OEUVRES.length).padStart(2, "0"); gLeg.querySelector("b").textContent = P.t; gLeg.querySelector("span").textContent = (PROJETS[pr].reel ? (lang === "en" ? "Real project" : "Projet réel") : (lang === "en" ? "Demo" : "Démonstration")) + " · " + sous[lang]; }
   }
-  function gProgression() {
-    const r = gPiste.getBoundingClientRect(), tot = r.height - (innerHeight - 72);
-    const p = Math.max(0, Math.min(1, (72 - r.top) / tot));
-    gCible = p * (OEUVRES.length - 1) * G.D; gPiste.style.setProperty("--prog", (p * 100) + "%");
-    document.querySelector(".g-aide i").style.setProperty("--prog", (p * 100) + "%");
+  // Visite automatique : une œuvre toutes les 3 secondes, pause au survol ou quand une fiche est ouverte
+  let gIdx = 0, gPause = false, gT = 0;
+  function gAller(i) {
+    const n = OEUVRES.length; gIdx = (i + n) % n; gCible = gIdx * G.D;
+    document.querySelector(".g-aide i").style.setProperty("--prog", (gIdx / (n - 1) * 100) + "%");
   }
-  function gBoucle() { if (!gActif) return; gCour += (gCible - gCour) * .12; if (Math.abs(gCible - gCour) < 1e-4) gCour = gCible; gPlacer(gCour); requestAnimationFrame(gBoucle); }
+  function gMinuteur() { clearInterval(gT); gT = setInterval(() => { if (gActif && !gPause && document.getElementById("g-fiche").hidden) gAller(gIdx + 1); }, 3200); }
+  function gBoucle() { if (!gActif) return; gCour += (gCible - gCour) * .055; if (Math.abs(gCible - gCour) < 1e-4) gCour = gCible; gPlacer(gCour); requestAnimationFrame(gBoucle); }
   if (sup3d) {
-    gMesures(); gTextes();
+    gMesures(); gTextes(); gAller(0);
     const capt = new URLSearchParams(location.search).has("capture");
-    new IntersectionObserver(es => { const v = es[0].isIntersecting; if (v && !gActif) { gActif = true; gProgression(); gCour = gCible; requestAnimationFrame(gBoucle); } else if (!v) gActif = false; }, { rootMargin:"400px 0px" }).observe(gPiste);
-    addEventListener("scroll", gProgression, { passive:true });
-    addEventListener("resize", () => { gMesures(); gProgression(); gCour = gCible; gPlacer(gCour); });
-    if (capt) { gActif = true; gEls.forEach((b, i) => { b.dataset.charge = 1; b.querySelector("img").src = gImg(OEUVRES[i][0]); }); gPlacer(G.D * 2); gActif = false; }
+    new IntersectionObserver(es => { const v = es[0].isIntersecting; if (v && !gActif) { gActif = true; gCour = gCible; requestAnimationFrame(gBoucle); } else if (!v) gActif = false; }, { rootMargin:"200px 0px" }).observe(gPiste);
+    if (!calme) gMinuteur();
+    const sc = document.getElementById("g-scene");
+    sc.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") gPause = true; });
+    sc.addEventListener("pointerleave", () => { gPause = false; });
+    document.querySelector(".g-av").addEventListener("click", () => { gAller(gIdx - 1); gMinuteur(); });
+    document.querySelector(".g-ap").addEventListener("click", () => { gAller(gIdx + 1); gMinuteur(); });
+    let gx = null; // glisser du doigt
+    sc.addEventListener("pointerdown", e => { gx = e.clientX; });
+    sc.addEventListener("pointerup", e => { if (gx !== null && Math.abs(e.clientX - gx) > 40) { gAller(gIdx + (e.clientX < gx ? 1 : -1)); gMinuteur(); } gx = null; });
+    addEventListener("resize", () => { gMesures(); gAller(gIdx); gCour = gCible; gPlacer(gCour); });
+    if (capt) { gActif = true; gEls.forEach((b, i) => { b.dataset.charge = 1; b.querySelector("img").src = gImg(OEUVRES[i][0]); }); gAller(2); gPlacer(G.D * 2); gActif = false; }
   }
   // Fiche
   const gf = document.getElementById("g-fiche"); let gfAvant = null;

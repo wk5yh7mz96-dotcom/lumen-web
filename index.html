@@ -190,6 +190,8 @@
   .coches input { accent-color:var(--or); width:16px; height:16px; flex:none; }
   section[id], .hero { scroll-margin-top:80px; }
   .note { font-size:13px; color:var(--doux); }
+  .envois { display:grid; grid-template-columns:1fr; gap:10px; } .envois:has(.email-seul:not([style*="none"])) { grid-template-columns:1fr 1fr; }
+  .final .actions { justify-content:center; }
   @media (max-width: 960px) { .brief { grid-template-columns:1fr; } }
   @media (max-width: 640px) { .duo2 { grid-template-columns:1fr; } form.carte-form { padding:22px; } }
 
@@ -429,7 +431,7 @@
         </div>
         <div class="champ"><label for="f-desc" data-t="f-desc">Décrivez votre projet avec vos mots</label><textarea id="f-desc" data-tp="ph-desc" placeholder="Ce que vous vendez, vos clients, ce qui vous rend unique… Un site que vous aimez ?"></textarea></div>
         <div class="champ"><label for="f-qui" data-t="f-qui">Votre prénom *</label><input id="f-qui" required></div>
-        <button class="btn btn-or" type="submit"><span data-t="f-send">Envoyer ma demande sur WhatsApp</span></button>
+        <div class="envois"><button class="btn btn-or" type="submit" name="via" value="wa"><span data-t="f-send">Envoyer sur WhatsApp</span></button><button class="btn btn-ligne email-seul" type="submit" name="via" value="mail"><span data-t="f-mail">Envoyer par e-mail</span></button></div>
         <p class="note" data-t="f-note">Gratuit et sans engagement. Vous payez seulement si le site vous plaît.</p>
       </form>
     </div>
@@ -454,7 +456,7 @@
       <div class="final app">
         <h2 data-t="fn-h">Prêt à mettre votre entreprise <em>dans la lumière ?</em></h2>
         <p data-t="fn-p">Écrivez-nous : nous vous répondons rapidement, avec une première idée pour votre site.</p>
-        <a class="btn btn-or wa-lien" href="#"><span data-t="cta1">Demander un devis gratuit</span></a>
+        <div class="actions"><a class="btn btn-or wa-lien" href="#"><span data-t="cta-wa">Écrire sur WhatsApp</span></a><a class="btn btn-ligne email-lien email-seul" href="#"><span data-t="cta-mail">Écrire par e-mail</span></a></div>
       </div>
     </div>
   </section>
@@ -469,6 +471,8 @@
 <script>
   // ⚠️ À REMPLIR : numéro WhatsApp de Jonathan au format international, sans + ni espaces (ex. 2567XXXXXXXX)
   const WHATSAPP = "256764968479";
+  // ⚠️ À REMPLIR : adresse e-mail de l'entreprise (les boutons e-mail restent cachés tant qu'elle est vide)
+  const EMAIL = "";
   const EN = {
     skip:"Skip to content", nav1:"Services", nav2:"Work", nav3:"Process", nav4:"Pricing",
     "cta-short":"Free quote", badge:"Kampala", badge2:"Websites in English and French",
@@ -519,7 +523,7 @@
     "f-nom":"Business name *", "f-act":"Activity *", "f-ville":"City and country *", "f-offre":"Plan", opt0:"Not sure yet", opt3:"Business · custom quote",
     "f-quoi":"What you want on your website", k1:"Menu / catalogue", k2:"Photo gallery", k3:"Bookings / appointments", k4:"Prices", k5:"Customer reviews", k6:"Map",
     "f-lang":"Website languages", l1:"French", l2:"English", l3:"French + English", "f-style":"Colours or style", "f-desc":"Describe your project in your own words",
-    "f-qui":"Your first name *", "f-send":"Send my request on WhatsApp", "f-note":"Free, no commitment. You pay only if you love the website.",
+    "f-qui":"Your first name *", "f-send":"Send on WhatsApp", "f-mail":"Send by email", "cta-wa":"Message on WhatsApp", "cta-mail":"Write an email", "f-note":"Free, no commitment. You pay only if you love the website.",
     "ph-act":"Restaurant, shop, school…", "ph-ville":"Kampala, Uganda", "ph-style":"Elegant, colourful, minimal…", "ph-desc":"What you sell, your customers, what makes you unique… A website you like?",
     foot:"Made by Lumen Web, with the help of AI."
   };
@@ -543,6 +547,10 @@
 
 
 
+  // E-mail : liens mailto, ou boutons cachés tant que l'adresse n'est pas renseignée
+  document.querySelectorAll(".email-seul").forEach(el => { if (!EMAIL) el.style.display = "none"; });
+  document.querySelectorAll(".email-lien").forEach(a => a.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Lumen Web"));
+
   // Textes d'aide des champs (placeholders) en FR/EN
   const PH = {}; document.querySelectorAll("[data-tp]").forEach(el => PH[el.dataset.tp] = el.placeholder);
   const majPH = () => document.querySelectorAll("[data-tp]").forEach(el => el.placeholder = lang === "en" ? EN[el.dataset.tp] : PH[el.dataset.tp]);
@@ -557,7 +565,8 @@
       ? ["New website request (Lumen Web)", "Business", "Activity", "City", "Plan", "Wanted", "Languages", "Style", "Project", "Name"]
       : ["Nouvelle demande de site (Lumen Web)", "Entreprise", "Activité", "Ville", "Offre", "Souhaits", "Langues", "Style", "Projet", "Prénom"];
     const t = `${L[0]}\n\n${L[1]} : ${v("f-nom")}\n${L[2]} : ${v("f-act")}\n${L[3]} : ${v("f-ville")}\n${L[4]} : ${document.getElementById("f-offre").selectedOptions[0].textContent}\n${L[5]} : ${quoi || "-"}\n${L[6]} : ${document.getElementById("f-lang").selectedOptions[0].textContent}\n${L[7]} : ${v("f-style") || "-"}\n${L[8]} : ${v("f-desc") || "-"}\n${L[9]} : ${v("f-qui")}`;
-    window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t), "_blank", "noopener");
+    if (e.submitter && e.submitter.value === "mail" && EMAIL) location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(L[0] + " · " + v("f-nom")) + "&body=" + encodeURIComponent(t);
+    else window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t), "_blank", "noopener");
   });
 
   // Lumière qui suit la souris

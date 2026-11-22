@@ -1,92 +1,257 @@
 <!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chez Mama Nkosi · Démonstration Lumen Web</title>
-<meta name="description" content="Site de démonstration créé par Lumen Web (restaurant). Entreprise fictive.">
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chez Mama Nkosi · Restaurant africain à Kinshasa (démonstration Lumen Web)</title>
+<meta name="description" content="Démonstration Lumen Web : site complet pour un restaurant (entreprise fictive).">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,800;1,500&family=Caveat:wght@600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500&family=Caveat:wght@600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--fond:#120D09;--papier:#F3E6CF;--encre:#2A1B10;--or:#E9A23B;--rouge:#B8432A;--doux:#C9B49A}
+  :root{--fond:#110C08;--fond2:#1A130D;--papier:#F3E7D2;--encre:#2A1B10;--or:#E9A23B;--rouge:#B8432A;--doux:#C7B39B;--filet:#33261A;--serif:'Playfair Display',Georgia,serif}
   *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-  body{font-family:Inter,sans-serif;background:var(--fond);color:#F6EEE3;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  .bandeau{background:#0B0F1A;color:#F5F1E8;font:600 13px Inter;text-align:center;padding:8px 14px}.bandeau a{color:#FFB547;font-weight:800}
-  /* En-tête transparent centré */
-  header{position:absolute;left:0;right:0;top:34px;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:22px 5vw}
-  header nav{display:flex;gap:28px;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
-  .lg{display:flex;gap:4px}.lg button{border:1px solid rgba(255,255,255,.3);background:none;color:#fff;font:700 12px Inter;padding:6px 10px;border-radius:4px;cursor:pointer}.lg button.on{background:var(--or);border-color:var(--or);color:#1E1206}
-  /* Accroche plein écran, centrée, comme une affiche */
-  .hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 20px 80px;position:relative;overflow:hidden;
-        background:radial-gradient(60% 50% at 50% 60%,rgba(233,162,59,.35),transparent 70%),radial-gradient(40% 40% at 20% 20%,rgba(184,67,42,.35),transparent 70%),linear-gradient(180deg,#2A160B,#120D09)}
-  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:18px 18px}
-  .hero > div{position:relative;max-width:900px}
-  .script{font:600 34px Caveat,cursive;color:var(--or)}
-  h1{font:800 clamp(52px,10vw,128px)/.95 'Playfair Display',serif;letter-spacing:-.02em;margin:10px 0 22px}
-  .hero p{font-size:18px;color:var(--doux);max-width:46ch;margin:0 auto 34px}
-  .btn{display:inline-block;padding:16px 30px;border-radius:4px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:14px;background:var(--or);color:#1E1206}
-  .btn.ligne{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;margin-left:10px}
-  .plat{width:min(340px,70vw);aspect-ratio:1;border-radius:50%;margin:46px auto 0;background:radial-gradient(circle at 40% 35%,#F4C27A 0 18%,#C8702E 19% 34%,#7A3A16 35% 48%,#E8DCC8 49% 60%,#CFC2AD 61% 64%,transparent 65%);box-shadow:0 40px 80px rgba(0,0,0,.6)}
-  /* Carte imprimée sur papier */
-  .carte{background:var(--papier);color:var(--encre);padding:100px 20px;position:relative}
-  .carte .feuille{max-width:900px;margin:0 auto;border:2px solid var(--encre);padding:60px clamp(20px,5vw,70px);position:relative}
-  .carte .feuille::before{content:"";position:absolute;inset:8px;border:1px solid var(--encre);pointer-events:none}
-  .carte h2{text-align:center;font:500 clamp(40px,6vw,64px) 'Playfair Display',serif}
-  .carte h2 + p{text-align:center;font:600 26px Caveat;color:var(--rouge);margin:4px 0 40px}
-  .col2{display:grid;grid-template-columns:1fr 1fr;gap:20px 60px}
-  .cat{font:800 13px Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--rouge);margin:10px 0 6px;grid-column:1/-1;text-align:center}
-  .ligne-menu{display:flex;align-items:baseline;gap:8px}
-  .ligne-menu b{font:500 20px 'Playfair Display',serif}
-  .ligne-menu i{flex:1;border-bottom:2px dotted rgba(42,27,16,.4);transform:translateY(-4px)}
-  .ligne-menu span{font-weight:700}
-  .desc{font-size:14px;color:#6B5440;margin-top:-2px}
-  /* Bande « plat du jour » qui défile */
-  .defile{background:var(--rouge);color:#fff;overflow:hidden;white-space:nowrap;padding:18px 0;font:500 26px 'Playfair Display',serif}
-  .defile div{display:inline-block;animation:defile 30s linear infinite}
-  @keyframes defile{to{transform:translateX(-50%)}}
-  /* Grande citation unique */
-  .citation{padding:110px 20px;text-align:center}
-  .citation q{display:block;font:italic 500 clamp(28px,4.4vw,48px)/1.25 'Playfair Display',serif;max-width:22ch;margin:0 auto}
-  .citation small{display:block;margin-top:22px;color:var(--doux);letter-spacing:.1em;text-transform:uppercase;font-size:13px}
-  /* Infos en colonnes séparées par des filets */
-  .infos{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #3A2C1F;border-bottom:1px solid #3A2C1F}
-  .infos div{padding:44px 5vw;border-right:1px solid #3A2C1F}.infos div:last-child{border:0}
-  .infos h3{font:500 26px 'Playfair Display',serif;color:var(--or);margin-bottom:10px}.infos p{color:var(--doux);line-height:1.7}
-  footer{padding:30px 5vw;display:flex;justify-content:space-between;color:var(--doux);font-size:13px;flex-wrap:wrap;gap:10px}
-  .wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;z-index:20;box-shadow:0 10px 26px rgba(0,0,0,.4)}.wa svg{width:28px;fill:#fff}
-  @media(max-width:760px){header nav{display:none}.col2,.infos{grid-template-columns:1fr}.infos div{border-right:0;border-bottom:1px solid #3A2C1F}.btn.ligne{margin:12px 0 0}}
-  @media(prefers-reduced-motion:reduce){.defile div{animation:none}}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--fond);color:#F6EEE3;-webkit-font-smoothing:antialiased;line-height:1.6}
+  a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+  .bloc{width:min(1200px,100% - 40px);margin-inline:auto}
+  .bandeau{background:#0B0F1A;color:#F5F1E8;font:600 13px Inter;text-align:center;padding:8px 14px;position:relative;z-index:30}.bandeau a{color:#FFB547;font-weight:800}
+  /* En-tête */
+  header{position:fixed;left:0;right:0;top:36px;z-index:20;transition:background .3s,top .3s,box-shadow .3s}
+  header.defile{top:0;background:rgba(17,12,8,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--filet)}
+  header .bloc{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+  .logo{font:800 22px var(--serif);letter-spacing:.01em}.logo span{color:var(--or)}
+  header nav{display:flex;gap:30px;font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+  header nav a{opacity:.85}header nav a:hover{opacity:1;color:var(--or)}
+  .droite{display:flex;align-items:center;gap:14px}
+  .lg{display:flex;gap:3px}.lg button{border:1px solid rgba(255,255,255,.25);background:none;color:#fff;font:700 11px Inter;padding:6px 9px;border-radius:4px;cursor:pointer}.lg button.on{background:var(--or);border-color:var(--or);color:#1E1206}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 28px;border-radius:3px;font:700 13px Inter;letter-spacing:.1em;text-transform:uppercase;background:var(--or);color:#1E1206;border:1px solid var(--or);cursor:pointer;transition:transform .2s,background .2s}
+  .btn:hover{transform:translateY(-2px)}.btn.ligne{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}.btn svg{width:17px;height:17px;fill:currentColor}
+  header .btn{padding:11px 18px}
+  .burger{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.25);border-radius:6px;background:none;color:#fff;font-size:20px;cursor:pointer}
+  /* Accroche */
+  .hero{height:100svh;min-height:640px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.05)}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 55%,rgba(17,12,8,.35),rgba(17,12,8,.85)),linear-gradient(180deg,rgba(17,12,8,.6),transparent 30%,rgba(17,12,8,.95))}
+  .hero .contenu{position:relative;z-index:1;padding:0 20px;max-width:920px}
+  .script{font:600 clamp(26px,3vw,36px) Caveat,cursive;color:var(--or)}
+  h1{font:800 clamp(56px,10.5vw,136px)/.92 var(--serif);letter-spacing:-.02em;margin:8px 0 24px;text-shadow:0 10px 40px rgba(0,0,0,.5)}
+  .hero p{font-size:clamp(16px,1.6vw,19px);color:#E7D8C4;max-width:52ch;margin:0 auto 34px}
+  .hero .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .note{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:1;display:flex;gap:26px;font-size:13px;color:#D8C6AE;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  .note b{color:var(--or)}
+  /* Bande défilante */
+  .defile-bande{background:var(--rouge);color:#fff;overflow:hidden;white-space:nowrap;padding:16px 0;font:500 24px var(--serif)}
+  .defile-bande div{display:inline-block;animation:defile 38s linear infinite}@keyframes defile{to{transform:translateX(-50%)}}
+  /* Histoire */
+  section{padding:120px 0;position:relative}
+  .sur{font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--or);margin-bottom:16px;display:block}
+  h2{font:700 clamp(38px,5.4vw,64px)/1.05 var(--serif);letter-spacing:-.015em}h2 em{font-style:italic;font-weight:500;color:var(--or)}
+  .histoire .bloc{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .histoire p{color:var(--doux);font-size:17px;margin-top:22px}
+  .signature{font:600 34px Caveat,cursive;color:var(--or);margin-top:20px}
+  .duo-photos{position:relative;height:600px}
+  .duo-photos img{position:absolute;object-fit:cover;box-shadow:0 30px 70px rgba(0,0,0,.55)}
+  .duo-photos img:first-child{left:0;top:0;width:68%;height:82%}
+  .duo-photos img:last-child{right:0;bottom:0;width:52%;height:52%;border:8px solid var(--fond)}
+  .chiffres{display:flex;gap:44px;margin-top:38px;border-top:1px solid var(--filet);padding-top:28px}
+  .chiffres b{display:block;font:700 40px var(--serif);color:#fff}.chiffres span{color:var(--doux);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+  /* Plats signature */
+  .plats{background:var(--fond2)}
+  .tete{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
+  .tete p{color:var(--doux);max-width:40ch}
+  .grille-plats{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .plat{background:var(--fond);border:1px solid var(--filet);overflow:hidden;transition:transform .35s,border-color .35s}
+  .plat:hover{transform:translateY(-6px);border-color:rgba(233,162,59,.5)}
+  .plat .img{aspect-ratio:1;overflow:hidden}.plat img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.plat:hover img{transform:scale(1.06)}
+  .plat .txt{padding:24px 24px 26px}
+  .plat h3{font:700 24px var(--serif);display:flex;justify-content:space-between;gap:12px}.plat h3 span{color:var(--or);font-family:Inter;font-weight:600;font-size:18px}
+  .plat p{color:var(--doux);font-size:15px;margin-top:6px}
+  .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--or);border:1px solid rgba(233,162,59,.4);padding:3px 8px;margin-bottom:10px}
+  /* Carte imprimée */
+  .carte{background:var(--papier);color:var(--encre)}
+  .feuille{max-width:980px;margin:0 auto;border:2px solid var(--encre);padding:64px clamp(22px,5vw,76px);position:relative}
+  .feuille::before{content:"";position:absolute;inset:9px;border:1px solid var(--encre);pointer-events:none}
+  .carte h2{text-align:center}.carte .script{text-align:center;color:var(--rouge);margin:6px 0 44px}
+  .col2{display:grid;grid-template-columns:1fr 1fr;gap:22px 70px}
+  .cat{font:700 12px Inter;letter-spacing:.24em;text-transform:uppercase;color:var(--rouge);grid-column:1/-1;text-align:center;margin:16px 0 2px;display:flex;align-items:center;gap:16px}
+  .cat::before,.cat::after{content:"";flex:1;height:1px;background:rgba(42,27,16,.3)}
+  .lm{display:flex;align-items:baseline;gap:8px}.lm b{font:600 19px var(--serif)}.lm i{flex:1;border-bottom:2px dotted rgba(42,27,16,.35);transform:translateY(-4px)}.lm span{font-weight:700}
+  .desc{font-size:14px;color:#6E5641}
+  .carte .actions{text-align:center;margin-top:48px}.carte .btn.ligne{color:var(--encre);border-color:var(--encre)}
+  /* Galerie */
+  .galerie{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:260px;gap:12px}
+  .galerie img{width:100%;height:100%;object-fit:cover}.galerie .g1{grid-column:span 2;grid-row:span 2}.galerie .g4{grid-row:span 2}
+  /* Avis */
+  .avis{background:var(--fond2);text-align:center}
+  .avis-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;text-align:left}
+  .av{border:1px solid var(--filet);padding:34px;background:var(--fond)}
+  .av .etoiles{color:var(--or);letter-spacing:3px}.av q{display:block;font:italic 500 21px/1.45 var(--serif);margin:14px 0 20px}
+  .av small{color:var(--doux);font-size:13px}
+  /* Événements */
+  .evt .bloc{display:grid;grid-template-columns:1.1fr 1fr;gap:0;align-items:stretch;border:1px solid var(--filet)}
+  .evt img{width:100%;height:100%;object-fit:cover;min-height:420px}
+  .evt .txt{padding:60px;background:var(--fond2)}.evt p{color:var(--doux);margin:18px 0 26px}
+  .evt ul{list-style:none;display:grid;gap:10px;margin-bottom:30px}.evt li::before{content:"✦ ";color:var(--or)}
+  /* Réservation + contact */
+  .resa .bloc{display:grid;grid-template-columns:1fr 1.1fr;gap:70px}
+  .infos-c{display:grid;gap:26px;margin-top:34px}
+  .infos-c div{display:flex;gap:16px}.infos-c i{font-style:normal;width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--filet);color:var(--or)}
+  .infos-c h3{font:700 18px var(--serif)}.infos-c p{color:var(--doux);font-size:15px}
+  .canaux{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
+  .canal{display:inline-flex;align-items:center;gap:9px;padding:12px 16px;border:1px solid var(--filet);font-weight:600;font-size:14px;transition:border-color .2s}
+  .canal:hover{border-color:var(--or)}.canal svg{width:18px;height:18px;fill:var(--or)}
+  form{background:var(--fond2);border:1px solid var(--filet);padding:40px;display:grid;gap:16px}
+  form h3{font:700 28px var(--serif)}
+  .ch{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--doux)}
+  input,select,textarea{display:block;width:100%;margin-top:7px;background:var(--fond);border:1px solid var(--filet);color:#fff;font:15px Inter;padding:13px 14px;border-radius:2px}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--or)}
+  .choix{display:flex;gap:10px;flex-wrap:wrap}.choix label{display:flex;align-items:center;gap:8px;border:1px solid var(--filet);padding:10px 14px;text-transform:none;letter-spacing:0;font-size:14px;color:#fff;cursor:pointer}
+  .choix input{width:auto;margin:0;accent-color:var(--or)}
+  /* Carte de localisation stylisée */
+  .plan{height:220px;margin-top:30px;border:1px solid var(--filet);position:relative;overflow:hidden;
+        background:linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px) 0 0/34px 34px,linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px) 0 0/34px 34px,#17110C}
+  .plan::before{content:"";position:absolute;left:-10%;top:58%;width:120%;height:14px;background:#2A1F15;transform:rotate(-8deg)}
+  .plan::after{content:"";position:absolute;left:38%;top:-10%;width:12px;height:120%;background:#2A1F15;transform:rotate(12deg)}
+  .pin{position:absolute;left:44%;top:40%;z-index:1;font-size:34px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+  .plan a{position:absolute;right:12px;bottom:12px;z-index:1;background:var(--or);color:#1E1206;font:700 12px Inter;padding:8px 12px;letter-spacing:.06em;text-transform:uppercase}
+  footer{border-top:1px solid var(--filet);padding:60px 0 30px;color:var(--doux);font-size:14px}
+  .pied{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:46px}
+  .pied h4{color:#fff;font:700 15px Inter;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}.pied a{display:block;margin-bottom:8px}.pied a:hover{color:var(--or)}
+  .bas{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid var(--filet);padding-top:24px}
+  .wa{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;z-index:25;box-shadow:0 12px 30px rgba(0,0,0,.45)}.wa svg{width:28px;fill:#fff}
+  .anim .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}.anim .rv.vu{opacity:1;transform:none}
+  @media(max-width:980px){
+    header nav{display:none;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;background:rgba(17,12,8,.98);border-top:1px solid var(--filet)}
+    header nav.ouvert{display:flex}header nav a{padding:16px 20px;border-bottom:1px solid var(--filet)}
+    .burger{display:block}header .btn{display:none}
+    .histoire .bloc,.resa .bloc,.evt .bloc{grid-template-columns:1fr;gap:40px}.duo-photos{height:420px}
+    .grille-plats,.avis-grille{grid-template-columns:1fr 1fr}.galerie{grid-template-columns:1fr 1fr;grid-auto-rows:180px}.pied{grid-template-columns:1fr 1fr}
+    .note{display:none}.evt .txt{padding:40px 28px}
+  }
+  @media(max-width:620px){.grille-plats,.avis-grille,.col2,.ch{grid-template-columns:1fr}section{padding:84px 0}form{padding:26px}.pied{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){.defile-bande div{animation:none}*{transition:none!important}}
 </style></head><body>
-<div class="bandeau"><span data-en="Demo website by Lumen Web · fictional business ·">Site de démonstration Lumen Web · entreprise fictive ·</span> <a href="../../?utm_campaign=demo-restaurant" data-en="Want the same? →">Je veux le même →</a></div>
-<header><nav><a href="#carte" data-en="Menu">La carte</a><a href="#infos" data-en="Visit us">Nous trouver</a></nav><div class="lg"><button data-l="fr">FR</button><button data-l="en">EN</button></div></header>
-<div class="hero"><div>
-  <div class="script" data-en="Since 1998, in Gombe">Depuis 1998, à la Gombe</div>
-  <h1>Chez Mama<br>Nkosi</h1>
-  <p data-en="Moambe chicken, pondu and grilled fish, cooked every morning with market produce.">Poulet à la moambe, pondu et poisson braisé, cuisinés chaque matin avec les produits du marché.</p>
-  <a class="btn wa-btn" href="#" data-en="Book a table">Réserver une table</a><a class="btn ligne" href="#carte" data-en="See the menu">Voir la carte</a>
-  <div class="plat" role="img" aria-label="Plat"></div>
-</div></div>
-<div class="defile" aria-hidden="true"><div><span data-en="★ Today: moambe chicken ★ Fresh ginger juice ★ Grilled tilapia ★ Friday: live music ★ Today: moambe chicken ★ Fresh ginger juice ★ Grilled tilapia ★ Friday: live music ">★ Aujourd'hui : poulet moambe ★ Jus de gingembre frais ★ Tilapia braisé ★ Vendredi : musique live ★ Aujourd'hui : poulet moambe ★ Jus de gingembre frais ★ Tilapia braisé ★ Vendredi : musique live </span></div></div>
-<section class="carte" id="carte"><div class="feuille">
-  <h2 data-en="The Menu">La Carte</h2><p data-en="cooked with love">cuisiné avec amour</p>
-  <div class="col2">
-    <div class="cat" data-en="Mains">Plats</div>
-    <div><div class="ligne-menu"><b data-en="Moambe chicken">Poulet à la moambe</b><i></i><span>$12</span></div><div class="desc" data-en="Palm nut sauce, house recipe">Sauce noix de palme, recette maison</div></div>
-    <div><div class="ligne-menu"><b data-en="Grilled tilapia">Tilapia braisé</b><i></i><span>$14</span></div><div class="desc" data-en="Pili-pili, onions, plantain">Pili-pili, oignons, plantain</div></div>
-    <div><div class="ligne-menu"><b data-en="Pondu & smoked fish">Pondu & poisson fumé</b><i></i><span>$9</span></div><div class="desc" data-en="Cassava leaves">Feuilles de manioc</div></div>
-    <div><div class="ligne-menu"><b data-en="Beef brochettes">Brochettes de bœuf</b><i></i><span>$10</span></div><div class="desc" data-en="Marinated 12 hours">Marinées 12 heures</div></div>
-    <div class="cat" data-en="Drinks & desserts">Boissons & desserts</div>
-    <div><div class="ligne-menu"><b data-en="Ginger juice">Jus de gingembre</b><i></i><span>$3</span></div><div class="desc" data-en="Homemade, served cold">Fait maison, servi frais</div></div>
-    <div><div class="ligne-menu"><b data-en="Mama's dessert">Dessert de Mama</b><i></i><span>$4</span></div><div class="desc" data-en="Ask for today's choice">Demandez le choix du jour</div></div>
+<div class="bandeau"><span data-en="Demo website by Lumen Web · fictional business ·">Site de démonstration Lumen Web · entreprise fictive ·</span> <a href="../../?utm_campaign=demo-restaurant#commander" data-en="I want the same →">Je veux le même →</a></div>
+
+<header><div class="bloc">
+  <a class="logo" href="#">Mama <span>Nkosi</span></a>
+  <nav aria-label="Menu">
+    <a href="#histoire" data-en="Our story">Notre histoire</a><a href="#carte" data-en="Menu">La carte</a><a href="#galerie" data-en="Gallery">Galerie</a><a href="#evenements" data-en="Events">Événements</a><a href="#reserver" data-en="Contact">Contact</a>
+  </nav>
+  <div class="droite"><div class="lg"><button data-l="fr">FR</button><button data-l="en">EN</button></div><a class="btn" href="#reserver" data-en="Book">Réserver</a><button class="burger" aria-label="Menu" aria-expanded="false">☰</button></div>
+</div></header>
+
+<div class="hero">
+  <img src="img/hero.jpg" alt="">
+  <div class="contenu">
+    <div class="script" data-en="Since 1998, in the heart of Gombe">Depuis 1998, au cœur de la Gombe</div>
+    <h1>Chez Mama<br>Nkosi</h1>
+    <p data-en="Congolese cuisine cooked every morning with market produce. Moambe chicken, grilled fish, pondu… and the warmth of a family table.">La cuisine congolaise cuisinée chaque matin avec les produits du marché. Poulet moambe, poisson braisé, pondu… et la chaleur d'une table de famille.</p>
+    <div class="actions"><a class="btn" href="#reserver" data-en="Book a table">Réserver une table</a><a class="btn ligne" href="#carte" data-en="See the menu">Découvrir la carte</a></div>
+  </div>
+  <div class="note"><span><b>★ 4,8</b> <span data-en="320 reviews">320 avis</span></span><span data-en="Open today · 11am – 10pm">Ouvert aujourd'hui · 11 h – 22 h</span><span data-en="Delivery & catering">Livraison & traiteur</span></div>
+</div>
+
+<div class="defile-bande" aria-hidden="true"><div><span data-en="✦ Today: moambe chicken ✦ Fresh ginger juice ✦ Grilled tilapia ✦ Friday night: live rumba ✦ Today: moambe chicken ✦ Fresh ginger juice ✦ Grilled tilapia ✦ Friday night: live rumba ">✦ Aujourd'hui : poulet moambe ✦ Jus de gingembre frais ✦ Tilapia braisé ✦ Vendredi soir : rumba live ✦ Aujourd'hui : poulet moambe ✦ Jus de gingembre frais ✦ Tilapia braisé ✦ Vendredi soir : rumba live </span></div></div>
+
+<section class="histoire" id="histoire"><div class="bloc">
+  <div class="duo-photos rv"><img src="img/cuisine.jpg" alt="" loading="lazy"><img src="img/terrasse.jpg" alt="" loading="lazy"></div>
+  <div class="rv">
+    <span class="sur" data-en="Our story">Notre histoire</span>
+    <h2 data-en="A family kitchen, <em>open to everyone.</em>">Une cuisine de famille, <em>ouverte à tous.</em></h2>
+    <p data-en="It all started in Mama Nkosi's courtyard, with a pot of moambe chicken shared with the neighbours. Twenty-five years later, the recipes haven't changed: fresh produce bought at dawn, sauces simmered for hours, and the same generosity on every plate.">Tout a commencé dans la cour de Mama Nkosi, avec une marmite de poulet moambe partagée avec les voisins. Vingt-cinq ans plus tard, les recettes n'ont pas changé : des produits frais achetés à l'aube, des sauces mijotées pendant des heures, et la même générosité dans chaque assiette.</p>
+    <div class="signature">Mama Nkosi</div>
+    <div class="chiffres"><div><b>25</b><span data-en="years">ans</span></div><div><b>60</b><span data-en="seats">couverts</span></div><div><b>100 %</b><span data-en="homemade">fait maison</span></div></div>
   </div>
 </div></section>
-<section class="citation"><q data-en="The best moambe chicken in town. We come back every Friday.">Le meilleur poulet moambe de la ville. On revient chaque vendredi.</q><small data-en="★★★★★ · example review">★★★★★ · avis d'exemple</small></section>
-<div class="infos" id="infos">
-  <div><h3 data-en="Hours">Horaires</h3><p data-en="Mon–Sat 11am–10pm<br>Sunday 12pm–8pm">Lun–sam 11 h – 22 h<br>Dimanche 12 h – 20 h</p></div>
-  <div><h3 data-en="Address">Adresse</h3><p data-en="Gombe, Kinshasa<br>(fictional address)">Gombe, Kinshasa<br>(adresse fictive)</p></div>
-  <div><h3 data-en="Bookings">Réservations</h3><p data-en="One tap on WhatsApp.<br>Catering for events.">Un clic sur WhatsApp.<br>Traiteur pour vos événements.</p></div>
-</div>
-<footer><span>© 2026 Chez Mama Nkosi</span><span data-en="Website by Lumen Web">Site créé par Lumen Web</span></footer>
-<a class="wa" href="https://wa.me/256764968479?text=Bonjour%20Lumen%20Web%2C%20j%27ai%20vu%20la%20d%C3%A9mo%20restaurant%20et%20je%20veux%20un%20site%20comme%20celui-ci." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
+
+<section class="plats"><div class="bloc">
+  <div class="tete rv"><div><span class="sur" data-en="Signature dishes">Plats signature</span><h2 data-en="The ones you'll <em>come back for.</em>">Ceux pour lesquels <em>on revient.</em></h2></div><p data-en="Served with plantain, rice or chikwangue. Prices in US dollars.">Servis avec banane plantain, riz ou chikwangue. Prix en dollars.</p></div>
+  <div class="grille-plats">
+    <article class="plat rv"><div class="img"><img src="img/poulet.jpg" alt="" loading="lazy"></div><div class="txt"><span class="badge" data-en="Bestseller">Le plus commandé</span><h3><span data-en="Moambe chicken" style="all:unset">Poulet à la moambe</span><span>$12</span></h3><p data-en="Free-range chicken simmered in palm nut sauce, Mama's recipe.">Poulet fermier mijoté dans la sauce noix de palme, recette de Mama.</p></div></article>
+    <article class="plat rv"><div class="img"><img src="img/poisson.jpg" alt="" loading="lazy"></div><div class="txt"><span class="badge" data-en="Chef's pick">Choix du chef</span><h3><span data-en="Grilled tilapia" style="all:unset">Tilapia braisé</span><span>$14</span></h3><p data-en="Whole fish grilled over charcoal, pili-pili and fresh onions.">Poisson entier braisé au charbon, pili-pili et oignons frais.</p></div></article>
+    <article class="plat rv"><div class="img"><img src="img/brochettes.jpg" alt="" loading="lazy"></div><div class="txt"><span class="badge" data-en="Friday special">Spécial vendredi</span><h3><span data-en="Beef brochettes" style="all:unset">Brochettes de bœuf</span><span>$10</span></h3><p data-en="Marinated for 12 hours, grilled to order.">Marinées 12 heures, grillées à la minute.</p></div></article>
+  </div>
+</div></section>
+
+<section class="carte" id="carte"><div class="bloc"><div class="feuille rv">
+  <h2 data-en="The Menu">La Carte</h2><div class="script" data-en="cooked with love">cuisiné avec amour</div>
+  <div class="col2">
+    <div class="cat" data-en="Starters">Entrées</div>
+    <div><div class="lm"><b data-en="Spicy plantain chips">Chips de plantain épicées</b><i></i><span>$4</span></div><div class="desc" data-en="Pili-pili mayonnaise">Mayonnaise au pili-pili</div></div>
+    <div><div class="lm"><b data-en="Beignets & beans">Beignets & haricots</b><i></i><span>$5</span></div><div class="desc" data-en="The Kinshasa classic">Le classique de Kinshasa</div></div>
+    <div class="cat" data-en="Mains">Plats</div>
+    <div><div class="lm"><b data-en="Moambe chicken">Poulet à la moambe</b><i></i><span>$12</span></div><div class="desc" data-en="Palm nut sauce">Sauce noix de palme</div></div>
+    <div><div class="lm"><b data-en="Grilled tilapia">Tilapia braisé</b><i></i><span>$14</span></div><div class="desc" data-en="Charcoal, pili-pili">Charbon, pili-pili</div></div>
+    <div><div class="lm"><b data-en="Pondu & smoked fish">Pondu & poisson fumé</b><i></i><span>$9</span></div><div class="desc" data-en="Cassava leaves, slow-cooked">Feuilles de manioc mijotées</div></div>
+    <div><div class="lm"><b data-en="Beef brochettes">Brochettes de bœuf</b><i></i><span>$10</span></div><div class="desc" data-en="Marinated 12 hours">Marinées 12 heures</div></div>
+    <div class="cat" data-en="Drinks & desserts">Boissons & desserts</div>
+    <div><div class="lm"><b data-en="Fresh ginger juice">Jus de gingembre frais</b><i></i><span>$3</span></div><div class="desc" data-en="Homemade, with lemon">Fait maison, au citron</div></div>
+    <div><div class="lm"><b data-en="Chocolate & mango cake">Gâteau chocolat & mangue</b><i></i><span>$5</span></div><div class="desc" data-en="Mama's dessert">Le dessert de Mama</div></div>
+  </div>
+  <div class="actions"><a class="btn ligne" href="#" data-contact="whatsapp" data-en="Order for delivery">Commander en livraison</a></div>
+</div></div></section>
+
+<section id="galerie"><div class="bloc">
+  <div class="tete rv"><div><span class="sur" data-en="Gallery">Galerie</span><h2 data-en="A taste <em>before you come.</em>">Un avant-goût <em>avant de venir.</em></h2></div></div>
+  <div class="galerie rv">
+    <img class="g1" src="img/terrasse.jpg" alt="" loading="lazy"><img src="img/jus.jpg" alt="" loading="lazy"><img src="img/dessert.jpg" alt="" loading="lazy">
+    <img src="img/poisson.jpg" alt="" loading="lazy"><img src="img/brochettes.jpg" alt="" loading="lazy">
+  </div>
+</div></section>
+
+<section class="avis"><div class="bloc">
+  <span class="sur rv" data-en="Reviews">Avis</span><h2 class="rv" data-en="What our <em>guests</em> say.">Ce que disent nos <em>clients.</em></h2>
+  <div class="avis-grille">
+    <div class="av rv"><div class="etoiles">★★★★★</div><q data-en="The best moambe chicken in Kinshasa. You can feel it's homemade.">Le meilleur poulet moambe de Kinshasa. On sent que c'est fait maison.</q><small data-en="Example review · Google">Avis d'exemple · Google</small></div>
+    <div class="av rv"><div class="etoiles">★★★★★</div><q data-en="Fast service, warm welcome, and the Friday rumba nights are magic.">Service rapide, accueil chaleureux, et les vendredis rumba sont magiques.</q><small data-en="Example review · Google">Avis d'exemple · Google</small></div>
+    <div class="av rv"><div class="etoiles">★★★★★</div><q data-en="We ordered catering for our wedding: 150 guests, all delighted.">Nous avons commandé le traiteur pour notre mariage : 150 invités, tous ravis.</q><small data-en="Example review · Facebook">Avis d'exemple · Facebook</small></div>
+  </div>
+</div></section>
+
+<section class="evt" id="evenements"><div class="bloc rv">
+  <img src="img/terrasse.jpg" alt="" loading="lazy">
+  <div class="txt"><span class="sur" data-en="Events & catering">Événements & traiteur</span><h2 data-en="Your celebrations, <em>our recipes.</em>">Vos fêtes, <em>nos recettes.</em></h2>
+    <p data-en="Weddings, birthdays, company lunches: we cook for 10 to 300 guests, at the restaurant or at your venue.">Mariages, anniversaires, repas d'entreprise : nous cuisinons pour 10 à 300 invités, au restaurant ou chez vous.</p>
+    <ul><li data-en="Private terrace up to 60 guests">Terrasse privatisable jusqu'à 60 personnes</li><li data-en="Custom menu and tasting">Menu sur mesure et dégustation</li><li data-en="Delivery and service staff">Livraison et service sur place</li></ul>
+    <a class="btn" href="#" data-contact="email" data-en="Request a quote by email">Demander un devis par e-mail</a></div>
+</div></section>
+
+<section class="resa" id="reserver"><div class="bloc">
+  <div class="rv">
+    <span class="sur" data-en="Book & contact">Réserver & contact</span>
+    <h2 data-en="Your table <em>is waiting.</em>">Votre table <em>vous attend.</em></h2>
+    <div class="infos-c">
+      <div><i>⌚</i><div><h3 data-en="Opening hours">Horaires</h3><p data-en="Mon–Sat 11am–10pm · Sunday 12pm–8pm">Lun–sam 11 h – 22 h · Dimanche 12 h – 20 h</p></div></div>
+      <div><i>⌖</i><div><h3 data-en="Address">Adresse</h3><p data-en="Avenue du Commerce, Gombe, Kinshasa (fictional)">Avenue du Commerce, Gombe, Kinshasa (fictive)</p></div></div>
+      <div><i>✆</i><div><h3 data-en="Contact">Contact</h3><p>+243 000 000 000 · reservation@chezmamankosi.cd <span data-en="(fictional)">(fictifs)</span></p></div></div>
+    </div>
+    <div class="canaux">
+      <a class="canal" href="#" data-contact="whatsapp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg>WhatsApp</a>
+      <a class="canal" href="#" data-contact="email"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2.4V17h16V7.4l-8 5.3-8-5.3ZM5.2 7 12 11.5 18.8 7H5.2Z"/></svg>E-mail</a>
+      <a class="canal" href="#" data-contact="phone"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg><span data-en="Call">Appeler</span></a>
+    </div>
+    <div class="plan"><span class="pin">📍</span><a href="#" data-contact="map" data-en="Directions">Itinéraire</a></div>
+  </div>
+  <form class="rv" data-demo-form>
+    <h3 data-en="Book a table">Réserver une table</h3>
+    <div class="ch"><label><span data-en="Name">Nom</span><input required></label><label><span data-en="Phone">Téléphone</span><input type="tel" required></label></div>
+    <div class="ch"><label><span data-en="Date">Date</span><input type="date" required></label><label><span data-en="Time">Heure</span><select><option>12:00</option><option>13:00</option><option>19:00</option><option selected>20:00</option><option>21:00</option></select></label></div>
+    <label><span data-en="Guests">Personnes</span><select><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></label>
+    <label><span data-en="Special request">Demande particulière</span><textarea rows="3" data-en-ph="Birthday, allergy, terrace…" placeholder="Anniversaire, allergie, terrasse…"></textarea></label>
+    <div><label data-en="Get the confirmation by">Recevoir la confirmation par</label><div class="choix" style="margin-top:8px"><label><input type="radio" name="via" checked> WhatsApp</label><label><input type="radio" name="via"> E-mail</label><label><input type="radio" name="via"> SMS</label></div></div>
+    <button class="btn" type="submit" data-en="Confirm my booking">Confirmer ma réservation</button>
+  </form>
+</div></section>
+
+<footer><div class="bloc">
+  <div class="pied">
+    <div><div class="logo" style="margin-bottom:12px">Mama <span>Nkosi</span></div><p data-en="Congolese cuisine since 1998. Restaurant, delivery and catering in Kinshasa.">Cuisine congolaise depuis 1998. Restaurant, livraison et traiteur à Kinshasa.</p></div>
+    <div><h4 data-en="Explore">Découvrir</h4><a href="#carte" data-en="Menu">La carte</a><a href="#galerie" data-en="Gallery">Galerie</a><a href="#evenements" data-en="Events">Événements</a></div>
+    <div><h4 data-en="Contact">Contact</h4><a href="#" data-contact="whatsapp">WhatsApp</a><a href="#" data-contact="email">E-mail</a><a href="#" data-contact="phone" data-en="Phone">Téléphone</a></div>
+    <div><h4 data-en="Follow us">Suivez-nous</h4><a href="#" data-contact="form">Facebook</a><a href="#" data-contact="form">Instagram</a><a href="#" data-contact="form">TikTok</a></div>
+  </div>
+  <div class="bas"><span>© 2026 Chez Mama Nkosi · <span data-en="fictional business">entreprise fictive</span></span><span data-en="Website by Lumen Web · photos generated by AI">Site créé par Lumen Web · photos générées par IA</span></div>
+</div></footer>
+<a class="wa" href="#" data-contact="whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
 <script src="../demo.js"></script>
 </body></html>

@@ -14,7 +14,7 @@
   /* Styles du kit */
   var st = document.createElement("style");
   st.textContent =
-    "l-mot{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em}l-mot>l-i{display:inline-block;will-change:transform}" +
+    "l-mot{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .1em .12em 0;margin:0 -.1em -.12em 0}l-mot>l-i{display:inline-block;will-change:transform}" +
     ".lw-intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--i-fond);color:var(--i-texte)}" +
     ".lw-intro b{font:500 clamp(34px,7vw,84px)/1 var(--i-police,Georgia,serif);letter-spacing:-.01em;display:block;text-align:center}" +
     ".lw-intro .l{display:inline-block;overflow:hidden;vertical-align:top}.lw-intro .l i{display:inline-block;font-style:normal}" +

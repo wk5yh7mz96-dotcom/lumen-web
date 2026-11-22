@@ -1,29 +1,106 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Clinique Espoir+ · Centre médical · Démonstration Lumen Web</title>
-<meta name="description" content="Site de démonstration créé par Lumen Web (Clinique). Entreprise fictive.">
+<title>Clinique Espoir+ · Démonstration Lumen Web</title>
+<meta name="description" content="Site de démonstration créé par Lumen Web (clinique). Entreprise fictive.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../demo.css">
-<style>:root{--fond:#F5F8FC;--carte:#FFFFFF;--ligne:#D9E2EE;--texte:#0F2240;--doux:#5A6B85;--accent:#1E6FE0;--sur-accent:#FFFFFF;--titre:'DM Serif Display',Georgia,serif;--titre-poids:400;--hero-fond:radial-gradient(70% 90% at 85% 0%,rgba(30,111,224,.12),transparent 60%);--visuel:linear-gradient(160deg,#CFE2FF,#7FB1F5 50%,#1E6FE0)}</style></head><body>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bleu:#1E6FE0;--bleu-c:#EAF2FF;--encre:#0F2240;--doux:#5A6B85;--fond:#F7F9FC;--rouge:#E5484D;--vert:#12A37A;--filet:#E1E8F2}
+  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+  body{font-family:'Plus Jakarta Sans',Inter,sans-serif;background:var(--fond);color:var(--encre);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}.bloc{width:min(1180px,100% - 40px);margin-inline:auto}
+  .bandeau{background:#0B0F1A;color:#F5F1E8;font:600 13px Inter,sans-serif;text-align:center;padding:8px 14px}.bandeau a{color:#FFB547;font-weight:800}
+  /* Barre d'urgence */
+  .urgence{background:var(--rouge);color:#fff;font-weight:600;font-size:14px}
+  .urgence .bloc{display:flex;justify-content:space-between;align-items:center;height:42px;gap:12px}
+  .lg{display:flex;background:rgba(255,255,255,.2);border-radius:8px;padding:2px}.lg button{border:0;background:none;color:#fff;font:700 12px inherit;font-family:inherit;padding:5px 9px;border-radius:6px;cursor:pointer}.lg button.on{background:#fff;color:var(--rouge)}
+  header{background:#fff;border-bottom:1px solid var(--filet);position:sticky;top:0;z-index:5}
+  header .bloc{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+  .croix{width:34px;height:34px;border-radius:10px;background:var(--bleu);position:relative}.croix::before,.croix::after{content:"";position:absolute;background:#fff;border-radius:2px}.croix::before{left:14px;top:7px;width:6px;height:20px}.croix::after{left:7px;top:14px;width:20px;height:6px}
+  header nav{display:flex;gap:26px;font-weight:500;color:var(--doux)}
+  /* Accroche avec carte de rendez-vous */
+  .hero{padding:70px 0 80px;background:linear-gradient(180deg,#fff,var(--fond))}
+  .hero .bloc{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+  .puce{display:inline-flex;gap:8px;align-items:center;background:var(--bleu-c);color:var(--bleu);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px}
+  .puce::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--vert);box-shadow:0 0 0 4px rgba(18,163,122,.2)}
+  h1{font-weight:800;font-size:clamp(40px,5.6vw,66px);line-height:1.05;letter-spacing:-.03em;margin:18px 0}
+  h1 span{color:var(--bleu)}
+  .hero p{color:var(--doux);font-size:18px;line-height:1.7;max-width:46ch}
+  .chiffres{display:flex;gap:34px;margin-top:34px}.chiffres b{display:block;font-size:30px;font-weight:800}.chiffres span{color:var(--doux);font-size:14px}
+  form.rdv{background:#fff;border:1px solid var(--filet);border-radius:24px;padding:30px;box-shadow:0 30px 60px -30px rgba(15,34,64,.25);display:grid;gap:14px}
+  form.rdv h2{font-size:22px}
+  form.rdv label{font-size:13px;font-weight:600;color:var(--doux)}
+  form.rdv input,form.rdv select{width:100%;margin-top:6px;border:1px solid var(--filet);border-radius:12px;padding:12px 14px;font:500 15px inherit;font-family:inherit;color:var(--encre);background:var(--fond)}
+  form.rdv button{border:0;border-radius:12px;background:var(--bleu);color:#fff;font:700 16px inherit;font-family:inherit;padding:15px;cursor:pointer}
+  form.rdv small{color:var(--doux);font-size:12.5px;text-align:center}
+  /* Services en liste à icônes (4 colonnes) */
+  section{padding:90px 0}
+  .tete{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:40px;flex-wrap:wrap}
+  .tete h2{font-weight:800;font-size:clamp(30px,4vw,44px);letter-spacing:-.02em}.tete p{color:var(--doux);max-width:40ch}
+  .services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .serv{background:#fff;border:1px solid var(--filet);border-radius:18px;padding:24px}
+  .serv i{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:var(--bleu-c);font-style:normal;font-size:22px;margin-bottom:16px}
+  .serv h3{font-size:17px;margin-bottom:6px}.serv p{color:var(--doux);font-size:14.5px;line-height:1.6}
+  /* Médecins en avatars ronds */
+  .medecins{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+  .av{width:120px;height:120px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-size:38px;font-weight:800;color:#fff;background:var(--c)}
+  .medecins h3{font-size:17px}.medecins p{color:var(--doux);font-size:14px}
+  /* Horaires en tableau */
+  .bandeau-horaires{background:var(--encre);color:#fff;border-radius:28px;padding:50px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .bandeau-horaires h2{font-size:34px;font-weight:800;letter-spacing:-.02em}
+  table{width:100%;border-collapse:collapse}td{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.15)}td:last-child{text-align:right;font-weight:700}
+  .tel{display:inline-block;margin-top:18px;background:var(--rouge);color:#fff;font-weight:700;padding:13px 20px;border-radius:12px}
+  footer{padding:30px 0;color:var(--doux);font-size:13px}footer .bloc{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;z-index:20;box-shadow:0 10px 26px rgba(0,0,0,.25)}.wa svg{width:28px;fill:#fff}
+  @media(max-width:900px){header nav{display:none}.hero .bloc,.bandeau-horaires{grid-template-columns:1fr}.services,.medecins{grid-template-columns:1fr 1fr}.bandeau-horaires{padding:30px}}
+  @media(max-width:520px){.services{grid-template-columns:1fr}.chiffres{gap:20px}}
+</style></head><body>
 <div class="bandeau"><span data-en="Demo website by Lumen Web · fictional business ·">Site de démonstration Lumen Web · entreprise fictive ·</span> <a href="../../?utm_campaign=demo-clinique" data-en="Want the same? →">Je veux le même →</a></div>
-<header><div class="bloc"><a class="nom" href="#">Clinique Espoir+</a><nav><a href="#services" data-en="Services">Services</a><a href="#equipe" data-en="Team">Équipe</a><a href="#rdv" data-en="Appointments">Rendez-vous</a></nav><div class="lg"><button data-l="fr">FR</button><button data-l="en">EN</button></div></div></header>
-<div class="hero"><div class="bloc"><div>
-<div class="sur" data-en="Medical centre · Kinshasa">Centre médical · Kinshasa</div>
-<h1 data-en="Your health, <em>without the wait.</em>">Votre santé, <em>sans attendre.</em></h1>
-<p data-en="General medicine, paediatrics, laboratory and maternity. Appointments in one tap, emergencies 24/7.">Médecine générale, pédiatrie, laboratoire et maternité. Rendez-vous en un clic, urgences 24 h / 24.</p>
-<div class="actions"><a class="btn" href="#rdv" data-en="Book an appointment">Prendre rendez-vous</a><a class="btn ligne" href="#rdv" data-en="🚑 Emergency">🚑 Urgences</a></div></div>
-<div class="visuel"><span>🩺</span><small data-en="Your photos here">Vos photos ici</small></div></div></div>
-<section id="services"><div class="bloc"><div class="sur" data-en="Services">Services</div><h2 data-en="Care for <em>the whole family.</em>">Des soins pour <em>toute la famille.</em></h2>
-<div class="grille" style="margin-top:30px"><div class="carte"><div class="em">👨‍⚕️</div><h3 data-en="General medicine">Médecine générale</h3><p data-en="Consultations, check-ups and follow-up.">Consultations, bilans et suivi.</p></div>
-<div class="carte"><div class="em">👶</div><h3 data-en="Paediatrics & maternity">Pédiatrie & maternité</h3><p data-en="Pregnancy follow-up, births and child care.">Suivi de grossesse, accouchement, soins des enfants.</p></div>
-<div class="carte"><div class="em">🧪</div><h3 data-en="Laboratory">Laboratoire</h3><p data-en="Fast results, sent by WhatsApp.">Résultats rapides, envoyés par WhatsApp.</p></div></div></div></section>
-<section id="equipe"><div class="bloc"><div class="sur" data-en="Team">Équipe</div><h2 data-en="Doctors <em>who listen.</em>">Des médecins <em>à l'écoute.</em></h2>
-<p class="intro" data-en="Fictional team (demo).">Équipe fictive (démonstration).</p>
-<div class="grille"><div class="carte"><div class="em">👩🏾‍⚕️</div><h3>Dr A. Mbuyi</h3><p data-en="General practitioner">Médecin généraliste</p></div><div class="carte"><div class="em">👨🏿‍⚕️</div><h3>Dr J. Ilunga</h3><p data-en="Paediatrician">Pédiatre</p></div><div class="carte"><div class="em">👩🏿‍⚕️</div><h3>Dr R. Tshala</h3><p data-en="Gynaecologist">Gynécologue</p></div></div></div></section>
-<section id="rdv"><div class="bloc"><div class="contact"><h2 data-en="Book in <em>30 seconds.</em>">Rendez-vous en <em>30 secondes.</em></h2><p data-en="Send your name and preferred time on WhatsApp. For emergencies, call us any time.">Envoyez votre nom et l'heure souhaitée sur WhatsApp. En cas d'urgence, appelez-nous à toute heure.</p><a class="btn" href="#" data-en="Book on WhatsApp">Réserver sur WhatsApp</a></div></div></section>
+<div class="urgence"><div class="bloc"><span data-en="🚑 Emergencies 24/7: +243 000 000 000 (fictional)">🚑 Urgences 24 h / 24 : +243 000 000 000 (fictif)</span><div class="lg"><button data-l="fr">FR</button><button data-l="en">EN</button></div></div></div>
+<header><div class="bloc"><a class="logo" href="#"><span class="croix"></span>Espoir+</a><nav><a href="#services">Services</a><a href="#medecins" data-en="Doctors">Médecins</a><a href="#horaires" data-en="Hours">Horaires</a></nav></div></header>
+<div class="hero"><div class="bloc">
+  <div>
+    <span class="puce" data-en="Open now · Kinshasa">Ouvert maintenant · Kinshasa</span>
+    <h1 data-en="See a doctor <span>today</span>, not next week.">Voir un médecin <span>aujourd'hui</span>, pas la semaine prochaine.</h1>
+    <p data-en="General medicine, paediatrics, maternity and laboratory under one roof. Book in 30 seconds, results sent by WhatsApp.">Médecine générale, pédiatrie, maternité et laboratoire sous le même toit. Rendez-vous en 30 secondes, résultats envoyés par WhatsApp.</p>
+    <div class="chiffres"><div><b>24/7</b><span data-en="emergencies">urgences</span></div><div><b>12</b><span data-en="doctors">médecins</span></div><div><b>24 h</b><span data-en="lab results">résultats labo</span></div></div>
+  </div>
+  <form class="rdv" id="rdv">
+    <h2 data-en="Book an appointment">Prendre rendez-vous</h2>
+    <label><span data-en="Your name">Votre nom</span><input required></label>
+    <label><span data-en="Service">Service</span><select><option data-en="General medicine">Médecine générale</option><option data-en="Paediatrics">Pédiatrie</option><option data-en="Maternity">Maternité</option><option data-en="Laboratory">Laboratoire</option></select></label>
+    <label><span data-en="Preferred day">Jour souhaité</span><input type="date" required></label>
+    <button type="submit" data-en="Confirm on WhatsApp">Confirmer sur WhatsApp</button>
+    <small data-en="We reply within 15 minutes during opening hours.">Réponse en moins de 15 minutes pendant les heures d'ouverture.</small>
+  </form>
+</div></div>
+<section id="services"><div class="bloc">
+  <div class="tete"><h2 data-en="Our services">Nos services</h2><p data-en="Everything your family needs, in one place.">Tout ce dont votre famille a besoin, au même endroit.</p></div>
+  <div class="services">
+    <div class="serv"><i>🩺</i><h3 data-en="General medicine">Médecine générale</h3><p data-en="Consultations and check-ups.">Consultations et bilans de santé.</p></div>
+    <div class="serv"><i>👶</i><h3 data-en="Paediatrics">Pédiatrie</h3><p data-en="Care and vaccines for children.">Soins et vaccins pour les enfants.</p></div>
+    <div class="serv"><i>🤰</i><h3 data-en="Maternity">Maternité</h3><p data-en="Pregnancy follow-up and births.">Suivi de grossesse et accouchement.</p></div>
+    <div class="serv"><i>🧪</i><h3 data-en="Laboratory">Laboratoire</h3><p data-en="Results within 24 hours.">Résultats en 24 heures.</p></div>
+  </div>
+</div></section>
+<section id="medecins" style="padding-top:0"><div class="bloc">
+  <div class="tete"><h2 data-en="Our doctors">Nos médecins</h2><p data-en="Fictional team (demo).">Équipe fictive (démonstration).</p></div>
+  <div class="medecins">
+    <div><div class="av" style="--c:linear-gradient(135deg,#1E6FE0,#5BA0FF)">AM</div><h3>Dr A. Mbuyi</h3><p data-en="General practitioner">Médecin généraliste</p></div>
+    <div><div class="av" style="--c:linear-gradient(135deg,#12A37A,#4FD3AC)">JI</div><h3>Dr J. Ilunga</h3><p data-en="Paediatrician">Pédiatre</p></div>
+    <div><div class="av" style="--c:linear-gradient(135deg,#7A4FE0,#A98BFF)">RT</div><h3>Dr R. Tshala</h3><p data-en="Gynaecologist">Gynécologue</p></div>
+    <div><div class="av" style="--c:linear-gradient(135deg,#E07A1E,#FFB15B)">PK</div><h3>Dr P. Kasongo</h3><p data-en="Biologist">Biologiste</p></div>
+  </div>
+</div></section>
+<section id="horaires" style="padding-top:0"><div class="bloc"><div class="bandeau-horaires">
+  <div><h2 data-en="Opening hours">Horaires d'ouverture</h2><a class="tel" href="#" data-en="🚑 Emergencies 24/7">🚑 Urgences 24 h / 24</a></div>
+  <table><tr><td data-en="Monday – Friday">Lundi – vendredi</td><td>7 h – 20 h</td></tr><tr><td data-en="Saturday">Samedi</td><td>8 h – 16 h</td></tr><tr><td data-en="Sunday">Dimanche</td><td data-en="Emergencies only">Urgences seulement</td></tr></table>
+</div></div></section>
 <footer><div class="bloc"><span>© 2026 Clinique Espoir+ · Kinshasa</span><span data-en="Website by Lumen Web">Site créé par Lumen Web</span></div></footer>
-<a class="wa" href="https://wa.me/256764968479?text=Bonjour%20Lumen%20Web%2C%20j%27ai%20vu%20la%20d%C3%A9mo%20%C2%AB%20Clinique%20%C2%BB%20et%20je%20veux%20un%20site%20comme%20celui-ci." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
-<script src="../demo.js"></script></body></html>
+<a class="wa" href="https://wa.me/256764968479?text=Bonjour%20Lumen%20Web%2C%20j%27ai%20vu%20la%20d%C3%A9mo%20clinique%20et%20je%20veux%20un%20site%20comme%20celui-ci." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
+<script src="../demo.js"></script>
+<script>document.getElementById('rdv').addEventListener('submit',function(e){e.preventDefault();window.open(document.querySelector('.wa').href,'_blank','noopener')});</script>
+</body></html>

@@ -1,31 +1,87 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lodge Kivu Horizon · Hôtel · Démonstration Lumen Web</title>
-<meta name="description" content="Site de démonstration créé par Lumen Web (Hôtel & lodge). Entreprise fictive.">
+<title>Lodge Kivu Horizon · Démonstration Lumen Web</title>
+<meta name="description" content="Site de démonstration créé par Lumen Web (hôtel). Entreprise fictive.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../demo.css">
-<style>:root{--fond:#F4F1EA;--carte:#FFFFFF;--ligne:#DDD6C8;--texte:#1D2A26;--doux:#5E6B66;--accent:#1F6F5C;--sur-accent:#FFFFFF;--titre:'Cormorant Garamond',Georgia,serif;--titre-poids:600;--hero-fond:radial-gradient(70% 90% at 85% 0%,rgba(31,111,92,.14),transparent 60%);--visuel:linear-gradient(160deg,#F2B46B,#C8613B 45%,#25495A)}</style></head><body>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--sable:#F4F1EA;--encre:#1D2A26;--vert:#1F6F5C;--doux:#66726D;--filet:#DDD6C8}
+  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+  body{font-family:Inter,sans-serif;background:var(--sable);color:var(--encre);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .bandeau{background:#0B0F1A;color:#F5F1E8;font:600 13px Inter;text-align:center;padding:8px 14px}.bandeau a{color:#FFB547;font-weight:800}
+  /* En-tête fin en haut à gauche, sur l'image */
+  header{position:absolute;top:34px;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:26px 6vw;color:#fff}
+  .marque{font:500 24px 'Cormorant Garamond',serif;letter-spacing:.18em;text-transform:uppercase}
+  .lg button{border:0;background:none;color:rgba(255,255,255,.7);font:600 12px Inter;letter-spacing:.1em;cursor:pointer;padding:4px 6px}.lg button.on{color:#fff;border-bottom:1px solid #fff}
+  /* Accroche plein écran, texte en bas à gauche */
+  .hero{height:100vh;min-height:620px;position:relative;display:flex;align-items:flex-end;padding:0 6vw 150px;color:#fff;
+        background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.45)),linear-gradient(180deg,#F6C27A 0%,#E48A4E 28%,#9C4F45 48%,#2E4A5C 62%,#1C3442 100%)}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;background:repeating-linear-gradient(180deg,rgba(255,220,170,.10) 0 2px,transparent 2px 14px)}
+  .hero .soleil{position:absolute;left:62%;top:30%;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,#FFE3A3,#F6A85A 70%);box-shadow:0 0 120px #F6A85A}
+  .hero > div{position:relative;z-index:1}
+  .hero small{letter-spacing:.3em;text-transform:uppercase;font-size:12px;opacity:.85}
+  h1{font:500 clamp(54px,9vw,120px)/.95 'Cormorant Garamond',serif;margin-top:12px}
+  h1 em{font-style:italic}
+  /* Barre de réservation qui chevauche l'image */
+  .resa{position:relative;z-index:3;margin:-70px auto 0;width:min(1000px,92vw);background:#fff;display:grid;grid-template-columns:1fr 1fr 1fr auto;box-shadow:0 30px 70px -30px rgba(0,0,0,.4)}
+  .resa label{padding:20px 24px;border-right:1px solid var(--filet);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--doux)}
+  .resa input,.resa select{display:block;width:100%;border:0;font:500 16px Inter;color:var(--encre);margin-top:6px;background:none}
+  .resa button{border:0;background:var(--vert);color:#fff;font:600 14px Inter;letter-spacing:.1em;text-transform:uppercase;padding:0 34px;cursor:pointer}
+  /* Chambres en zigzag */
+  .titre{text-align:center;padding:110px 20px 50px}
+  .titre small{letter-spacing:.3em;text-transform:uppercase;font-size:12px;color:var(--vert)}
+  .titre h2{font:500 clamp(40px,6vw,64px) 'Cormorant Garamond',serif;margin-top:10px}
+  .chambre{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;max-width:1200px;margin:0 auto 70px;padding:0 6vw;gap:60px}
+  .chambre:nth-child(even){direction:rtl}.chambre:nth-child(even) > *{direction:ltr}
+  .photo{aspect-ratio:4/3;background:var(--g)}
+  .chambre h3{font:500 40px 'Cormorant Garamond',serif}
+  .chambre p{color:var(--doux);line-height:1.8;margin:14px 0 22px}
+  .chambre .tarif{font:600 14px Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--vert)}
+  /* Expériences : frise horizontale numérotée */
+  .frise{background:var(--encre);color:#EDE7DA;padding:100px 6vw}
+  .frise .titre{padding:0 0 50px}.frise .titre h2{color:#fff}
+  .etapes{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.2)}
+  .etapes div{padding:30px 30px 0 0}
+  .etapes b{font:500 64px 'Cormorant Garamond',serif;color:#7FC4AE;display:block;line-height:1}
+  .etapes h3{font:500 28px 'Cormorant Garamond',serif;margin:10px 0}.etapes p{color:#B9C2BD;line-height:1.7}
+  .final{text-align:center;padding:110px 20px}
+  .final h2{font:italic 500 clamp(36px,5vw,58px) 'Cormorant Garamond',serif}
+  .btn{display:inline-block;margin-top:26px;border:1px solid var(--encre);padding:16px 34px;font:600 13px Inter;letter-spacing:.16em;text-transform:uppercase}
+  .btn:hover{background:var(--encre);color:#fff}
+  footer{border-top:1px solid var(--filet);padding:28px 6vw;display:flex;justify-content:space-between;color:var(--doux);font-size:13px;flex-wrap:wrap;gap:10px}
+  .wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;z-index:20;box-shadow:0 10px 26px rgba(0,0,0,.25)}.wa svg{width:28px;fill:#fff}
+  @media(max-width:800px){.resa{grid-template-columns:1fr}.resa label{border-right:0;border-bottom:1px solid var(--filet)}.resa button{padding:18px}.chambre,.etapes{grid-template-columns:1fr;gap:24px}.chambre:nth-child(even){direction:ltr}.hero .soleil{left:50%;width:120px;height:120px}}
+</style></head><body>
 <div class="bandeau"><span data-en="Demo website by Lumen Web · fictional business ·">Site de démonstration Lumen Web · entreprise fictive ·</span> <a href="../../?utm_campaign=demo-hotel" data-en="Want the same? →">Je veux le même →</a></div>
-<header><div class="bloc"><a class="nom" href="#">Lodge Kivu Horizon</a><nav><a href="#chambres" data-en="Rooms">Chambres</a><a href="#experiences" data-en="Experiences">Expériences</a><a href="#reserver" data-en="Book">Réserver</a></nav><div class="lg"><button data-l="fr">FR</button><button data-l="en">EN</button></div></div></header>
-<div class="hero"><div class="bloc"><div>
-<div class="sur" data-en="Lakeside lodge · Kivu">Lodge au bord du lac · Kivu</div>
-<h1 data-en="Wake up <em>above the lake.</em>">Réveillez-vous <em>au-dessus du lac.</em></h1>
-<p data-en="12 rooms facing the water, a terrace restaurant and guided excursions. Calm, comfort and nature.">12 chambres face à l'eau, un restaurant en terrasse et des excursions guidées. Calme, confort et nature.</p>
-<div class="actions"><a class="btn" href="#reserver" data-en="Check availability">Voir les disponibilités</a><a class="btn ligne" href="#chambres" data-en="Our rooms">Nos chambres</a></div></div>
-<div class="visuel"><span>🌅</span><small data-en="Your photos here">Vos photos ici</small></div></div></div>
-<section id="chambres"><div class="bloc"><div class="sur" data-en="Rooms">Chambres</div><h2 data-en="Choose your <em>view.</em>">Choisissez votre <em>vue.</em></h2>
-<p class="intro" data-en="Prices per night, breakfast included (demo).">Prix par nuit, petit-déjeuner inclus (démonstration).</p>
-<div class="grille"><div class="carte"><div class="em">🛏️</div><h3 data-en="Garden room">Chambre Jardin</h3><p data-en="Queen bed, garden terrace. <b>$85</b> / night">Lit queen, terrasse jardin. <b>85 $</b> / nuit</p></div>
-<div class="carte"><div class="em">🌊</div><h3 data-en="Lake view room">Chambre Vue lac</h3><p data-en="King bed, balcony over the water. <b>$120</b> / night">Lit king, balcon sur l'eau. <b>120 $</b> / nuit</p></div>
-<div class="carte"><div class="em">🏡</div><h3 data-en="Family suite">Suite Famille</h3><p data-en="2 bedrooms, lounge, up to 5 guests. <b>$190</b> / night">2 chambres, salon, jusqu'à 5 personnes. <b>190 $</b> / nuit</p></div></div></div></section>
-<section id="experiences"><div class="bloc"><div class="sur" data-en="Experiences">Expériences</div><h2 data-en="More than a <em>stay.</em>">Plus qu'un <em>séjour.</em></h2>
-<div class="grille" style="margin-top:30px"><div class="carte"><div class="em">🚣</div><h3 data-en="Boat tour">Balade en bateau</h3><p data-en="Islands and sunset, with a local guide.">Îles et coucher de soleil, avec un guide local.</p></div>
-<div class="carte"><div class="em">🥾</div><h3 data-en="Hiking">Randonnée</h3><p data-en="Hills and tea plantations.">Collines et plantations de thé.</p></div>
-<div class="carte"><div class="em">🍽️</div><h3 data-en="Terrace dining">Dîner en terrasse</h3><p data-en="Fresh lake fish and local produce.">Poisson du lac et produits locaux.</p></div></div></div></section>
-<section id="reserver"><div class="bloc"><div class="contact"><h2 data-en="Your room is <em>waiting.</em>">Votre chambre vous <em>attend.</em></h2><p data-en="Send your dates on WhatsApp: we reply with availability and the best rate.">Envoyez vos dates sur WhatsApp : nous répondons avec les disponibilités et le meilleur tarif.</p><a class="btn" href="#" data-en="Request a booking">Demander une réservation</a></div></div></section>
-<footer><div class="bloc"><span>© 2026 Lodge Kivu Horizon · Kivu</span><span data-en="Website by Lumen Web">Site créé par Lumen Web</span></div></footer>
-<a class="wa" href="https://wa.me/256764968479?text=Bonjour%20Lumen%20Web%2C%20j%27ai%20vu%20la%20d%C3%A9mo%20%C2%AB%20H%C3%B4tel%20%26%20lodge%20%C2%BB%20et%20je%20veux%20un%20site%20comme%20celui-ci." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
-<script src="../demo.js"></script></body></html>
+<header><div class="marque">Kivu Horizon</div><div class="lg"><button data-l="fr">FR</button><button data-l="en">EN</button></div></header>
+<div class="hero"><div class="soleil"></div><div>
+  <small data-en="Lakeside lodge · 12 rooms">Lodge au bord du lac · 12 chambres</small>
+  <h1 data-en="Wake up<br><em>above the lake.</em>">Réveillez-vous<br><em>au-dessus du lac.</em></h1>
+</div></div>
+<form class="resa" id="resa">
+  <label><span data-en="Arrival">Arrivée</span><input type="date" required></label>
+  <label><span data-en="Departure">Départ</span><input type="date" required></label>
+  <label><span data-en="Guests">Voyageurs</span><select><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></label>
+  <button type="submit" data-en="Check availability">Disponibilités</button>
+</form>
+<div class="titre"><small data-en="Rooms">Chambres</small><h2 data-en="Choose your view">Choisissez votre vue</h2></div>
+<div class="chambres">
+  <div class="chambre"><div class="photo" style="--g:linear-gradient(160deg,#C9D8C5,#7FA58E 60%,#3F6655)"></div><div><h3 data-en="Garden room">Chambre Jardin</h3><p data-en="Queen bed, private terrace among the banana trees. Breakfast included.">Lit queen, terrasse privée au milieu des bananiers. Petit-déjeuner inclus.</p><div class="tarif" data-en="From $85 / night">À partir de 85 $ / nuit</div></div></div>
+  <div class="chambre"><div class="photo" style="--g:linear-gradient(170deg,#F2C48D,#D9855A 45%,#2F5466)"></div><div><h3 data-en="Lake view room">Chambre Vue lac</h3><p data-en="King bed and balcony over the water, the best sunsets of the lodge.">Lit king et balcon au-dessus de l'eau, les plus beaux couchers de soleil du lodge.</p><div class="tarif" data-en="From $120 / night">À partir de 120 $ / nuit</div></div></div>
+  <div class="chambre"><div class="photo" style="--g:linear-gradient(160deg,#E7DCC6,#B9A37F 55%,#6B5A41)"></div><div><h3 data-en="Family suite">Suite Famille</h3><p data-en="Two bedrooms and a lounge for up to five guests.">Deux chambres et un salon, jusqu'à cinq personnes.</p><div class="tarif" data-en="From $190 / night">À partir de 190 $ / nuit</div></div></div>
+</div>
+<section class="frise"><div class="titre"><small data-en="Experiences">Expériences</small><h2 data-en="More than a stay">Plus qu'un séjour</h2></div>
+  <div class="etapes">
+    <div><b>01</b><h3 data-en="Boat at sunset">Bateau au coucher du soleil</h3><p data-en="Islands of the lake with a local guide.">Les îles du lac avec un guide local.</p></div>
+    <div><b>02</b><h3 data-en="Hills & tea">Collines et thé</h3><p data-en="A morning walk through the plantations.">Une marche matinale dans les plantations.</p></div>
+    <div><b>03</b><h3 data-en="Terrace dinner">Dîner en terrasse</h3><p data-en="Lake fish and local produce.">Poisson du lac et produits locaux.</p></div>
+  </div></section>
+<div class="final"><h2 data-en="Your room is waiting.">Votre chambre vous attend.</h2><a class="btn wa-btn" href="#" data-en="Book on WhatsApp">Réserver sur WhatsApp</a></div>
+<footer><span>© 2026 Lodge Kivu Horizon</span><span data-en="Website by Lumen Web">Site créé par Lumen Web</span></footer>
+<a class="wa" href="https://wa.me/256764968479?text=Bonjour%20Lumen%20Web%2C%20j%27ai%20vu%20la%20d%C3%A9mo%20h%C3%B4tel%20et%20je%20veux%20un%20site%20comme%20celui-ci." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
+<script src="../demo.js"></script>
+<script>document.getElementById('resa').addEventListener('submit',function(e){e.preventDefault();window.open(document.querySelector('.wa').href,'_blank','noopener')});</script>
+</body></html>

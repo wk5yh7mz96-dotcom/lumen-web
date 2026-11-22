@@ -62,6 +62,24 @@
   $$("[data-contact]").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); ouvrir(a.dataset.contact); }); });
   $$("[data-demo-form]").forEach(function (f) { f.addEventListener("submit", function (e) { e.preventDefault(); ouvrir("form"); }); });
 
+  /* Bouton « Retour à Lumen Web » */
+  var ret = document.createElement("a"); ret.className = "lw-retour"; ret.href = "../../#realisations";
+  function retTexte() { ret.innerHTML = '<span aria-hidden="true">←</span> ' + (lang === "en" ? "Back to Lumen Web" : "Retour à Lumen Web"); }
+  retTexte(); document.body.appendChild(ret);
+  $$(".lg button").forEach(function (b) { b.addEventListener("click", retTexte); });
+  ret.addEventListener("click", function (e) {
+    try { sessionStorage.setItem("lw-retour", "1"); } catch (x) {}
+    // si on vient du site Lumen Web, on revient exactement où on était
+    if (document.referrer && document.referrer.indexOf(location.origin) === 0 && !/\/demos\//.test(document.referrer) && history.length > 1) { e.preventDefault(); history.back(); }
+  });
+  var st2 = document.createElement("style");
+  st2.textContent = ".lw-retour{position:fixed;left:18px;bottom:20px;z-index:95;display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;" +
+    "background:rgba(26,26,46,.92);color:#F7FFF7;border:1px solid rgba(255,107,107,.7);font:600 14px Inter,system-ui,sans-serif;text-decoration:none;" +
+    "box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 24px rgba(255,107,107,.25);backdrop-filter:blur(8px);transition:transform .2s,background .2s}" +
+    ".lw-retour:hover{background:#FF6B6B;color:#1A1A2E;transform:translateY(-2px)}.lw-retour span{font-size:17px;line-height:1}" +
+    "@media (max-width:640px){.lw-retour{left:12px;bottom:22px;padding:11px 15px;font-size:13px}}";
+  document.head.appendChild(st2);
+
   /* Menu mobile */
   var burger = document.querySelector(".burger"), nav = document.querySelector("header nav");
   if (burger && nav) {

@@ -14,7 +14,8 @@
 <link rel="canonical" href="https://lumen-web-africa.onrender.com/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
-<script>if(!/[?&]capture/.test(location.search)){document.documentElement.classList.add("avec-intro");setTimeout(function(){document.documentElement.classList.remove("avec-intro")},5000)}</script>
+<script>window.LW_RETOUR=/\/demos\//.test(document.referrer);try{var _n=performance.getEntriesByType("navigation")[0];if(_n&&_n.type==="back_forward")LW_RETOUR=true;if(sessionStorage.getItem("lw-retour")){LW_RETOUR=true;sessionStorage.removeItem("lw-retour")}}catch(e){}
+if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.classList.add("avec-intro");setTimeout(function(){document.documentElement.classList.remove("avec-intro")},5000)}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -581,7 +582,7 @@
             <div class="defil"><img class="v-pc" src="vitrine/pc-restaurant-fr.webp" width="880" height="3178" alt="Aperçu d'un site réalisé par Lumen Web, sur ordinateur" fetchpriority="low"></div></div><div class="socle"></div></div>
           <div class="tel"><div class="defil"><img class="v-tel" src="vitrine/tel-restaurant-fr.webp" width="300" height="3538" alt="Le même site sur téléphone" fetchpriority="low"></div></div></div>
         </div>
-        <a class="voir-demo" id="v-lien" href="demos/restaurant/" target="_blank" rel="noopener"><span data-t="v-open">Ouvrir cette démonstration</span> →</a>
+        <a class="voir-demo" id="v-lien" href="demos/restaurant/"><span data-t="v-open">Ouvrir cette démonstration</span> →</a>
       </div>
 </div>
         <div class="f-col app">
@@ -683,9 +684,9 @@
     </div>
     <div class="bloc g-liste" id="g-liste">
       <a href="https://lestagiaire-ia.netlify.app" target="_blank" rel="noopener">Le Stagiaire & l'IA</a>
-      <a href="demos/restaurant/" target="_blank" rel="noopener" data-t="d1h">Restaurant</a>
-      <a href="demos/hotel/" target="_blank" rel="noopener" data-t="d2h">Hôtel & lodge</a>
-      <a href="demos/clinique/" target="_blank" rel="noopener" data-t="d3h">Clinique</a>
+      <a href="demos/restaurant/" data-t="d1h">Restaurant</a>
+      <a href="demos/hotel/" data-t="d2h">Hôtel & lodge</a>
+      <a href="demos/clinique/" data-t="d3h">Clinique</a>
     </div>
   </section>
 
@@ -1349,7 +1350,7 @@
     const et = gf.querySelector(".etiquette"); et.className = "etiquette " + (Pj.reel ? "reel" : "demo"); et.textContent = Pj.reel ? (lang === "en" ? "Real project" : "Projet réel") : (lang === "en" ? "Demo" : "Démonstration");
     gf.querySelector("h3").textContent = P.t; gf.querySelector(".gf-desc").textContent = P.d;
     gf.querySelector(".gf-pts").innerHTML = P.p.map(x => `<li>${x}</li>`).join("");
-    const v = gf.querySelector(".gf-voir"); v.href = Pj.url; v.textContent = P.v + " →";
+    const v = gf.querySelector(".gf-voir"); v.href = Pj.url; v.textContent = P.v + " →"; v.target = Pj.reel ? "_blank" : "_self"; v.rel = Pj.reel ? "noopener" : "";
     gf.querySelector(".gf-veux").textContent = lang === "en" ? "I want one like this" : "Je veux le même";
     gf.hidden = false; document.body.style.overflow = "hidden"; gf.querySelector(".gf-x").focus();
   }
@@ -1361,7 +1362,7 @@
 
   // Intro : le logo 3D apparaît, puis rejoint l'en-tête
   (function () {
-    if (new URLSearchParams(location.search).has("capture")) return;
+    if (new URLSearchParams(location.search).has("capture") || window.LW_RETOUR) return;
     const ov = document.createElement("div"); ov.className = "lw-intro3d"; ov.setAttribute("aria-hidden", "true");
     ov.innerHTML = document.querySelector("header .l3d").outerHTML + '<p>Lumen <b>Web</b></p>';
     document.body.appendChild(ov); document.documentElement.style.overflow = "hidden";

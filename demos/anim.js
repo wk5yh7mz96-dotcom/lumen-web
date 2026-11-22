@@ -34,6 +34,12 @@
     (function marche(n) {
       [].slice.call(n.childNodes).forEach(function (c) {
         if (c.nodeType === 3) {
+          // Ponctuation collée au mot précédent (« today, ») : on la rattache pour éviter qu'elle passe seule à la ligne
+          var ponct = c.textContent.match(/^[,.;:!?…)»]+/), prec = c.previousSibling;
+          if (ponct && prec && prec.nodeType === 1 && prec.tagName !== "BR") {
+            var der = prec; while (der.lastChild) der = der.lastChild;
+            if (der.nodeType === 3) { der.textContent += ponct[0]; c.textContent = c.textContent.slice(ponct[0].length); }
+          }
           var parts = c.textContent.split(/(\s+)/), f = document.createDocumentFragment();
           parts.forEach(function (p) { if (!p) return; if (/^\s+$/.test(p)) { f.appendChild(document.createTextNode(p)); return; }
             var m = document.createElement("l-mot"); var i = document.createElement("l-i"); i.textContent = p; m.appendChild(i); f.appendChild(m); });

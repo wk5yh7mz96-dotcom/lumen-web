@@ -14,6 +14,7 @@
 <link rel="canonical" href="https://lumen-web-africa.onrender.com/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
+<script>if(!/[?&]capture/.test(location.search)){document.documentElement.classList.add("avec-intro");setTimeout(function(){document.documentElement.classList.remove("avec-intro")},5000)}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -462,7 +463,9 @@
   @keyframes reflet { 0%,55% { transform:translateX(-60%); } 85%,100% { transform:translateX(60%); } }
   .logo .marque { display:none; }
   .signature .l3d { --s:48px; }
-  .lw-intro3d { position:fixed; inset:0; z-index:90; display:grid; place-items:center; background:#1A1A2E; }
+  html.avec-intro body > *:not(.lw-intro3d) { visibility:hidden; }
+  html.avec-intro body { background:#1A1A2E; }
+  .lw-intro3d { cursor:pointer; position:fixed; inset:0; z-index:90; display:grid; place-items:center; background:#1A1A2E; }
   .lw-intro3d .l3d { --s:min(34vw,190px); }
   .lw-intro3d .l3d .cube { animation:entree3d 1.6s cubic-bezier(.2,.8,.2,1) both, l3d 7s 1.6s ease-in-out infinite; }
   .lw-intro3d p { position:absolute; bottom:22%; left:0; right:0; text-align:center; font:700 clamp(22px,4vw,36px) var(--serif); letter-spacing:-.01em; opacity:0; animation:monte .8s .7s ease forwards; }
@@ -1358,18 +1361,20 @@
 
   // Intro : le logo 3D apparaît, puis rejoint l'en-tête
   (function () {
-    let vu = false; try { vu = sessionStorage.getItem("lw-intro3d") === "1"; sessionStorage.setItem("lw-intro3d", "1"); } catch (e) {}
-    if (vu || calme) return;
+    if (new URLSearchParams(location.search).has("capture")) return;
     const ov = document.createElement("div"); ov.className = "lw-intro3d"; ov.setAttribute("aria-hidden", "true");
     ov.innerHTML = document.querySelector("header .l3d").outerHTML + '<p>Lumen <b>Web</b></p>';
     document.body.appendChild(ov); document.documentElement.style.overflow = "hidden";
-    setTimeout(() => {
+    let parti = false;
+    const sortir = () => { if (parti) return; parti = true; document.documentElement.classList.remove("avec-intro");
       const de = ov.querySelector(".l3d").getBoundingClientRect(), vers = document.querySelector("header .l3d").getBoundingClientRect();
       const k = vers.width / de.width, dx = vers.left + vers.width / 2 - (de.left + de.width / 2), dy = vers.top + vers.height / 2 - (de.top + de.height / 2);
       ov.querySelector(".l3d").animate([{ transform:"none" }, { transform:`translate(${dx}px,${dy}px) scale(${k})` }], { duration:900, easing:"cubic-bezier(.7,0,.2,1)", fill:"forwards" });
       ov.querySelector("p").animate([{ opacity:1 }, { opacity:0 }], { duration:300, fill:"forwards" });
       ov.animate([{ background:"#1A1A2E" }, { background:"rgba(26,26,46,0)" }], { duration:700, delay:450, fill:"forwards" }).onfinish = () => { ov.remove(); document.documentElement.style.overflow = ""; };
-    }, 2100);
+    };
+    ov.addEventListener("click", sortir);
+    setTimeout(sortir, matchMedia("(prefers-reduced-motion: reduce)").matches ? 1300 : 2300);
   })();
 
   // Lumière qui suit la souris

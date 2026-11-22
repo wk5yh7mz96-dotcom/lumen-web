@@ -74,7 +74,7 @@
   /* Apparitions (désactivées pour les captures : ?capture) */
   if (!new URLSearchParams(location.search).has("capture") && "IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.documentElement.classList.add("anim");
-    var obs = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("vu"); obs.unobserve(e.target); } }); }, { threshold: .12 });
+    var obs = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("vu"); obs.unobserve(e.target); } }); }, { threshold: 0, rootMargin: "0px 0px 15% 0px" });
     $$(".rv").forEach(function (el) { obs.observe(el); });
   }
 })();

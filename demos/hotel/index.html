@@ -6,7 +6,7 @@
 <link rel="icon" href="../../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
+<style>img{height:auto}
   :root{--sable:#F5F1E8;--sable2:#EDE6D8;--encre:#1C2925;--vert:#1F6F5C;--vert-f:#14352D;--cuivre:#B87343;--doux:#67726D;--filet:#DCD4C4;--serif:'Cormorant Garamond',Georgia,serif}
   *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
   body{font-family:Jost,system-ui,sans-serif;font-weight:400;background:var(--sable);color:var(--encre);-webkit-font-smoothing:antialiased;line-height:1.65}
@@ -99,7 +99,7 @@
   .pied .marque{text-align:left;color:#EFE9DC}.pied h4{color:#EFE9DC;font:500 12px Jost;letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px}.pied a{display:block;margin-bottom:9px}.pied a:hover{color:#fff}
   .bas{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:24px}
   .wa{position:fixed;right:20px;bottom:84px;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;z-index:25;box-shadow:0 12px 30px rgba(0,0,0,.3)}.wa svg{width:28px;fill:#fff}
-  .anim .rv{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease}.anim .rv.vu{opacity:1;transform:none}
+  .anim .rv{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}.anim .rv.vu{opacity:1;transform:none}
   @media(max-width:1000px){
     header .bloc{grid-template-columns:auto 1fr}header nav{display:none;position:absolute;top:80px;left:0;right:0;flex-direction:column;gap:0;background:var(--sable);color:var(--encre)}
     header nav.ouvert{display:flex}header nav a{padding:16px 24px;border-bottom:1px solid var(--filet)}.marque{text-align:left}.burger{display:block}header .btn{display:none}
@@ -119,7 +119,7 @@
 </div></header>
 
 <div class="hero">
-  <img src="img/hero.jpg" alt="">
+  <img fetchpriority="high" src="img/hero.webp" srcset="img/hero-720.webp 720w, img/hero.webp 1344w" sizes="100vw" width="1344" height="768" decoding="async" alt="">
   <div class="bloc contenu">
     <small data-en="Eco-lodge · 12 rooms · Lake Kivu">Écolodge · 12 chambres · Lac Kivu</small>
     <h1 data-en="Wake up<br><em>above the lake.</em>">Réveillez-vous<br><em>au-dessus du lac.</em></h1>
@@ -143,23 +143,23 @@
 <section class="chambres" id="chambres"><div class="bloc">
   <div class="centre rv"><span class="sur" data-en="Rooms & suites">Chambres & suites</span><h2 data-en="Choose <em>your view.</em>">Choisissez <em>votre vue.</em></h2></div>
   <div>
-    <article class="ch rv"><div class="photo"><img src="img/jardin.jpg" alt="" loading="lazy"></div><div><div class="n">I.</div><h3 data-en="Garden room">Chambre Jardin</h3><p data-en="Opening onto a private terrace among banana trees, the most peaceful room of the lodge.">Ouverte sur une terrasse privée au milieu des bananiers, la chambre la plus paisible du lodge.</p><ul><li>Queen</li><li>28 m²</li><li data-en="Terrace">Terrasse</li><li data-en="Breakfast">Petit-déjeuner</li></ul><div class="prix"><b>85 $</b><small data-en="per night">par nuit</small><a class="btn" href="#contact" data-en="Book this room">Réserver</a></div></div></article>
-    <article class="ch rv"><div class="photo"><img src="img/vuelac.jpg" alt="" loading="lazy"></div><div><div class="n">II.</div><h3 data-en="Lake view room">Chambre Vue lac</h3><p data-en="A wide window and a balcony over the water: the best sunsets, straight from your bed.">Une grande baie et un balcon au-dessus de l'eau : les plus beaux couchers de soleil, depuis votre lit.</p><ul><li>King</li><li>34 m²</li><li data-en="Balcony">Balcon</li><li data-en="Breakfast">Petit-déjeuner</li></ul><div class="prix"><b>120 $</b><small data-en="per night">par nuit</small><a class="btn" href="#contact" data-en="Book this room">Réserver</a></div></div></article>
-    <article class="ch rv"><div class="photo"><img src="img/suite.jpg" alt="" loading="lazy"></div><div><div class="n">III.</div><h3 data-en="Family suite">Suite Famille</h3><p data-en="Two bedrooms, a lounge and a terrace for up to five guests. Ideal for families and friends.">Deux chambres, un salon et une terrasse pour cinq personnes. Idéale en famille ou entre amis.</p><ul><li data-en="2 bedrooms">2 chambres</li><li>62 m²</li><li data-en="Lounge">Salon</li><li data-en="Lake view">Vue lac</li></ul><div class="prix"><b>190 $</b><small data-en="per night">par nuit</small><a class="btn" href="#contact" data-en="Book this suite">Réserver</a></div></div></article>
+    <article class="ch rv"><div class="photo"><img src="img/jardin.webp" srcset="img/jardin-720.webp 720w, img/jardin.webp 1152w" sizes="(max-width:760px) 100vw, 60vw" width="1152" height="864" decoding="async" alt="" loading="lazy"></div><div><div class="n">I.</div><h3 data-en="Garden room">Chambre Jardin</h3><p data-en="Opening onto a private terrace among banana trees, the most peaceful room of the lodge.">Ouverte sur une terrasse privée au milieu des bananiers, la chambre la plus paisible du lodge.</p><ul><li>Queen</li><li>28 m²</li><li data-en="Terrace">Terrasse</li><li data-en="Breakfast">Petit-déjeuner</li></ul><div class="prix"><b>85 $</b><small data-en="per night">par nuit</small><a class="btn" href="#contact" data-en="Book this room">Réserver</a></div></div></article>
+    <article class="ch rv"><div class="photo"><img src="img/vuelac.webp" srcset="img/vuelac-720.webp 720w, img/vuelac.webp 1152w" sizes="(max-width:760px) 100vw, 60vw" width="1152" height="864" decoding="async" alt="" loading="lazy"></div><div><div class="n">II.</div><h3 data-en="Lake view room">Chambre Vue lac</h3><p data-en="A wide window and a balcony over the water: the best sunsets, straight from your bed.">Une grande baie et un balcon au-dessus de l'eau : les plus beaux couchers de soleil, depuis votre lit.</p><ul><li>King</li><li>34 m²</li><li data-en="Balcony">Balcon</li><li data-en="Breakfast">Petit-déjeuner</li></ul><div class="prix"><b>120 $</b><small data-en="per night">par nuit</small><a class="btn" href="#contact" data-en="Book this room">Réserver</a></div></div></article>
+    <article class="ch rv"><div class="photo"><img src="img/suite.webp" srcset="img/suite-720.webp 720w, img/suite.webp 1152w" sizes="(max-width:760px) 100vw, 60vw" width="1152" height="864" decoding="async" alt="" loading="lazy"></div><div><div class="n">III.</div><h3 data-en="Family suite">Suite Famille</h3><p data-en="Two bedrooms, a lounge and a terrace for up to five guests. Ideal for families and friends.">Deux chambres, un salon et une terrasse pour cinq personnes. Idéale en famille ou entre amis.</p><ul><li data-en="2 bedrooms">2 chambres</li><li>62 m²</li><li data-en="Lounge">Salon</li><li data-en="Lake view">Vue lac</li></ul><div class="prix"><b>190 $</b><small data-en="per night">par nuit</small><a class="btn" href="#contact" data-en="Book this suite">Réserver</a></div></div></article>
   </div>
 </div></section>
 
 <section class="exp" id="experiences"><div class="bloc">
   <div class="centre rv"><span class="sur" style="color:#C99A6B" data-en="Experiences">Expériences</span><h2 data-en="More than <em>a stay.</em>">Plus qu'un <em>séjour.</em></h2><p data-en="Our guides are from the region: they'll show you the lake as only locals know it.">Nos guides sont de la région : ils vous montrent le lac comme seuls ses habitants le connaissent.</p></div>
   <div class="exp-grille">
-    <article class="carte-exp rv"><img src="img/bateau.jpg" alt="" loading="lazy"><div><b data-en="2 hours · $25">2 heures · 25 $</b><h3 data-en="Sunset boat">Bateau au coucher du soleil</h3><p data-en="The islands of the lake with a fisherman from the village.">Les îles du lac avec un pêcheur du village.</p></div></article>
-    <article class="carte-exp rv"><img src="img/collines.jpg" alt="" loading="lazy"><div><b data-en="Half day · $20">Demi-journée · 20 $</b><h3 data-en="Hills & tea">Collines et thé</h3><p data-en="A morning walk through the tea plantations.">Une marche matinale dans les plantations de thé.</p></div></article>
-    <article class="carte-exp rv"><img src="img/diner.jpg" alt="" loading="lazy"><div><b data-en="Every evening">Chaque soir</b><h3 data-en="Terrace dinner">Dîner en terrasse</h3><p data-en="Lake fish and local produce, by candlelight.">Poisson du lac et produits locaux, aux chandelles.</p></div></article>
+    <article class="carte-exp rv"><img src="img/bateau.webp" srcset="img/bateau-720.webp 720w, img/bateau.webp 960w" sizes="(max-width:760px) 100vw, 60vw" width="960" height="1200" decoding="async" alt="" loading="lazy"><div><b data-en="2 hours · $25">2 heures · 25 $</b><h3 data-en="Sunset boat">Bateau au coucher du soleil</h3><p data-en="The islands of the lake with a fisherman from the village.">Les îles du lac avec un pêcheur du village.</p></div></article>
+    <article class="carte-exp rv"><img src="img/collines.webp" srcset="img/collines-720.webp 720w, img/collines.webp 960w" sizes="(max-width:760px) 100vw, 60vw" width="960" height="1200" decoding="async" alt="" loading="lazy"><div><b data-en="Half day · $20">Demi-journée · 20 $</b><h3 data-en="Hills & tea">Collines et thé</h3><p data-en="A morning walk through the tea plantations.">Une marche matinale dans les plantations de thé.</p></div></article>
+    <article class="carte-exp rv"><img src="img/diner.webp" srcset="img/diner-720.webp 720w, img/diner.webp 960w" sizes="(max-width:760px) 100vw, 60vw" width="960" height="1200" decoding="async" alt="" loading="lazy"><div><b data-en="Every evening">Chaque soir</b><h3 data-en="Terrace dinner">Dîner en terrasse</h3><p data-en="Lake fish and local produce, by candlelight.">Poisson du lac et produits locaux, aux chandelles.</p></div></article>
   </div>
 </div></section>
 
 <section class="table" id="restaurant"><div class="bloc">
-  <img class="rv" src="img/diner.jpg" alt="" loading="lazy">
+  <img class="rv" src="img/diner.webp" srcset="img/diner-720.webp 720w, img/diner.webp 960w" sizes="(max-width:760px) 100vw, 60vw" width="960" height="1200" decoding="async" alt="" loading="lazy">
   <div class="rv"><span class="sur">Restaurant</span><h2 data-en="Dinner <em>at water's edge.</em>">Dîner <em>au bord de l'eau.</em></h2>
     <p data-en="Our chef cooks the morning's catch and vegetables from the lodge garden. Open to guests and visitors, every evening from 7pm.">Notre chef cuisine la pêche du matin et les légumes du potager du lodge. Ouvert aux résidents et aux visiteurs, chaque soir dès 19 h.</p>
     <a class="btn" href="#" data-contact="whatsapp" data-en="Book a table">Réserver une table</a></div>

@@ -1,0 +1,8 @@
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/*.png
+  Cache-Control: public, max-age=604800
+/demos/demo.js
+  Cache-Control: public, max-age=86400

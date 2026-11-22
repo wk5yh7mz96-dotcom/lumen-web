@@ -6,7 +6,7 @@
 <link rel="icon" href="../../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+<style>img{height:auto}
   :root{--bleu:#1E6FE0;--bleu-f:#0F4FB0;--bleu-c:#EAF2FF;--encre:#0E1F3A;--doux:#5A6B85;--fond:#F6F8FC;--rouge:#E5484D;--vert:#12A37A;--filet:#E1E7F1;--r:20px}
   *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
   body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--fond);color:var(--encre);-webkit-font-smoothing:antialiased;line-height:1.6}
@@ -100,7 +100,7 @@
   .pied h4{color:#fff;font-size:14px;margin-bottom:14px}.pied a{display:block;margin-bottom:8px}.pied a:hover{color:#fff}.pied .logo{color:#fff;margin-bottom:12px}
   .bas{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:22px}
   .wa{position:fixed;right:18px;bottom:84px;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;z-index:25;box-shadow:0 12px 30px rgba(0,0,0,.25)}.wa svg{width:28px;fill:#fff}
-  .anim .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.anim .rv.vu{opacity:1;transform:none}
+  .anim .rv{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}.anim .rv.vu{opacity:1;transform:none}
   @media(max-width:1000px){
     header nav{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--filet)}
     header nav.ouvert{display:flex}header nav a{padding:15px 20px;border-top:1px solid var(--filet)}.burger{display:block}header .btn{display:none}
@@ -127,7 +127,7 @@
     <div class="confiance"><div><b>24/7</b><span data-en="emergencies">urgences</span></div><div><b>12</b><span data-en="doctors">médecins</span></div><div><b>24 h</b><span data-en="lab results">résultats labo</span></div><div><b>4,8 ★</b><span data-en="patients">patients</span></div></div>
   </div>
   <div class="visuel rv">
-    <img src="img/hero.jpg" alt="">
+    <img fetchpriority="high" src="img/hero.webp" srcset="img/hero-720.webp 720w, img/hero.webp 1152w" sizes="100vw" width="1152" height="960" decoding="async" alt="">
     <div class="flottant f1"><i>🗓️</i><div><b data-en="Next slot: today 2:30pm">Prochain créneau : 14 h 30</b><span data-en="General medicine">Médecine générale</span></div></div>
     <div class="flottant f2"><i>🧪</i><div><b data-en="Results sent">Résultats envoyés</b><span data-en="by WhatsApp & email">par WhatsApp & e-mail</span></div></div>
   </div>
@@ -144,9 +144,9 @@
 <section id="services"><div class="bloc">
   <div class="tete rv"><div><span class="sur">Services</span><h2 data-en="Care for the whole family">Des soins pour toute la famille</h2></div><p data-en="Modern equipment, experienced doctors, and clear prices displayed at reception.">Équipements modernes, médecins expérimentés et tarifs affichés clairement à l'accueil.</p></div>
   <div class="services">
-    <article class="serv rv"><img src="img/consult.jpg" alt="" loading="lazy"><div class="txt"><h3 data-en="General medicine">Médecine générale</h3><p data-en="Consultations, check-ups, chronic disease follow-up.">Consultations, bilans de santé, suivi des maladies chroniques.</p><a href="#rdv" data-en="Book →">Prendre RDV →</a></div></article>
-    <article class="serv rv"><img src="img/pediatrie.jpg" alt="" loading="lazy"><div class="txt"><h3 data-en="Paediatrics">Pédiatrie</h3><p data-en="Child care, vaccinations, growth monitoring.">Soins des enfants, vaccinations, suivi de croissance.</p><a href="#rdv" data-en="Book →">Prendre RDV →</a></div></article>
-    <article class="serv rv"><img src="img/labo.jpg" alt="" loading="lazy"><div class="txt"><h3 data-en="Laboratory">Laboratoire</h3><p data-en="Blood tests and analyses, results within 24 hours.">Prises de sang et analyses, résultats en 24 heures.</p><a href="#rdv" data-en="Book →">Prendre RDV →</a></div></article>
+    <article class="serv rv"><img src="img/consult.webp" srcset="img/consult-720.webp 720w, img/consult.webp 1152w" sizes="(max-width:760px) 100vw, 60vw" width="1152" height="864" decoding="async" alt="" loading="lazy"><div class="txt"><h3 data-en="General medicine">Médecine générale</h3><p data-en="Consultations, check-ups, chronic disease follow-up.">Consultations, bilans de santé, suivi des maladies chroniques.</p><a href="#rdv" data-en="Book →">Prendre RDV →</a></div></article>
+    <article class="serv rv"><img src="img/pediatrie.webp" srcset="img/pediatrie-720.webp 720w, img/pediatrie.webp 1152w" sizes="(max-width:760px) 100vw, 60vw" width="1152" height="864" decoding="async" alt="" loading="lazy"><div class="txt"><h3 data-en="Paediatrics">Pédiatrie</h3><p data-en="Child care, vaccinations, growth monitoring.">Soins des enfants, vaccinations, suivi de croissance.</p><a href="#rdv" data-en="Book →">Prendre RDV →</a></div></article>
+    <article class="serv rv"><img src="img/labo.webp" srcset="img/labo-720.webp 720w, img/labo.webp 1152w" sizes="(max-width:760px) 100vw, 60vw" width="1152" height="864" decoding="async" alt="" loading="lazy"><div class="txt"><h3 data-en="Laboratory">Laboratoire</h3><p data-en="Blood tests and analyses, results within 24 hours.">Prises de sang et analyses, résultats en 24 heures.</p><a href="#rdv" data-en="Book →">Prendre RDV →</a></div></article>
     <article class="serv mini rv"><i>🤰</i><div><h3 data-en="Maternity">Maternité</h3><p data-en="Pregnancy follow-up, ultrasound, births.">Suivi de grossesse, échographies, accouchements.</p></div></article>
     <article class="serv mini rv"><i>🦷</i><div><h3 data-en="Dentistry">Dentaire</h3><p data-en="Care, cleaning and emergencies.">Soins, détartrage et urgences.</p></div></article>
     <article class="serv mini rv"><i>🚑</i><div><h3 data-en="Emergencies">Urgences</h3><p data-en="A doctor on duty 24/7.">Un médecin de garde 24 h / 24.</p></div></article>

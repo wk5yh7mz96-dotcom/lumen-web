@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+<style>img{height:auto}
   :root {
     --nuit:#0B0F1A; --nuit2:#111726; --carte:#151C2E; --ligne:#232C44;
     --texte:#F5F1E8; --doux:#A9B1C6; --or:#FFB547; --orange:#F27A1A; --braise:#B8430A;
@@ -325,7 +325,7 @@
       </div>
       <div class="projets">
         <article class="projet app">
-          <div class="ecran"><div class="barre"><i></i><i></i><i></i></div><img src="projet-stagiaire.jpg" alt="Site Le Stagiaire & l'IA" loading="lazy" style="position:absolute;top:28px;left:0;width:100%"></div>
+          <div class="ecran"><div class="barre"><i></i><i></i><i></i></div><img src="projet-stagiaire.webp" srcset="projet-stagiaire-720.webp 720w, projet-stagiaire.webp 1200w" sizes="(max-width:760px) 100vw, 60vw" width="1200" height="750" decoding="async" alt="Site Le Stagiaire & l'IA" loading="lazy" style="position:absolute;top:28px;left:0;width:100%"></div>
           <div class="infos">
             <span class="etiquette reel" data-t="real">Projet réel</span>
             <h3>Le Stagiaire & l'IA</h3>
@@ -335,15 +335,15 @@
         </article>
         <div class="demos">
           <a class="projet mini app" href="demos/restaurant/" target="_blank" rel="noopener">
-            <div class="ecran"><img src="demos/restaurant/apercu.jpg" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
+            <div class="ecran"><img src="demos/restaurant/apercu.webp" width="640" height="400" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
             <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d1h">Restaurant</h3><p data-t="d1p">Menu en photos, réservation par WhatsApp, horaires et plan d'accès.</p></div>
           </a>
           <a class="projet mini app" href="demos/hotel/" target="_blank" rel="noopener">
-            <div class="ecran"><img src="demos/hotel/apercu.jpg" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
+            <div class="ecran"><img src="demos/hotel/apercu.webp" width="640" height="400" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
             <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d2h">Hôtel & lodge</h3><p data-t="d2p">Chambres, galerie, avis clients et demande de réservation.</p></div>
           </a>
           <a class="projet mini app" href="demos/clinique/" target="_blank" rel="noopener">
-            <div class="ecran"><img src="demos/clinique/apercu.jpg" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
+            <div class="ecran"><img src="demos/clinique/apercu.webp" width="640" height="400" decoding="async" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top"></div>
             <div class="infos"><span class="etiquette demo" data-t="demo">Démonstration</span><h3 data-t="d3h">Clinique</h3><p data-t="d3p">Services, équipe, prise de rendez-vous et urgences en un clic.</p></div>
           </a>
         </div>
@@ -620,7 +620,7 @@
   // Apparitions au défilement (contenu visible même sans JS)
   if (!new URLSearchParams(location.search).has("capture")) {
     document.documentElement.classList.add("js");
-    const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("vu"); obs.unobserve(e.target); } }), { threshold:.12 });
+    const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("vu"); obs.unobserve(e.target); } }), { threshold:0, rootMargin:"0px 0px 15% 0px" });
     document.querySelectorAll(".app").forEach(el => obs.observe(el));
   }
 </script>

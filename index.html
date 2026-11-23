@@ -385,7 +385,7 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
   #transformation { padding-bottom:40px; }
   .tr-piste { position:relative; }
   .tr-collant { position:relative; padding:10px 0 30px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; overflow:hidden; perspective:1400px; }
-  .tr-ecran { position:relative; width:min(1000px, 92vw); aspect-ratio:16/10; transform-style:preserve-3d; }
+  .tr-ecran { position:relative; width:min(1000px, 92vw, calc((100vh - 250px) * 1.6)); aspect-ratio:16/10; transform-style:preserve-3d; }
   .tr-couche { position:absolute; inset:0; display:grid; grid-template-columns:repeat(var(--c),1fr); grid-template-rows:repeat(var(--r),1fr); transform-style:preserve-3d; }
   .tr-couche i { display:block; background-repeat:no-repeat; will-change:transform,opacity; backface-visibility:hidden; }
   .tr-etat { position:relative; height:30px; width:100%; text-align:center; font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
@@ -761,7 +761,7 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
         <p data-t="mo-p">Basés à Kampala, nous travaillons entièrement à distance : un appel, des messages WhatsApp, et votre site prend vie, où que vous soyez. En français comme en anglais.</p>
         <ul class="mo-villes" data-t="mo-v"><li>Kampala</li><li>Kinshasa</li><li>Nairobi</li><li>Kigali</li><li>Abidjan</li><li>Dakar</li><li>Douala</li><li>Paris</li><li>Bruxelles</li><li>Montréal</li></ul>
       </div>
-      <div class="globe-boite app"><canvas id="globe" aria-label="Globe : Kampala relié aux grandes villes d'Afrique et du monde" role="img"></canvas><span class="globe-astuce" data-t="mo-a">Faites-le tourner du doigt</span></div>
+      <div class="globe-boite app"><canvas id="globe" aria-label="Globe : Kampala relié aux grandes villes d'Afrique et du monde" role="img"></canvas><span class="globe-astuce" data-t="mo-a">Faites-le tourner du doigt</span><span hidden data-t="mo-a2">Cliquez et faites glisser pour le faire tourner</span></div>
     </div>
   </section>
 
@@ -983,7 +983,7 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
     "re-h2":"Step into <em>the gallery.</em>", "re-p2":"The gallery moves on its own: tap a piece to open it. One real project and demos, clearly labelled as such.", "g-aide2":"Automatic tour · tap a piece to open it",
     "aa-p2":"Watch an outdated website break apart and turn into a Lumen Web site.", "tr-a":"2019 · a generic template", "tr-b":"2026 · Lumen Web", "tr-re":"↻ Replay the transformation",
     "mo-k":"Everywhere, remotely", "mo-h":"From Kampala <em>to the whole world.</em>", "mo-p":"Based in Kampala, we work fully remotely: a call, a few WhatsApp messages, and your website comes to life, wherever you are. In English and French.",
-    "mo-v":"<li>Kampala</li><li>Kinshasa</li><li>Nairobi</li><li>Kigali</li><li>Abidjan</li><li>Dakar</li><li>Douala</li><li>Paris</li><li>Brussels</li><li>Montreal</li>", "mo-a":"Spin it with your finger",
+    "mo-v":"<li>Kampala</li><li>Kinshasa</li><li>Nairobi</li><li>Kigali</li><li>Abidjan</li><li>Dakar</li><li>Douala</li><li>Paris</li><li>Brussels</li><li>Montreal</li>", "mo-a":"Spin it with your finger", "mo-a2":"Click and drag to spin it",
     "f-sur":"Web studio · Africa", intro2:"Don't just exist, get noticed. Modern websites that elevate your image, attract customers and grow your business.",
     ch1:"Website delivered", ch2:"Bilingual", ch3:"before seeing your site", fcol:"<li>Design</li><li>Development</li><li>Google</li><li class=\"ac\">WhatsApp</li>",
     fcol2:"Ideas<br>that bring<br>in new<br>customers.", fcol3:"Our process", "cta1":"Get a free quote",
@@ -1118,7 +1118,7 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
   (function () {
     const cv = document.getElementById("globe"), ctx = cv.getContext("2d");
     const VILLES = [["Kampala",.35,32.58,1],["Kinshasa",-4.32,15.31],["Nairobi",-1.29,36.82,0,1],["Kigali",-1.95,30.06,0,1],["Abidjan",5.36,-4.01],["Dakar",14.69,-17.45],["Douala",4.05,9.77],["Paris",48.86,2.35],["Bruxelles",50.85,4.35],["Montréal",45.5,-73.57]];
-    let T = null, W = 0, R = 0, lon0 = -22, vit = .06, lat0 = -12, actif = false, glisse = null, t0 = performance.now();
+    let T = null, W = 0, R = 0, lon0 = -22, vit = .14, elan = 0, lat0 = -12, actif = false, glisse = null, t0 = performance.now();
     const rad = Math.PI / 180;
     function taille() { const b = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2); W = b.width; cv.width = W * d; cv.height = W * d; ctx.setTransform(d, 0, 0, d, 0, 0); R = W * .42; }
     function proj(la, lo) { const a = la * rad, b = (lo + lon0) * rad, c0 = Math.cos(lat0 * rad), s0 = Math.sin(lat0 * rad);
@@ -1156,15 +1156,17 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
         ctx.fillStyle = maison ? "#FF6B6B" : "#8FE3DC"; ctx.beginPath(); ctx.arc(X, Y, maison ? 3.6 : 2.4, 0, 7); ctx.fill();
         if (discret) return; ctx.globalAlpha = Math.min(1, q[2] * 1.6); ctx.fillStyle = maison ? "#FF6B6B" : "rgba(247,255,247,.85)"; ctx.fillText(nom, X + 7, Y - 6); ctx.globalAlpha = 1; });
     }
-    function boucle(t) { if (!actif) return; if (!glisse) lon0 += vit; dessiner(t); requestAnimationFrame(boucle); }
+    function boucle(t) { if (!actif) return; if (!glisse) { lon0 += vit + elan; elan *= .95; } dessiner(t); requestAnimationFrame(boucle); }
     function charger() { if (window.TERRE) { T = window.TERRE; return Promise.resolve(); }
       return new Promise(ok => { const s = document.createElement("script"); s.src = "terre.js"; s.onload = () => { T = window.TERRE; ok(); }; document.head.appendChild(s); }); }
     new IntersectionObserver(es => { const v = es[0].isIntersecting;
       if (v && !actif) charger().then(() => { taille(); actif = !calme; if (calme) dessiner(0); else requestAnimationFrame(boucle); });
       else if (!v) actif = false; }, { rootMargin:"200px" }).observe(cv);
     addEventListener("resize", () => { if (T) { taille(); dessiner(performance.now()); } });
-    cv.addEventListener("pointerdown", e => { glisse = { x:e.clientX, l:lon0 }; cv.setPointerCapture(e.pointerId); });
-    cv.addEventListener("pointermove", e => { if (glisse) { lon0 = glisse.l + (e.clientX - glisse.x) * .4; if (calme) dessiner(0); } });
+    cv.addEventListener("pointerdown", e => { glisse = { x:e.clientX, l:lon0, px:e.clientX }; elan = 0; cv.setPointerCapture(e.pointerId); });
+    cv.addEventListener("pointermove", e => { if (glisse) { lon0 = glisse.l + (e.clientX - glisse.x) * .4; elan = (e.clientX - glisse.px) * .2; glisse.px = e.clientX; if (calme) dessiner(0); } });
+    cv.addEventListener("wheel", e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { e.preventDefault(); lon0 -= e.deltaX * .15; if (calme) dessiner(0); } }, { passive:false });
+    if (matchMedia("(pointer:fine)").matches) { const a = document.querySelector(".globe-astuce"); a.dataset.t = "mo-a2"; a.textContent = lang === "en" ? "Click and drag to spin it" : "Cliquez et faites glisser pour le faire tourner"; }
     const fin = () => { glisse = null; }; cv.addEventListener("pointerup", fin); cv.addEventListener("pointercancel", fin);
   })();
 

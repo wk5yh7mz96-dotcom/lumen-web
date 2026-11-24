@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pwani · Lodge &amp; Spa au bord de l'océan · Réservation directe</title>
+<meta name="description" content="Pwani, lodge et spa au bord de l'océan : suites en bambou, villas sous le chaume, piscine et petit-déjeuner flottant. Disponibilités en direct, réservation sur WhatsApp ou par e-mail.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0F3B3A">
+<meta property="og:type" content="hotel">
+<meta property="og:title" content="Pwani · Le temps ralentit ici">
+<meta property="og:description" content="Lodge & spa au bord de l'océan. Réservation directe, meilleur prix garanti.">
+<meta property="og:image" content="img/vue-l.webp">
+<link rel="icon" href="../../favicon.png">
+<link rel="preload" as="image" href="img/vue-l.webp" imagesrcset="img/vue-s.webp 640w, img/vue-l.webp 1000w" imagesizes="(min-width:1080px) 50vw, 100vw">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Resort","name":"Pwani Lodge & Spa","description":"Lodge et spa au bord de l'océan (site de démonstration, établissement fictif).","amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Piscine","value":true},{"@type":"LocationFeatureSpecification","name":"Spa","value":true},{"@type":"LocationFeatureSpecification","name":"Wi-Fi","value":true}],"checkinTime":"14:00","checkoutTime":"11:00"}
+</script>
+<style>
+  /* Règle 60-30-10 : 60 % sable · 30 % lagon profond · 10 % corail couchant */
+  :root{--sable:#F5EFE6;--sable2:#ECE3D6;--lagon:#0F3B3A;--lagon2:#16504E;--texte:#1F2A29;--doux:#5F6B69;--corail:#E07A55;--corail2:#C9623E;--turq:#7FD3C7;--filet:rgba(15,59,58,.13);
+        --serif:"Cormorant Garamond",Georgia,serif;--sans:"DM Sans",system-ui,sans-serif;--r:20px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--sable);color:var(--texte);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
+  img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}
+  .bloc{width:min(1240px,100% - 48px);margin-inline:auto}
+  :focus-visible{outline:2px solid var(--corail);outline-offset:3px;border-radius:6px}
+  .passer{position:absolute;left:-999px}.passer:focus{left:16px;top:16px;z-index:99;background:var(--corail);color:#fff;padding:10px 16px;border-radius:8px}
+  .sur{display:inline-flex;align-items:center;gap:12px;font:600 12px var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--corail2)}
+  .sur::before{content:"";width:26px;height:1.5px;background:currentColor}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;line-height:1.02}
+  h2{font-size:clamp(40px,5.4vw,72px);margin:16px 0 18px}
+  h1 em,h2 em{font-style:italic;color:var(--corail2)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;border:1.5px solid transparent;font:600 14.5px var(--sans);letter-spacing:.02em;cursor:pointer;transition:transform .25s,background .25s,color .25s,border-color .25s;white-space:nowrap}
+  .btn-plein{background:var(--corail);color:#fff;box-shadow:0 14px 30px -14px rgba(224,122,85,.9)}.btn-plein:hover{background:var(--corail2);transform:translateY(-2px)}
+  .btn-ligne{border-color:currentColor}.btn-ligne:hover{background:var(--lagon);color:var(--sable);border-color:var(--lagon)}
+  .btn svg{width:18px;height:18px;fill:currentColor}
+  .demo-ligne{background:var(--lagon);color:#BFD7D3;font:500 12px var(--sans);text-align:center;padding:7px 14px;position:relative;z-index:31}
+  .demo-ligne a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+
+  /* En-tête */
+  header{position:absolute;left:0;right:0;top:31px;z-index:30;color:#fff;transition:background .35s,color .35s}
+  header.defile{position:fixed;top:0;background:rgba(245,239,230,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--texte);box-shadow:0 1px 0 var(--filet)}
+  header .bloc{height:84px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .logo{display:flex;align-items:center;gap:12px}.logo svg{width:42px;height:42px}
+  .logo b{font:600 28px var(--serif);letter-spacing:.24em}.logo small{display:block;font:600 9.5px var(--sans);letter-spacing:.34em;text-transform:uppercase;opacity:.8}
+  header nav{display:flex;gap:32px;font:500 14.5px var(--sans)}
+  header nav a{position:relative;padding:6px 0}header nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;background:currentColor;transition:right .3s}header nav a:hover::after{right:0}
+  .droite{display:flex;align-items:center;gap:12px}
+  .lg{display:flex;border:1px solid currentColor;border-radius:999px;padding:3px}
+  .lg button{background:none;border:0;font:700 11px var(--sans);padding:6px 10px;border-radius:999px;cursor:pointer}
+  .lg button.on{background:currentColor}.lg button.on span{color:var(--lagon)}header.defile .lg button.on span{color:var(--sable)}
+  header .btn{min-height:44px;padding:0 20px;font-size:13.5px}
+  .burger{display:none;width:46px;height:46px;border-radius:50%;border:1px solid currentColor;background:none;cursor:pointer;place-items:center}
+  .burger i,.burger i::before,.burger i::after{display:block;width:18px;height:1.5px;background:currentColor;position:relative}
+  .burger i::before,.burger i::after{content:"";position:absolute;left:0}.burger i::before{top:-6px}.burger i::after{top:6px}
+
+  /* Accroche */
+  .hero{position:relative;min-height:100svh;color:#fff;background:var(--lagon);overflow:hidden;display:flex;align-items:flex-end}
+  .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,40,39,.88),rgba(10,40,39,.25) 55%,rgba(10,40,39,.45))}
+  .hero .bloc{position:relative;z-index:1;padding:170px 0 52px}
+  .hero .pastilles{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+  .pastille{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:7px 14px;font:500 12.5px var(--sans);backdrop-filter:blur(6px);background:rgba(255,255,255,.08)}
+  .pastille b{color:var(--turq)}
+  .hero h1{font-size:clamp(56px,9vw,132px);max-width:11ch}
+  .hero h1 em{color:#FFC7AE}
+  .hero p.accroche{font-size:clamp(17px,1.5vw,20px);max-width:48ch;color:#E2EEEC;margin:20px 0 34px}
+  /* Barre de réservation */
+  .barre{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:0;background:#fff;color:var(--texte);border-radius:22px;padding:8px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);max-width:980px}
+  .barre>div,.barre>button.champ-b{display:flex;flex-direction:column;justify-content:center;padding:10px 20px;border-right:1px solid var(--filet);text-align:left;background:none;border-top:0;border-bottom:0;border-left:0;cursor:pointer;min-width:0}
+  .barre small{font:600 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--doux)}
+  .barre b{font:600 16px var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .barre select{border:0;background:none;font:600 16px var(--sans);color:var(--texte);padding:0;cursor:pointer}
+  .barre .btn{margin-left:8px;min-height:58px;border-radius:16px}
+  .garantie-prix{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:13.5px;color:#D6E7E4}
+  .garantie-prix i{width:8px;height:8px;border-radius:50%;background:var(--turq);box-shadow:0 0 0 4px rgba(127,211,199,.25)}
+
+  section{padding:130px 0}
+  /* Intro */
+  .intro-grille{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .intro-grille p{color:var(--doux);font-size:17.5px;max-width:50ch;margin-bottom:14px}
+  .mosaique{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .mosaique img{border-radius:var(--r);width:100%;height:100%;object-fit:cover}
+  .mosaique .m1{grid-row:span 2;aspect-ratio:3/5}.mosaique .m2,.mosaique .m3{aspect-ratio:1}
+  .atouts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+  .atouts div{border-top:1.5px solid var(--corail);padding-top:12px}
+  .atouts b{display:block;font:500 34px var(--serif);line-height:1}.atouts span{color:var(--doux);font-size:13px}
+
+  /* Chambres */
+  .chambres-sec{background:var(--sable2)}
+  .tete{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:54px}
+  .tete p{color:var(--doux);max-width:42ch;font-size:17px}
+  .devise-choix{display:inline-flex;align-items:center;gap:10px;font:600 13px var(--sans);margin-top:14px}
+  .devise{border:1.5px solid var(--filet);border-radius:999px;background:#fff;padding:8px 14px;font:600 13px var(--sans);color:var(--texte);cursor:pointer}
+  .chambres{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .ch{background:var(--sable);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .35s,box-shadow .35s}
+  .ch:hover{transform:translateY(-6px);box-shadow:0 30px 60px -36px rgba(15,59,58,.6)}
+  .ch .ph{position:relative;aspect-ratio:4/5;overflow:hidden}
+  .ch .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}.ch:hover .ph img{transform:scale(1.05)}
+  .ch .tag{position:absolute;top:16px;left:16px;background:var(--corail);color:#fff;border-radius:999px;padding:6px 12px;font:700 11px var(--sans);letter-spacing:.08em;text-transform:uppercase}
+  .ch .reste{position:absolute;bottom:16px;left:16px;background:rgba(15,59,58,.85);color:#fff;border-radius:999px;padding:7px 13px;font:600 12.5px var(--sans);backdrop-filter:blur(6px)}
+  .ch .info{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+  .ch h3{font-size:32px}
+  .ch .specs{display:flex;gap:14px;flex-wrap:wrap;color:var(--doux);font-size:13.5px;margin:8px 0 14px}
+  .ch p{color:var(--doux);font-size:15px;flex:1}
+  .ch .bas{display:flex;align-items:flex-end;justify-content:space-between;margin-top:20px;padding-top:18px;border-top:1px solid var(--filet)}
+  .ch .prix small{display:block;font-size:12px;color:var(--doux)}.ch .prix b{font:500 34px var(--serif)}.ch .prix span{font-size:13px;color:var(--doux)}
+  .ch .btn{min-height:46px;padding:0 18px;font-size:13.5px}
+
+  /* Expériences */
+  .exp{background:var(--lagon);color:var(--sable)}
+  .exp h2{color:var(--sable)}.exp h2 em{color:#FFC7AE}.exp .tete p{color:#BFD7D3}
+  .exp-grille{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px}
+  .exp-c{position:relative;border-radius:24px;overflow:hidden;min-height:480px;display:flex;align-items:flex-end}
+  .exp-c img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s}
+  .exp-c:hover img{transform:scale(1.05)}
+  .exp-c::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,30,29,.9),transparent 60%)}
+  .exp-c div{position:relative;z-index:1;padding:28px}
+  .exp-c b{font:italic 500 18px var(--serif);color:var(--turq)}.exp-c h3{font-size:34px;margin:4px 0 8px;color:#fff}.exp-c p{color:#D6E7E4;font-size:14.5px;max-width:34ch}
+
+  /* Galerie */
+  .galerie{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;gap:14px}
+  .galerie button{border:0;padding:0;border-radius:16px;overflow:hidden;cursor:zoom-in;background:var(--sable2)}
+  .galerie img{width:100%;height:100%;object-fit:cover;transition:transform 1s}
+  .galerie button:hover img{transform:scale(1.05)}
+  .galerie .g1{grid-column:span 2;grid-row:span 2}.galerie .g2{grid-row:span 2}.galerie .g6{grid-column:span 2}
+  .lb{position:fixed;inset:0;z-index:120;background:rgba(6,20,19,.95);display:grid;place-items:center;padding:30px}.lb[hidden]{display:none}
+  .lb img{max-width:min(1100px,100%);max-height:84vh;border-radius:10px}
+  .lb button{position:absolute;width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;font-size:22px;cursor:pointer}
+  .lb .fermer{top:22px;right:22px}.lb .prec{left:22px;top:50%}.lb .suiv{right:22px;top:50%}
+  .lb p{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#BFD7D3;font-size:14px}
+
+  /* Avis */
+  .avis-sec{background:var(--sable2);padding:100px 0}
+  .note-g{display:flex;align-items:center;gap:22px;margin-bottom:40px;flex-wrap:wrap}
+  .note-g b{font:500 76px/1 var(--serif)}.note-g div span{display:block;color:var(--doux);font-size:14px}.etoiles{color:var(--corail);letter-spacing:3px}
+  .avis{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .avis figure{background:var(--sable);border-radius:22px;padding:30px;border:1px solid var(--filet)}
+  .avis blockquote{font:italic 500 22px/1.4 var(--serif);margin:14px 0 18px}
+  .avis figcaption{font-size:14px;color:var(--doux)}.avis figcaption b{color:var(--texte)}
+  .exemple{color:var(--doux);font-size:12.5px;margin-top:20px;text-align:center}
+
+  /* Réservation */
+  .resa{background:var(--lagon);color:var(--sable);position:relative;overflow:hidden}
+  .resa::before{content:"";position:absolute;inset:0;background:url(img/villas-piscine-s.webp) center/cover;opacity:.14}
+  .resa .bloc{position:relative}
+  .resa h2{color:var(--sable)}.resa h2 em{color:#FFC7AE}
+  .resa-grille{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:start}
+  .cal-boite,.recap-boite{background:var(--sable);color:var(--texte);border-radius:26px;padding:28px}
+  .cal-tete{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .cal-tete h3{font-size:28px;text-transform:capitalize}
+  .cal-tete button{width:42px;height:42px;border-radius:50%;border:1px solid var(--filet);background:#fff;cursor:pointer;font-size:18px}
+  .cal-tete button:disabled{opacity:.35;cursor:default}
+  .mois-duo{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .mois h4{font:600 13px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--doux);margin-bottom:10px;text-align:center}
+  .jours{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
+  .jours .js{font:600 11px var(--sans);color:var(--doux);padding:6px 0}
+  .jours button{aspect-ratio:1;border:0;background:none;border-radius:10px;font:500 14px var(--sans);cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+  .jours button small{font-size:9.5px;color:var(--doux);font-weight:500}
+  .jours button:hover:not(:disabled){background:var(--sable2)}
+  .jours button:disabled{color:#B5BDBB;cursor:not-allowed;text-decoration:line-through}
+  .jours button.dans{background:rgba(224,122,85,.16);border-radius:0}
+  .jours button.deb,.jours button.fin{background:var(--corail);color:#fff;border-radius:10px}
+  .jours button.deb small,.jours button.fin small{color:#fff}
+  .legende{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--doux)}
+  .legende i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:6px}
+  .recap-boite h3{font-size:30px;margin-bottom:14px}
+  .choix-ch{display:grid;gap:8px;margin-bottom:16px}
+  .choix-ch button{display:flex;justify-content:space-between;align-items:center;border:1.5px solid var(--filet);background:#fff;border-radius:14px;padding:12px 14px;cursor:pointer;text-align:left;font:600 14.5px var(--sans)}
+  .choix-ch button span{color:var(--doux);font-weight:500;font-size:13px}
+  .choix-ch button[aria-checked="true"]{border-color:var(--corail);box-shadow:0 0 0 3px rgba(224,122,85,.15)}
+  .ligne-r{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;font-size:14.5px}
+  .ligne-r span{color:var(--doux)}
+  .pers{display:flex;align-items:center;gap:10px}
+  .pers button{width:34px;height:34px;border-radius:50%;border:1px solid var(--filet);background:#fff;cursor:pointer;font-size:17px}
+  .total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--filet);margin-top:8px;padding-top:14px}
+  .total b{font:500 36px var(--serif)}
+  .economie{font-size:12.5px;color:#1E7A6E;font-weight:600;margin:4px 0 14px}
+  .champ{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+  .champ label{font:600 13px var(--sans)}
+  .champ input,.champ textarea{border:1.5px solid rgba(15,59,58,.18);background:#fff;border-radius:12px;padding:12px 14px;font:500 15px var(--sans);color:var(--texte)}
+  .champ input:focus,.champ textarea:focus{outline:none;border-color:var(--corail);box-shadow:0 0 0 4px rgba(224,122,85,.14)}
+  .champ .err{color:#B3261E;font-size:12.5px;font-weight:600}
+  .champ.ko input{border-color:#B3261E}
+  .envois{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}.envois .btn{flex:1 1 180px}
+  .btn-mail{color:var(--texte);border-color:rgba(15,59,58,.25);background:#fff}.btn-mail:hover{background:var(--lagon);color:#fff}
+  .err-dates{color:#B3261E;font-size:13px;font-weight:600;min-height:18px}
+
+  /* FAQ */
+  .faq{max-width:860px;margin:0 auto}
+  details{border-bottom:1px solid var(--filet);padding:22px 0}
+  summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font:500 24px var(--serif)}
+  summary::-webkit-details-marker{display:none}summary::after{content:"+";color:var(--corail);font:400 28px var(--sans);transition:transform .3s}
+  details[open] summary::after{transform:rotate(45deg)}details p{color:var(--doux);margin-top:10px;max-width:70ch}
+
+  /* Contact / pied */
+  .contact-grille{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .canal{display:flex;gap:16px;align-items:center;padding:22px;border:1px solid var(--filet);border-radius:18px;background:#fff;margin-bottom:12px;transition:border-color .25s,transform .25s}
+  .canal:hover{border-color:var(--corail);transform:translateX(4px)}
+  .canal i{flex:none;width:48px;height:48px;border-radius:14px;background:var(--sable2);display:grid;place-items:center}
+  .canal i svg{width:22px;height:22px;fill:var(--corail2)}
+  .canal b{display:block}.canal span{color:var(--doux);font-size:14px}
+  .contact-img{border-radius:24px;overflow:hidden;min-height:420px;position:relative}
+  .contact-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  footer{background:var(--lagon);color:#BFD7D3;padding:80px 0 34px}
+  .pied{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:46px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,.1)}
+  footer .logo{color:var(--sable)}footer p{margin-top:16px;font-size:14.5px;max-width:34ch}
+  footer h4{font:600 12px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--sable);margin-bottom:16px}
+  footer ul{list-style:none;display:grid;gap:9px;font-size:14.5px}footer ul a:hover{color:#fff}
+  .reseaux{display:flex;gap:10px;margin-top:20px}.reseaux a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center}
+  .reseaux a:hover{background:var(--corail);border-color:var(--corail)}.reseaux svg{width:18px;height:18px;fill:var(--sable)}
+  .bas{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;font-size:13px}.bas a{color:#fff;text-decoration:underline}
+  .wa{position:fixed;right:20px;bottom:20px;z-index:40;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 30px rgba(0,0,0,.3)}.wa svg{width:30px;height:30px;fill:#fff}
+
+  /* Fenêtres */
+  .modale{position:fixed;inset:0;z-index:130;background:rgba(6,20,19,.72);backdrop-filter:blur(6px);display:grid;place-items:center;padding:18px}.modale[hidden]{display:none}
+  .fiche-boite{position:relative;width:min(980px,100%);max-height:calc(100vh - 36px);overflow:auto;background:var(--sable);border-radius:26px;display:grid;grid-template-columns:1fr 1fr}
+  .fiche-boite .ph img{width:100%;height:100%;object-fit:cover}
+  .fiche-boite .info{padding:36px 32px;display:flex;flex-direction:column}
+  .fiche-boite h3{font-size:44px;margin:6px 0 10px}
+  .fiche-boite ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:18px 0 22px;font-size:14.5px}
+  .fiche-boite li::before{content:"✓";color:var(--corail);font-weight:700;margin-right:8px}
+  .fiche-boite .bas-f{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .x{position:absolute;top:14px;right:14px;z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid var(--filet);background:#fff;cursor:pointer}
+  .msg-boite{width:min(440px,100%);background:#EFE7DE;border-radius:24px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5)}
+  .msg-tete{background:#075E54;color:#fff;display:flex;align-items:center;gap:12px;padding:14px 18px}
+  .msg-tete .av{width:40px;height:40px;border-radius:50%;background:var(--corail);display:grid;place-items:center;font:600 20px var(--serif)}
+  .msg-tete b{display:block;font-size:15px}.msg-tete small{opacity:.8;font-size:12px}
+  .mail-tete{display:none;background:#fff;padding:14px 18px;border-bottom:1px solid #E5E5E5;font-size:13px;color:#555}
+  .mail-tete span{display:inline-block;width:52px;color:#888}.mail-tete b{color:#222;font-weight:600}
+  .msg-fil{padding:18px;background:#E5DDD5;max-height:50vh;overflow:auto}
+  .bulle{background:#DCF8C6;border-radius:12px 0 12px 12px;padding:12px 14px;margin-left:auto;max-width:94%;font-size:14px;white-space:pre-line}
+  .bulle small{display:block;text-align:right;color:#6C7C70;font-size:11px;margin-top:6px}
+  .msg-boite.mail .msg-tete{background:var(--lagon)}.msg-boite.mail .mail-tete{display:grid;gap:4px}.msg-boite.mail .msg-fil{background:#fff}
+  .msg-boite.mail .bulle{background:#fff;max-width:100%;border-radius:0;padding:2px;color:#222}
+  .msg-bas{padding:18px 20px 22px;background:#fff}.msg-bas p{font-size:14px;color:var(--doux);margin-bottom:14px}.msg-bas p b{color:var(--texte)}
+  .msg-bas .actions{display:flex;gap:10px;flex-wrap:wrap}.msg-bas .btn{min-height:46px;padding:0 20px;font-size:13.5px}
+
+  @media (max-width:1080px){
+    header nav{display:none}.burger{display:grid}
+    header nav.ouvert{display:flex;position:fixed;inset:0;flex-direction:column;justify-content:center;align-items:center;gap:24px;background:var(--lagon);color:var(--sable);font:500 36px var(--serif);z-index:-1}
+    .intro-grille,.resa-grille,.contact-grille{grid-template-columns:1fr;gap:50px}
+    .chambres{grid-template-columns:1fr 1fr}.exp-grille{grid-template-columns:1fr 1fr}.exp-c:first-child{grid-column:1/-1}
+    .pied{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:720px){
+    section{padding:88px 0}.bloc{width:min(1240px,100% - 36px)}
+    header{top:46px}.demo-ligne{font-size:11px;padding:6px 10px}.logo small{display:none}header .btn{display:none}
+    .hero .bloc{padding:150px 0 30px}
+    .barre{grid-template-columns:1fr 1fr;border-radius:18px}
+    .barre>div,.barre>button.champ-b{border-right:0;border-bottom:1px solid var(--filet);padding:10px 12px}
+    .barre .btn{grid-column:1/-1;margin:8px 0 0}
+    .atouts{grid-template-columns:1fr 1fr}
+    .tete{flex-direction:column;align-items:flex-start;gap:8px}
+    .chambres{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -18px;padding:0 18px 10px;scrollbar-width:none}
+    .ch{flex:0 0 84%;scroll-snap-align:start}
+    .exp-grille{grid-template-columns:1fr}.exp-c{min-height:400px}
+    .galerie{grid-template-columns:1fr 1fr;grid-auto-rows:170px}.galerie .g6{grid-column:span 2}
+    .avis{grid-template-columns:1fr}
+    .mois-duo{grid-template-columns:1fr}.mois+.mois{display:none}
+    .cal-boite,.recap-boite{padding:20px}
+    .fiche-boite{grid-template-columns:1fr}.fiche-boite .ph{max-height:300px;overflow:hidden}.fiche-boite .info{padding:24px 22px}.fiche-boite ul{grid-template-columns:1fr}
+    .pied{grid-template-columns:1fr}
+    .lb .prec,.lb .suiv{top:auto;bottom:70px}
+  }
+  @media (min-width:1080px) and (max-height:820px){.hero h1{font-size:clamp(48px,11vh,96px)}.hero .bloc{padding:120px 0 36px}.hero p.accroche{margin:12px 0 22px}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="passer" href="#contenu" data-en="Skip to content">Aller au contenu</a>
+<div class="demo-ligne"><span data-en="Demo website designed by Lumen Web · fictional hotel ·">Site de démonstration conçu par Lumen Web · hôtel fictif ·</span> <a href="../../?utm_campaign=demo-pwani#commander" data-en="I want a website like this">Je veux un site comme celui-ci</a></div>
+
+<header>
+  <div class="bloc">
+    <a class="logo" href="#" aria-label="Pwani, accueil">
+      <svg viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="20" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M12 22 21 11l9 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 21h16" stroke="currentColor" stroke-width="1.4"/><circle cx="29.5" cy="13" r="2.6" fill="#E07A55"/><path d="M9 27c3-2 5-2 8 0s5 2 8 0 5-2 8 0M11 32c3-2 5-2 7.5 0s5 2 7.5 0 4.5-2 6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div><b>PWANI</b><small data-en="Lodge & Spa · by the ocean">Lodge &amp; Spa · bord de l'océan</small></div>
+    </a>
+    <nav aria-label="Menu principal">
+      <a href="#lodge" data-en="The lodge">Le lodge</a>
+      <a href="#chambres" data-en="Rooms">Chambres</a>
+      <a href="#experiences" data-en="Experiences">Expériences</a>
+      <a href="#galerie" data-en="Gallery">Galerie</a>
+      <a href="#faq" data-en="Info">Infos</a>
+    </nav>
+    <div class="droite">
+      <div class="lg" role="group" aria-label="Langue / Language"><button type="button" data-l="fr"><span>FR</span></button><button type="button" data-l="en"><span>EN</span></button></div>
+      <a class="btn btn-plein" href="#reserver" data-en="Book">Réserver</a>
+      <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><i></i></button>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+  <section class="hero" aria-label="Accueil" style="padding:0">
+    <img src="img/vue-l.webp" srcset="img/vue-s.webp 640w, img/vue-l.webp 1000w" sizes="100vw" width="1000" height="1500" alt="Le lodge Pwani vu du ciel : piscine, villas sous le chaume et ponton sur le lagon" fetchpriority="high">
+    <div class="bloc">
+      <div class="pastilles"><span class="pastille"><b>★ 4,9</b> <span data-en="· 312 guest reviews (example)">· 312 avis clients (exemple)</span></span><span class="pastille" data-en="12 suites & villas only">Seulement 12 suites &amp; villas</span></div>
+      <h1 data-en="Here, time <em>slows down.</em>">Ici, le temps <em>ralentit.</em></h1>
+      <p class="accroche" data-en="Bamboo suites, villas under thatch, a lagoon at your feet and breakfast served floating on the pool. Book direct: best price, guaranteed.">Suites en bambou, villas sous le chaume, un lagon à vos pieds et le petit-déjeuner servi sur la piscine. Réservez en direct : meilleur prix garanti.</p>
+      <form class="barre" id="barre" aria-label="Vérifier les disponibilités">
+        <button type="button" class="champ-b" data-ouvrir-cal><small data-en="Dates">Dates</small><b id="barre-dates">—</b></button>
+        <div><small data-en="Guests">Voyageurs</small><select id="barre-pers" aria-label="Voyageurs"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option></select></div>
+        <div><small data-en="Prices in">Prix en</small><select class="devise" aria-label="Monnaie"></select></div>
+        <button class="btn btn-plein" type="submit" data-en="See availability">Voir les disponibilités</button>
+      </form>
+      <p class="garantie-prix"><i></i><span data-en="Free cancellation up to 7 days before · Pay on arrival">Annulation gratuite jusqu'à 7 jours avant · Paiement à l'arrivée</span></p>
+    </div>
+  </section>
+
+  <!-- Le lodge -->
+  <section id="lodge">
+    <div class="bloc intro-grille">
+      <div class="rv">
+        <span class="sur" data-en="The lodge">Le lodge</span>
+        <h2 data-en="Twelve hideaways <em>between ocean and palm trees.</em>">Douze refuges <em>entre l'océan et les palmiers.</em></h2>
+        <p data-en="Pwani means “the coast” in Swahili. Built by local craftsmen with bamboo, palm thatch and coral stone, the lodge breathes with the trade winds: no concrete walls, just light, wood and the sound of the waves.">Pwani veut dire « la côte » en swahili. Construit par des artisans locaux en bambou, chaume de palme et pierre de corail, le lodge respire au rythme des alizés : pas de murs de béton, seulement la lumière, le bois et le bruit des vagues.</p>
+        <p data-en="Twelve suites and villas, a pool on the lagoon, a spa, and a team that knows your name from the first morning.">Douze suites et villas, une piscine face au lagon, un spa, et une équipe qui connaît votre prénom dès le premier matin.</p>
+        <div class="atouts">
+          <div><b data-compte>12</b><span data-en="suites & villas">suites &amp; villas</span></div>
+          <div><b data-compte>50</b><span data-en="steps to the beach">pas jusqu'à la plage</span></div>
+          <div><b data-compte>4,9</b><span data-en="guest rating (example)">note des clients (exemple)</span></div>
+          <div><b data-compte>100 %</b><span data-en="local materials">matériaux locaux</span></div>
+        </div>
+      </div>
+      <div class="mosaique rv">
+        <img class="m1" src="img/maison-s.webp" width="640" height="991" alt="Bâtiment principal sous le chaume, face à la piscine" loading="lazy">
+        <img class="m2" src="img/salon-s.webp" width="640" height="986" alt="Salon extérieur sous une paillote, au milieu des bananiers" loading="lazy">
+        <img class="m3" src="img/petit-dej-s.webp" width="640" height="853" alt="Petit-déjeuner flottant sur la piscine" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Chambres -->
+  <section id="chambres" class="chambres-sec">
+    <div class="bloc">
+      <div class="tete">
+        <div><span class="sur" data-en="Suites & villas">Suites &amp; villas</span><h2 data-en="Choose <em>your refuge.</em>">Choisissez <em>votre refuge.</em></h2></div>
+        <div><p data-en="Prices per night, breakfast included. Tap a room to see everything it offers.">Prix par nuit, petit-déjeuner compris. Touchez une chambre pour tout voir.</p>
+        <label class="devise-choix"><span data-en="Prices in">Prix en</span> <select class="devise" aria-label="Monnaie"></select></label></div>
+      </div>
+      <div class="chambres" id="chambres-grille"></div>
+    </div>
+  </section>
+
+  <!-- Expériences -->
+  <section id="experiences" class="exp">
+    <div class="bloc">
+      <div class="tete">
+        <div><span class="sur" style="color:var(--turq)" data-en="Experiences">Expériences</span><h2 data-en="Days you'll <em>tell about for years.</em>">Des journées qu'on <em>raconte pendant des années.</em></h2></div>
+        <p data-en="Everything can be booked with your stay, in one message.">Tout se réserve avec votre séjour, en un seul message.</p>
+      </div>
+      <div class="exp-grille">
+        <article class="exp-c rv"><img src="img/petit-dej-l.webp" width="1200" height="1600" alt="Panier de petit-déjeuner flottant sur la piscine, fruits et fleurs" loading="lazy"><div><b data-en="Every morning">Chaque matin</b><h3 data-en="Floating breakfast">Petit-déjeuner flottant</h3><p data-en="Tropical fruits, warm pastries and fresh coconut, served on the water.">Fruits tropicaux, viennoiseries tièdes et noix de coco fraîche, servis sur l'eau.</p></div></article>
+        <article class="exp-c rv"><img src="img/salon-s.webp" width="640" height="986" alt="Salon sous la paillote au coucher du soleil" loading="lazy"><div><b data-en="At sunset">Au coucher du soleil</b><h3 data-en="The thatched lounge">Le salon sous paillote</h3><p data-en="Fresh juices, the breeze and the jungle lit up for the night.">Jus frais, la brise et la jungle qui s'illumine pour la nuit.</p></div></article>
+        <article class="exp-c rv"><img src="img/villas-piscine-s.webp" width="640" height="1138" alt="Villas sous le chaume devant la piscine" loading="lazy"><div><b data-en="All day">Toute la journée</b><h3 data-en="Pool & lagoon">Piscine &amp; lagon</h3><p data-en="Sunbeds, parasols and the turquoise lagoon, a few steps away.">Transats, parasols et le lagon turquoise, à quelques pas.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerie -->
+  <section id="galerie">
+    <div class="bloc">
+      <div class="tete"><div><span class="sur" data-en="Gallery">Galerie</span><h2 data-en="A first <em>look inside.</em>">Un premier <em>regard à l'intérieur.</em></h2></div><p data-en="Tap a photo to see it full screen.">Touchez une photo pour l'afficher en grand.</p></div>
+      <div class="galerie">
+        <button type="button" class="g1"><img src="img/vue-s.webp" data-l="img/vue-l.webp" width="640" height="960" alt="Le lodge et son ponton vus du ciel" loading="lazy"></button>
+        <button type="button" class="g2"><img src="img/cocon-s.webp" data-l="img/cocon-l.webp" width="640" height="959" alt="La suite Cocon sous sa voûte en bambou tressé" loading="lazy"></button>
+        <button type="button"><img src="img/suite-bambou-s.webp" data-l="img/suite-bambou-l.webp" width="640" height="960" alt="Lit à baldaquin en bambou" loading="lazy"></button>
+        <button type="button"><img src="img/maison-s.webp" data-l="img/maison-l.webp" width="640" height="991" alt="Le bâtiment principal et la piscine" loading="lazy"></button>
+        <button type="button"><img src="img/villa-chaume-s.webp" data-l="img/villa-chaume-l.webp" width="640" height="1138" alt="Villa sous le chaume, ouverte sur le jardin" loading="lazy"></button>
+        <button type="button" class="g6"><img src="img/villas-piscine-s.webp" data-l="img/villas-piscine-l.webp" width="640" height="1138" alt="Les villas face à la piscine" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avis -->
+  <section class="avis-sec">
+    <div class="bloc">
+      <div class="note-g rv"><b>4,9</b><div><div class="etoiles" aria-label="5 étoiles">★★★★★</div><span data-en="312 guest reviews · example figures (demo website)">312 avis clients · chiffres d'exemple (site de démonstration)</span></div></div>
+      <div class="avis">
+        <figure class="rv"><div class="etoiles">★★★★★</div><blockquote data-en="“The floating breakfast alone is worth the trip. We extended our stay twice.”">« Le petit-déjeuner flottant vaut à lui seul le voyage. Nous avons prolongé deux fois. »</blockquote><figcaption><b>Awa D.</b> · Dakar</figcaption></figure>
+        <figure class="rv"><div class="etoiles">★★★★★</div><blockquote data-en="“Booked directly on WhatsApp, answer in ten minutes. The Cocon suite is unreal.”">« Réservé directement sur WhatsApp, réponse en dix minutes. La suite Cocon est irréelle. »</blockquote><figcaption><b>James O.</b> · Nairobi</figcaption></figure>
+        <figure class="rv"><div class="etoiles">★★★★★</div><blockquote data-en="“Our honeymoon. Silence, the ocean and a team of rare kindness.”">« Notre lune de miel. Le silence, l'océan et une équipe d'une gentillesse rare. »</blockquote><figcaption><b>Claire &amp; Hugo</b> · Lyon</figcaption></figure>
+      </div>
+      <p class="exemple" data-en="Example reviews (demo website).">Avis d'exemple (site de démonstration).</p>
+    </div>
+  </section>
+
+  <!-- Réservation -->
+  <section id="reserver" class="resa">
+    <div class="bloc">
+      <div class="tete"><div><span class="sur" style="color:var(--turq)" data-en="Book direct">Réservation directe</span><h2 data-en="Pick your dates, <em>we do the rest.</em>">Choisissez vos dates, <em>on s'occupe du reste.</em></h2></div>
+        <p style="color:#BFD7D3" data-en="Live availability. Direct booking: 10% cheaper than booking platforms.">Disponibilités en direct. Réservation directe : 10 % moins cher que sur les plateformes.</p></div>
+      <div class="resa-grille">
+        <div class="cal-boite rv">
+          <div class="cal-tete"><button type="button" id="cal-prec" aria-label="Mois précédent">‹</button><h3 id="cal-titre"></h3><button type="button" id="cal-suiv" aria-label="Mois suivant">›</button></div>
+          <div class="mois-duo" id="cal"></div>
+          <div class="legende"><span><i style="background:var(--corail)"></i><span data-en="Your stay">Votre séjour</span></span><span><i style="background:#D9DEDD"></i><span data-en="Full">Complet</span></span><span data-en="Price = per night, for the selected room">Prix = par nuit, pour la chambre choisie</span></div>
+          <p class="err-dates" id="err-dates" aria-live="polite"></p>
+        </div>
+        <form class="recap-boite rv" id="form-resa" novalidate>
+          <h3 data-en="Your stay">Votre séjour</h3>
+          <div class="choix-ch" id="choix-ch" role="radiogroup" aria-label="Chambre"></div>
+          <div class="ligne-r"><span data-en="Dates">Dates</span><b id="r-dates">—</b></div>
+          <div class="ligne-r"><span data-en="Guests">Voyageurs</span><div class="pers"><button type="button" data-p="-1" aria-label="Un voyageur de moins">−</button><b id="r-pers">2</b><button type="button" data-p="1" aria-label="Un voyageur de plus">+</button></div></div>
+          <div class="ligne-r"><span id="r-calc">—</span><b id="r-sous">—</b></div>
+          <div class="ligne-r"><span data-en="Taxes & service (10%)">Taxes &amp; service (10 %)</span><b id="r-taxes">—</b></div>
+          <div class="total"><span data-en="Total">Total</span><b id="r-total">—</b></div>
+          <p class="economie" id="r-eco"></p>
+          <div class="champ"><label for="r-nom" data-en="Full name *">Nom complet *</label><input id="r-nom" autocomplete="name"><span class="err"></span></div>
+          <div class="champ"><label for="r-tel" data-en="Phone (WhatsApp) *">Téléphone (WhatsApp) *</label><input id="r-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 6 00 00 00 00"><span class="err"></span></div>
+          <div class="champ"><label for="r-msg" data-en="Special request (optional)">Demande particulière (facultatif)</label><textarea id="r-msg" rows="2" data-en-ph="Honeymoon, airport transfer, baby cot…" placeholder="Lune de miel, transfert aéroport, lit bébé…"></textarea></div>
+          <div class="envois">
+            <button class="btn btn-plein" type="submit" data-via="wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Book on WhatsApp">Réserver sur WhatsApp</span></button>
+            <button class="btn btn-ligne btn-mail" type="submit" data-via="mail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zm1.5 1.5v.6l7.5 5.6 7.5-5.6v-.6z"/></svg><span data-en="Book by email">Réserver par e-mail</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="bloc">
+      <div class="tete" style="justify-content:center;text-align:center"><div><span class="sur" data-en="Good to know">Bon à savoir</span><h2 data-en="Your <em>questions.</em>">Vos <em>questions.</em></h2></div></div>
+      <div class="faq">
+        <details class="rv"><summary data-en="What time are check-in and check-out?">À quelle heure arriver et partir ?</summary><p data-en="Check-in from 2 pm, check-out until 11 am. Arriving early? Your room is ready if available, and the pool is yours in the meantime.">Arrivée à partir de 14 h, départ jusqu'à 11 h. Vous arrivez tôt ? La chambre est prête si elle est libre, et la piscine vous attend en attendant.</p></details>
+        <details class="rv"><summary data-en="Can you pick us up at the airport?">Pouvez-vous venir nous chercher à l'aéroport ?</summary><p data-en="Yes, a private transfer can be added to your booking. Just mention it in your message.">Oui, un transfert privé peut être ajouté à votre réservation. Il suffit de l'indiquer dans votre message.</p></details>
+        <details class="rv"><summary data-en="How do I pay?">Comment payer ?</summary><p data-en="Nothing to pay online: you pay on arrival by card, mobile money or cash. Free cancellation up to 7 days before.">Rien à payer en ligne : vous réglez à l'arrivée par carte, mobile money ou espèces. Annulation gratuite jusqu'à 7 jours avant.</p></details>
+        <details class="rv"><summary data-en="Are children welcome?">Les enfants sont-ils les bienvenus ?</summary><p data-en="Of course. Baby cots and extra beds are free on request in the Bamboo suite and the Thatched villa.">Bien sûr. Lit bébé et lit d'appoint offerts sur demande dans la suite Bambou et la villa Chaume.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="chambres-sec">
+    <div class="bloc contact-grille">
+      <div class="rv">
+        <span class="sur" data-en="Contact">Contact</span>
+        <h2 data-en="A question? <em>We answer within 10 minutes.</em>">Une question ? <em>Réponse en 10 minutes.</em></h2>
+        <a class="canal" href="#" data-contact="whatsapp"><i><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg></i><div><b>WhatsApp · +000 000 000 000</b><span data-en="Fictional number · 7am – 11pm">Numéro fictif · 7 h – 23 h</span></div></a>
+        <a class="canal" href="#" data-contact="email"><i><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zm1.5 1.5v.6l7.5 5.6 7.5-5.6v-.6z"/></svg></i><div><b>sejours@pwani.example</b><span data-en="Fictional address · reply within the hour">Adresse fictive · réponse dans l'heure</span></div></a>
+        <a class="canal" href="#" data-contact="map"><i><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg></i><div><b data-en="Lagoon Road, by the ocean">Route du Lagon, bord de l'océan</b><span data-en="Fictional address · get directions">Adresse fictive · itinéraire</span></div></a>
+      </div>
+      <div class="contact-img rv"><img src="img/maison-l.webp" width="787" height="1219" alt="Le lodge Pwani au coucher du soleil" loading="lazy"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="bloc">
+    <div class="pied">
+      <div><a class="logo" href="#" aria-label="Pwani"><svg viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="20" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M12 22 21 11l9 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 21h16" stroke="currentColor" stroke-width="1.4"/><circle cx="29.5" cy="13" r="2.6" fill="#E07A55"/><path d="M9 27c3-2 5-2 8 0s5 2 8 0 5-2 8 0M11 32c3-2 5-2 7.5 0s5 2 7.5 0 4.5-2 6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><b>PWANI</b><small data-en="Lodge & Spa · by the ocean">Lodge &amp; Spa · bord de l'océan</small></div></a>
+        <p data-en="Twelve suites and villas between the ocean and the palm trees.">Douze suites et villas entre l'océan et les palmiers.</p>
+        <div class="reseaux"><a href="#" data-contact="social" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 2c-2.7 0-3 0-4.1.1C4.3 2.3 2.3 4.3 2.1 7.9 2 9 2 9.3 2 12s0 3 .1 4.1c.2 3.6 2.2 5.6 5.8 5.8 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c3.6-.2 5.6-2.2 5.8-5.8.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c-.2-3.6-2.2-5.6-5.8-5.8C15 2 14.7 2 12 2Z"/></svg></a><a href="#" data-contact="social" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4a22 22 0 0 0-2.5-.1c-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8Z"/></svg></a></div></div>
+      <div><h4 data-en="Explore">Explorer</h4><ul><li><a href="#lodge" data-en="The lodge">Le lodge</a></li><li><a href="#chambres" data-en="Rooms">Chambres</a></li><li><a href="#experiences" data-en="Experiences">Expériences</a></li><li><a href="#galerie" data-en="Gallery">Galerie</a></li></ul></div>
+      <div><h4 data-en="Stay">Séjour</h4><ul><li><a href="#reserver" data-en="Availability">Disponibilités</a></li><li><a href="#faq" data-en="Good to know">Bon à savoir</a></li><li data-en="Check-in 2 pm · out 11 am">Arrivée 14 h · départ 11 h</li></ul></div>
+      <div><h4 data-en="Contact">Contact</h4><ul><li><a href="#" data-contact="whatsapp">WhatsApp</a></li><li><a href="#" data-contact="email">sejours@pwani.example</a></li><li data-en="Fictional address">Adresse fictive</li></ul></div>
+    </div>
+    <div class="bas"><span>© 2026 Pwani Lodge &amp; Spa · <span data-en="Fictional hotel, demo website">Hôtel fictif, site de démonstration</span></span><span data-en="Designed and built by <a href='../../'>Lumen Web</a>">Conçu et réalisé par <a href="../../">Lumen Web</a></span></div>
+  </div>
+</footer>
+
+<a class="wa" href="#" data-contact="whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg></a>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo en grand" hidden><img alt=""><p></p><button type="button" class="fermer" aria-label="Fermer">✕</button><button type="button" class="prec" aria-label="Précédente">‹</button><button type="button" class="suiv" aria-label="Suivante">›</button></div>
+
+<div class="modale" id="fiche" role="dialog" aria-modal="true" aria-labelledby="fi-nom" hidden>
+  <div class="fiche-boite"><button type="button" class="x" aria-label="Fermer">✕</button><div class="ph"><img alt=""></div>
+    <div class="info"><span class="sur" id="fi-sur"></span><h3 id="fi-nom"></h3><p id="fi-desc" style="color:var(--doux)"></p><ul id="fi-liste"></ul><div class="bas-f"><div class="prix" id="fi-prix"></div><button type="button" class="btn btn-plein" id="fi-choisir"></button></div></div></div>
+</div>
+
+<div class="modale" id="msg" role="dialog" aria-modal="true" aria-labelledby="msg-titre" hidden>
+  <div class="msg-boite">
+    <div class="msg-tete"><div class="av">P</div><div><b id="msg-titre">Pwani</b><small id="msg-sous"></small></div></div>
+    <div class="mail-tete"><div><span data-en="To">À</span> <b>sejours@pwani.example</b></div><div><span data-en="Subject">Objet</span> <b id="mail-objet"></b></div></div>
+    <div class="msg-fil"><div class="bulle" id="bulle"></div></div>
+    <div class="msg-bas"><p id="msg-explique"></p><div class="actions"><a class="btn btn-plein" href="../../?utm_campaign=demo-pwani#commander" data-en="I want this website">Je veux ce site</a><button type="button" class="btn btn-ligne" id="msg-fermer" data-en="Close">Fermer</button></div></div>
+  </div>
+</div>
+
+<script src="../demo.js"></script>
+<script src="pwani.js"></script>
+<script>window.ANIM={marque:"PWANI",fond:"#0F3B3A",texte:"#F5EFE6",accent:"#E07A55",police:"'Cormorant Garamond',Georgia,serif",signature:"pwani"};</script>
+<script src="../vendor/gsap.min.js"></script><script src="../vendor/ScrollTrigger.min.js"></script><script src="../vendor/lenis.min.js"></script><script src="../anim.js"></script>
+</body>
+</html>

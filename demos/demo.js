@@ -28,12 +28,14 @@
           phone: "Sur le vrai site, ce bouton <b>appelle l'entreprise</b> en un geste depuis le téléphone.",
           map: "Sur le vrai site, ce bouton ouvre l'<b>itinéraire dans Google Maps</b>.",
           form: "Sur le vrai site, cette demande arrive chez l'entreprise par <b>WhatsApp ou par e-mail</b>, au choix.",
+          social: "Sur le vrai site, ce bouton ouvre la <b>page Instagram, TikTok ou Facebook</b> de l'entreprise.",
           sub: "Cette entreprise est fictive : rien n'a été envoyé.", cta: "Je veux un site comme celui-ci", close: "Fermer" },
     en: { t: "This is a demo", whatsapp: "On the real website, this button opens the <b>business's WhatsApp</b> with a ready-written message.",
           email: "On the real website, this button opens the visitor's <b>email app</b>, addressed to the business.",
           phone: "On the real website, this button <b>calls the business</b> in one tap from a phone.",
           map: "On the real website, this button opens <b>directions in Google Maps</b>.",
           form: "On the real website, this request reaches the business by <b>WhatsApp or email</b>, as they prefer.",
+          social: "On the real website, this button opens the business's <b>Instagram, TikTok or Facebook page</b>.",
           sub: "This business is fictional: nothing was sent.", cta: "I want a website like this", close: "Close" }
   };
   var modal = document.createElement("div");

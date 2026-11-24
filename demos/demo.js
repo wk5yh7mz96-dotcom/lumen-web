@@ -66,10 +66,10 @@
 
   /* Bouton « Retour à Lumen Web » */
   var ret = document.createElement("a"); ret.className = "lw-retour"; ret.href = "../../#realisations";
-  function retTexte() { ret.innerHTML = '<span aria-hidden="true">←</span> ' + (lang === "en" ? "Back to Lumen Web" : "Retour à Lumen Web"); }
+  function retTexte() { ret.innerHTML = '<span aria-hidden="true">←</span> <em class="t">' + (lang === "en" ? "Back to " : "Retour à ") + '</em>Lumen Web'; ret.setAttribute("aria-label", lang === "en" ? "Back to Lumen Web" : "Retour à Lumen Web"); }
   retTexte(); document.body.appendChild(ret);
   // se cache en bas de page pour ne pas couvrir le pied de page
-  var finPage = function () { ret.classList.toggle("cache", innerHeight + scrollY > document.documentElement.scrollHeight - 160); };
+  var finPage = function () { ret.classList.toggle("cache", scrollY < innerHeight * .6 || innerHeight + scrollY > document.documentElement.scrollHeight - 160); };
   addEventListener("scroll", finPage, { passive: true }); finPage();
   $$(".lg button").forEach(function (b) { b.addEventListener("click", retTexte); });
   ret.addEventListener("click", function (e) {
@@ -84,7 +84,7 @@
     ".lw-retour:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.28)}" +
     ".lw-retour span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#16162A;color:#fff;font-size:13px;line-height:1}" +
     ".lw-retour.cache{opacity:0;pointer-events:none;transform:translateY(10px)}" +
-    "@media (max-width:640px){.lw-retour{left:12px;bottom:22px;font-size:12.5px;padding:9px 14px 9px 10px}}";
+    ".lw-retour .t{font-style:normal}@media (max-width:640px){.lw-retour{left:12px;bottom:24px;font-size:12px;padding:8px 12px 8px 8px}.lw-retour .t{display:none}}";
   document.head.appendChild(st2);
 
   /* Menu mobile */

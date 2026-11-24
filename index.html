@@ -686,7 +686,7 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
       <a href="https://lestagiaire-ia.netlify.app" target="_blank" rel="noopener">Le Stagiaire & l'IA</a>
       <a href="demos/nyanja/" data-t="d1h">Restaurant</a>
       <a href="demos/pwani/" data-t="d2h">Hôtel & lodge</a>
-      <a href="demos/clinique/" data-t="d3h">Clinique</a>
+      <a href="demos/afya/" data-t="d3h">Clinique</a>
     </div>
   </section>
 
@@ -1053,8 +1053,8 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
     if (i === vIdx && !force) return;
     vIdx = i; const d = DEMOS[i];
     vit.querySelectorAll(".onglets button").forEach((b, j) => { b.classList.toggle("on", j === i); b.setAttribute("aria-selected", j === i); });
-    vit.querySelector(".url").textContent = "lumen-web-africa.onrender.com/demos/" + (d === "restaurant" ? "nyanja" : d === "hotel" ? "pwani" : d);
-    document.getElementById("v-lien").href = "demos/" + (d === "restaurant" ? "nyanja" : d === "hotel" ? "pwani" : d) + "/";
+    vit.querySelector(".url").textContent = "lumen-web-africa.onrender.com/demos/" + (d === "restaurant" ? "nyanja" : d === "hotel" ? "pwani" : "afya");
+    document.getElementById("v-lien").href = "demos/" + (d === "restaurant" ? "nyanja" : d === "hotel" ? "pwani" : "afya") + "/";
     let restant = 2;
     [vPc, vTel].forEach(img => {
       img.classList.add("cache");
@@ -1269,16 +1269,16 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
     hotel: { url:"demos/pwani/",
       fr:{ t:"Pwani", d:"Démonstration d'un site d'hôtel qui remplit les chambres : disponibilités en direct et prix total calculé avant de réserver.", p:["Calendrier de disponibilités sur 2 mois","Prix total, taxes et économie affichés","Fiches chambres, prix dans 7 monnaies","Réservation WhatsApp ou e-mail"], v:"Ouvrir la démo" },
       en:{ t:"Pwani", d:"A hotel website that fills rooms: live availability and the total price shown before booking.", p:["2-month availability calendar","Total price, taxes and savings shown","Room details, prices in 7 currencies","Booking by WhatsApp or email"], v:"Open the demo" } },
-    clinique: { url:"demos/clinique/",
-      fr:{ t:"Clinique Espoir+", d:"Démonstration d'un site de clinique : rassurant, clair, et rendez-vous en 30 secondes.", p:["Prise de rendez-vous immédiate","Services, médecins et horaires","Urgences joignables en un geste","Pensé d'abord pour le téléphone"], v:"Ouvrir la démo" },
-      en:{ t:"Clinique Espoir+", d:"Clinic website demo: reassuring, clear, and appointments in 30 seconds.", p:["Instant appointment booking","Services, doctors and opening hours","Emergencies reachable in one tap","Designed mobile-first"], v:"Open the demo" } }
+    clinique: { url:"demos/afya/",
+      fr:{ t:"Afya", d:"Démonstration d'un site de clinique qui rassure et remplit l'agenda : rendez-vous en ligne en une minute, créneaux en temps réel.", p:["Rendez-vous en 3 étapes, créneaux par médecin","Orienteur : « qui dois-je consulter ? »","Prix clairs, ouvert / fermé en direct","Confirmation WhatsApp ou e-mail + agenda"], v:"Ouvrir la démo" },
+      en:{ t:"Afya", d:"A clinic website that reassures and fills the diary: online booking in one minute, real-time slots.", p:["3-step booking, slots per doctor","Guide: “who should I see?”","Clear prices, live open/closed status","WhatsApp or email confirmation + calendar"], v:"Open the demo" } }
   };
   const OEUVRES = [
     ["stagiaire","stagiaire",0,{fr:"Accueil",en:"Home"}],
     ["r-accueil","restaurant",0,{fr:"Accueil",en:"Home"}],["r-tel","restaurant",1,{fr:"Sur téléphone",en:"On mobile"}],["r-plats","restaurant",0,{fr:"Plats signature",en:"Signature dishes"}],
     ["r-carte","restaurant",0,{fr:"La carte",en:"The menu"}],["r-galerie","restaurant",0,{fr:"Galerie",en:"Gallery"}],
     ["h-accueil","hotel",0,{fr:"Accueil",en:"Home"}],["h-chambres","hotel",0,{fr:"Chambres",en:"Rooms"}],["h-tel","hotel",1,{fr:"Sur téléphone",en:"On mobile"}],["h-exp","hotel",0,{fr:"Expériences",en:"Experiences"}],
-    ["c-accueil","clinique",0,{fr:"Accueil",en:"Home"}],["c-services","clinique",0,{fr:"Services",en:"Services"}],["c-tel","clinique",1,{fr:"Sur téléphone",en:"On mobile"}],["c-medecins","clinique",0,{fr:"Médecins",en:"Doctors"}]
+    ["c-accueil","clinique",0,{fr:"Accueil",en:"Home"}],["c-services","clinique",0,{fr:"Soins et prix",en:"Care and prices"}],["c-tel","clinique",1,{fr:"Sur téléphone",en:"On mobile"}],["c-medecins","clinique",0,{fr:"Rendez-vous en ligne",en:"Online booking"}]
   ];
   const gImg = (id) => id === "stagiaire" ? "galerie/stagiaire.webp" : `galerie/${id}-${lang}.webp`;
   const gMonde = document.getElementById("g-monde"), gPiste = document.getElementById("g-piste"), gLeg = document.getElementById("g-leg");

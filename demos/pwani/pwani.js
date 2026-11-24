@@ -37,11 +37,14 @@
 
   /* Rendu chambres */
   function rendreChambres() {
-    $("#chambres-grille").innerHTML = CH.map(c => { const L = en() ? c.en : c.fr, rest = Math.max(2, Math.round(libresCeMois(c) / 6));
-      return `<article class="ch" data-id="${c.id}" tabindex="0" role="button" aria-label="${L[0]}">
-        <div class="ph"><img src="img/${c.img}-s.webp" width="${c.dim[0]}" height="${c.dim[1]}" alt="${L[0]}" loading="lazy"><span class="tag">${c.tag[en() ? 1 : 0]}</span><span class="reste">🔥 ${T(`Plus que ${rest} nuits libres ce mois`, `Only ${rest} nights left this month`)}</span></div>
-        <div class="info"><h3>${L[0]}</h3><div class="specs"><span>${c.m2} m²</span><span>· ${T("jusqu'à", "up to")} ${c.pers} ${T("pers.", "guests")}</span><span>· ${T("petit-déj. inclus", "breakfast incl.")}</span></div><p>${L[1]}</p>
-        <div class="bas"><div class="prix"><small>${T("à partir de", "from")}</small><b>${prix(c.p)}</b> <span>/ ${T("nuit", "night")}</span></div><button type="button" class="btn btn-plein" data-choisir="${c.id}">${T("Choisir", "Select")}</button></div></div></article>`; }).join("");
+    $("#chambres-grille").innerHTML = CH.map((c, i) => { const L = en() ? c.en : c.fr, rest = Math.max(2, Math.round(libresCeMois(c) / 6));
+      return `<article class="ch rv">
+        <div class="ph" data-id="${c.id}" tabindex="0" role="button" aria-label="${L[0]} : ${T("voir la suite", "see the suite")}"><img src="img/${c.img}-l.webp" width="${c.dim[0]}" height="${c.dim[1]}" alt="${L[0]}" loading="lazy"></div>
+        <div><div class="num">0${i + 1}</div><span class="rare">${c.tag[en() ? 1 : 0]} · ${T(`plus que ${rest} nuits libres ce mois`, `only ${rest} nights left this month`)}</span>
+        <h3>${L[0]}</h3><p>${L[1]}</p>
+        <dl><dt>${T("Surface", "Size")}</dt><dd>${c.m2} m²</dd><dt>${T("Capacité", "Sleeps")}</dt><dd>${T("jusqu'à", "up to")} ${c.pers} ${T("personnes", "guests")}</dd><dt>${T("Inclus", "Included")}</dt><dd>${L[2].slice(0, 3).join(" · ")}</dd></dl>
+        <div class="prix"><span>${T("à partir de", "from")}</span><b>${prix(c.p)}</b><span>/ ${T("nuit", "night")}</span></div>
+        <div class="actions"><button type="button" class="bt" data-choisir="${c.id}">${T("Réserver cette suite", "Book this suite")}</button><button type="button" class="lien" data-fiche="${c.id}">${T("Découvrir", "Discover")}</button></div></div></article>`; }).join("");
     $("#choix-ch").innerHTML = CH.map(c => `<button type="button" role="radio" aria-checked="${c.id === chId}" data-ch="${c.id}">${(en() ? c.en : c.fr)[0]}<span>${prix(c.p)} / ${T("nuit", "night")}</span></button>`).join("");
   }
   function choisir(id, aller) {
@@ -76,7 +79,7 @@
   function recap() {
     const n = nuits(), s = totalNuits(), tx = Math.round(s * .1);
     const txt = deb && fin ? `${fmt(deb)} → ${fmt(fin)}` : deb ? `${fmt(deb)} → ${T("choisissez le départ", "choose check-out")}` : T("Choisissez vos dates", "Choose your dates");
-    $("#r-dates").textContent = txt; $("#barre-dates").textContent = deb && fin ? `${fmt(deb)} → ${fmt(fin)}` : T("Choisir", "Choose");
+    $("#r-dates").textContent = txt; $("#barre-dates").textContent = deb && fin ? `${fmt(deb)} — ${fmt(fin)}` : T("Choisir", "Choose");
     $("#r-pers").textContent = pers; $("#barre-pers").value = Math.min(pers, 4);
     $("#r-calc").textContent = n ? `${n} ${T(n > 1 ? "nuits" : "nuit", n > 1 ? "nights" : "night")} · ${(en() ? ch().en : ch().fr)[0]}` : T("Séjour", "Stay");
     $("#r-sous").textContent = n ? prix(s) : "—"; $("#r-taxes").textContent = n ? prix(tx) : "—"; $("#r-total").textContent = n ? prix(s + tx) : "—";
@@ -100,14 +103,14 @@
     fiche.querySelector(".ph img").src = `img/${c.img}-l.webp`; fiche.querySelector(".ph img").alt = L[0];
     $("#fi-sur").textContent = `${c.m2} m² · ${T("jusqu'à", "up to")} ${c.pers} ${T("personnes", "guests")}`; $("#fi-nom").textContent = L[0]; $("#fi-desc").textContent = L[1];
     $("#fi-liste").innerHTML = L[2].map(x => `<li>${x}</li>`).join("");
-    $("#fi-prix").innerHTML = `<small style="display:block;color:var(--doux);font-size:12px">${T("à partir de", "from")}</small><b style="font:500 36px var(--serif)">${prix(c.p)}</b> <span style="color:var(--doux)">/ ${T("nuit", "night")}</span>`;
-    $("#fi-choisir").textContent = T("Choisir cette chambre", "Select this room"); fiche.hidden = false; fiche.querySelector(".x").focus(); }
+    $("#fi-prix").innerHTML = `<small style="display:block;color:var(--doux);font-size:12px">${T("à partir de", "from")}</small><b style="font:300 42px var(--serif)">${prix(c.p)}</b> <span style="color:var(--doux)">/ ${T("nuit", "night")}</span>`;
+    $("#fi-choisir").textContent = T("Réserver cette suite", "Book this suite"); fiche.hidden = false; fiche.querySelector(".x").focus(); }
   const fermerF = () => { fiche.hidden = true; if (avantF) avantF.focus(); };
   fiche.querySelector(".x").onclick = fermerF; fiche.addEventListener("click", e => { if (e.target === fiche) fermerF(); });
   $("#fi-choisir").onclick = () => { fermerF(); choisir(ficheId, true); };
   document.addEventListener("click", e => { const c = e.target.closest("[data-choisir]"); if (c) { e.stopPropagation(); choisir(c.dataset.choisir, true); return; }
-    const a = e.target.closest(".ch[data-id]"); if (a) ouvrirFiche(a.dataset.id); });
-  document.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".ch[data-id]")) { e.preventDefault(); ouvrirFiche(e.target.dataset.id); }
+    const a = e.target.closest(".ph[data-id], [data-fiche]"); if (a) ouvrirFiche(a.dataset.id || a.dataset.fiche); });
+  document.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".ph[data-id]")) { e.preventDefault(); ouvrirFiche(e.target.dataset.id); }
     if (e.key === "Escape") { if (!fiche.hidden) fermerF(); else if (!$("#msg").hidden) fermerM(); else if (!$("#lb").hidden) fermerLb(); } });
 
   /* Message (démo) */
@@ -154,7 +157,37 @@
     for (let k = 0; k < 40; k++) { const f = new Date(d); f.setDate(f.getDate() + 3); let ok = true; for (let x = new Date(d); x < f; x.setDate(x.getDate() + 1)) if (complet(x)) ok = false;
       if (ok) { deb = new Date(d); fin = f; decal = (deb.getFullYear() - auj.getFullYear()) * 12 + deb.getMonth() - auj.getMonth(); if (innerWidth > 720 && decal > 0) decal--; break; } d.setDate(d.getDate() + 1); } })();
 
+  /* Diaporama d'accueil */
+  (function () {
+    const ims = $$("#diapo img"), traits = $("#traits"); let k = 0, t;
+    traits.innerHTML = ims.map((_, i) => `<button type="button" aria-label="Photo ${i + 1}"><i></i></button>`).join("");
+    const bts = $$("#traits button"), calme = /capture/.test(location.search) || matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const leg = () => { $("#diapo-leg").textContent = ims[k].dataset.leg.split("|")[en() ? 1 : 0]; };
+    function aller(i) {
+      k = (i + ims.length) % ims.length;
+      ims.forEach((m, j) => { m.classList.toggle("on", j === k); if (j === k) m.loading = "eager"; });
+      bts.forEach((b, j) => { b.classList.remove("on"); if (j === k) { void b.offsetWidth; b.classList.add("on"); } });
+      $("#diapo-num").textContent = "0" + (k + 1) + " / 0" + ims.length; leg();
+      clearTimeout(t); if (!calme) t = setTimeout(() => aller(k + 1), 6000);
+    }
+    bts.forEach((b, j) => b.onclick = () => aller(j)); aller(0);
+    $$(".lg button").forEach(b => b.addEventListener("click", () => setTimeout(leg, 0)));
+  })();
+  /* Expériences : flèches */
+  $$("[data-fl]").forEach(b => b.onclick = () => { const s = $("#bande-exp"); s.scrollBy({ left: +b.dataset.fl * (s.querySelector(".xc").offsetWidth + 28), behavior: "smooth" }); });
+  /* Avis : une citation à la fois */
+  (function () {
+    const f = $$("#citation figure"), p = $$("#points button"); let k = 0, t;
+    const voir = i => { k = (i + f.length) % f.length; f.forEach((x, j) => x.classList.toggle("on", j === k)); p.forEach((x, j) => x.classList.toggle("on", j === k)); clearTimeout(t); t = setTimeout(() => voir(k + 1), 7000); };
+    p.forEach((b, j) => b.onclick = () => voir(j)); voir(0);
+  })();
+  /* Lettre d'information (démo) */
+  $("#lettre").addEventListener("submit", e => { e.preventDefault(); const v = $("#lettre-mail").value.trim();
+    $("#lettre-ok").textContent = /^\S+@\S+\.\S+$/.test(v) ? T("Merci ! Sur le vrai site, vous seriez inscrit(e). Ici, rien n'a été envoyé.", "Thank you! On the real website you'd be subscribed. Nothing was sent here.") : T("Indiquez une adresse e-mail valide.", "Please enter a valid email."); });
+
   function toutRendre() { rendreDev(); rendreChambres(); rendreCal(); recap(); }
   toutRendre();
   $$(".lg button").forEach(b => b.addEventListener("click", () => setTimeout(toutRendre, 0)));
 })();
+/* Le bouton WhatsApp flottant attend la fin de l accueil (il ne cache plus le bouton Disponibilités) */
+(function(){var w=document.querySelector(".wa");if(!w)return;w.style.transition="opacity .4s,transform .4s";var f=function(){var c=scrollY<innerHeight*.6;w.style.opacity=c?0:1;w.style.pointerEvents=c?"none":"";w.style.transform=c?"translateY(10px)":"";};addEventListener("scroll",f,{passive:true});f();})();

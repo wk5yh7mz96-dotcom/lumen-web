@@ -68,7 +68,7 @@
   gsap.to(barre, { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
 
   /* Titre et image d'accueil */
-  var hero = document.querySelector(".hero"), heroImg = hero && hero.querySelector("img"), heroH1 = hero && hero.querySelector("h1");
+  var hero = document.querySelector(".hero"), heroImg = hero && !hero.querySelector(".diapo") && hero.querySelector("img"), heroH1 = hero && hero.querySelector("h1");
   var heroAutres = hero ? $$(".script, small, p, .actions, .puce, .note, .infos, .barre-resa, form", hero).filter(function (e) { return !e.closest("h1"); }) : [];
   var tlHero = gsap.timeline({ paused: true });
   if (heroImg) tlHero.fromTo(heroImg, { scale: 1.25 }, { scale: 1, duration: 2.2, ease: "expo.out" }, 0);

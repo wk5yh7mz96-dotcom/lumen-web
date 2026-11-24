@@ -132,7 +132,7 @@
   .exp-fl{display:flex;gap:10px}
   .exp-fl button{width:58px;height:58px;border:1px solid rgba(255,255,255,.3);background:none;cursor:pointer;font-size:18px;transition:background .3s}
   .exp-fl button:hover{background:var(--laiton);border-color:var(--laiton)}
-  .bande-exp{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-left:max(32px,calc((100vw - 1320px)/2));padding-right:32px}
+  .bande-exp{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(32px,calc((100vw - 1320px)/2));scrollbar-width:none;padding-left:max(32px,calc((100vw - 1320px)/2));padding-right:32px}
   .bande-exp::-webkit-scrollbar{display:none}
   .xc{flex:0 0 min(440px,78vw);scroll-snap-align:start}
   .xc .ph{aspect-ratio:3/4;overflow:hidden}.xc img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s}.xc:hover img{transform:scale(1.04)}
@@ -216,7 +216,7 @@
   /* Pied de page avec grande photo */
   .final{position:relative;min-height:84vh;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden}
   .final img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .final::after{content:"";position:absolute;inset:0;background:rgba(8,26,25,.55)}
+  .final::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(8,26,25,.5),rgba(8,26,25,.72))}
   .final .c{position:relative;z-index:1;padding:0 24px}
   .final h2{color:#fff;margin-bottom:34px}
   .final .bt{background:#fff;color:var(--nuit);border-color:#fff}.final .bt:hover{background:var(--laiton);color:#fff;border-color:var(--laiton)}
@@ -263,7 +263,8 @@
 
   @media (max-width:1080px){
     header .bloc{grid-template-columns:auto 1fr auto}
-    header nav{display:none}.burger{display:block}
+    header nav.g{display:none}.burger{display:block}header .droite-m{gap:0}
+    .burger i,.burger i::after{transition:transform .35s,top .35s,width .35s}.burger[aria-expanded=true] i{transform:rotate(45deg)}.burger[aria-expanded=true] i::after{top:0;width:26px;transform:rotate(-90deg)}
     header .logo{justify-self:center}
     header nav.ouvert{display:flex;position:fixed;inset:0;flex-direction:column;justify-content:center;align-items:center;gap:26px;background:var(--nuit);color:var(--ivoire);font:300 34px var(--serif);letter-spacing:.04em;text-transform:none;z-index:-1}
     .barre .bloc{grid-template-columns:1fr 1fr 1fr;min-height:0}
@@ -283,7 +284,7 @@
     .logo b{font-size:26px}.logo small{font-size:8px;letter-spacing:.4em}
     .demo-pastille{top:80px;font-size:9px;letter-spacing:.1em;white-space:normal;width:90%;text-align:center;line-height:1.6}
     .barre .cell:not(:first-child){display:none}.barre .cell:first-child{border-top:0}.barre .bt{margin:0 0 14px}
-    .hero-txt{transform:translateY(-62%)}.hero p{font-size:15.5px}.diapo-nav{top:auto;bottom:150px}
+    .hero-txt{transform:translateY(-62%)}.hero-txt .kicker{letter-spacing:.22em;font-size:10px;line-height:1.9}.hero p{font-size:15.5px}.diapo-nav{top:auto;bottom:150px}
     .barre .bloc{grid-template-columns:1fr 1fr}.barre .cell:first-child{grid-column:1/-1;padding-left:18px}
     .barre b,.barre select{font-size:21px}
     .diapo-nav{right:18px}.diapo-leg{display:none}
@@ -327,7 +328,7 @@
     <div class="diapo" id="diapo">
       <img class="on" src="img/vue-l.webp" width="1000" height="1500" alt="Le lodge vu du ciel, sa piscine et son ponton sur le lagon" fetchpriority="high" data-leg="Le ponton sur le lagon|The jetty over the lagoon">
       <img src="img/maison-l.webp" width="787" height="1219" alt="Le bâtiment principal sous le chaume, face à la piscine" loading="lazy" data-leg="La maison principale|The main house">
-      <img src="img/villas-piscine-l.webp" width="675" height="1200" alt="Les villas face à la piscine" loading="lazy" data-leg="Les villas de la piscine|The pool villas">
+      <img src="img/petit-dej-l.webp" width="1200" height="1600" alt="Petit-déjeuner flottant sur la piscine" loading="lazy" data-leg="Le petit-déjeuner sur la piscine|Breakfast on the pool">
       <img src="img/cocon-l.webp" width="1000" height="1499" alt="La suite Cocon sous sa voûte de bambou" loading="lazy" data-leg="La suite Cocon|The Cocoon suite">
     </div>
     <p class="demo-pastille"><span data-en="Demo by Lumen Web · fictional hotel ·">Démo Lumen Web · hôtel fictif ·</span> <a href="../../?utm_campaign=demo-pwani#commander" data-en="I want the same">Je veux la même</a></p>
@@ -472,7 +473,7 @@
 
   <!-- Final -->
   <section class="final" style="padding:120px 0">
-    <img src="img/villas-piscine-l.webp" width="675" height="1200" alt="" loading="lazy">
+    <img src="img/vue-l.webp" width="1000" height="1500" alt="" loading="lazy" style="object-position:50% 70%">
     <div class="c">
       <span class="kicker" style="color:#E4CFA9" data-en="See you soon">À très bientôt</span>
       <h2 data-en="The ocean <i>is waiting.</i>">L'océan <i>vous attend.</i></h2>

@@ -134,7 +134,8 @@
     html.classList.add("lw-curseur");
     var c = document.createElement("div"), r = document.createElement("div"); c.className = "lw-c"; r.className = "lw-r"; document.body.appendChild(c); document.body.appendChild(r);
     var xc = gsap.quickTo(c, "x", { duration: .12 }), yc = gsap.quickTo(c, "y", { duration: .12 }), xr = gsap.quickTo(r, "x", { duration: .45, ease: "power3" }), yr = gsap.quickTo(r, "y", { duration: .45, ease: "power3" });
-    addEventListener("pointermove", function (e) { xc(e.clientX); yc(e.clientY); xr(e.clientX); yr(e.clientY); });
+    c.style.opacity = r.style.opacity = 0; /* invisible tant que la souris n a pas bougé */
+    addEventListener("pointermove", function (e) { c.style.opacity = r.style.opacity = ""; xc(e.clientX); yc(e.clientY); xr(e.clientX); yr(e.clientY); });
     document.addEventListener("pointerover", function (e) { r.classList.toggle("sur", !!(e.target.closest && e.target.closest("a,button,summary,select,input,textarea,label"))); });
     $$(".btn, .wa, header a.btn").forEach(function (b) {
       b.addEventListener("pointermove", function (e) { var k = b.getBoundingClientRect(); gsap.to(b, { x: (e.clientX - k.left - k.width / 2) * .28, y: (e.clientY - k.top - k.height / 2) * .38, duration: .4, ease: "power3.out" }); });

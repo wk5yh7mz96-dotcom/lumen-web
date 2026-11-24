@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nyanja · Restaurant africain à Kampala · Ouvert 24 h/24</title>
-<meta name="description" content="Nyanja, restaurant de cuisine africaine à Kampala : jollof, egusi et igname pilée, pepper soup, ofada. Ouvert 24 h/24. Réservez votre table sur WhatsApp.">
+<title>Nyanja · Cuisine africaine au bord du lac · Ouvert 24 h/24</title>
+<meta name="description" content="Nyanja, restaurant de cuisine africaine au bord du lac : jollof, egusi et igname pilée, pepper soup, ofada. Commande en ligne, réservation sur WhatsApp, ouvert 24 h/24.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#1E1814">
 <meta property="og:type" content="restaurant">
 <meta property="og:title" content="Nyanja · Le goût de chez nous, servi jour et nuit">
-<meta property="og:description" content="Cuisine africaine faite maison, à Kampala. Ouvert 24 h/24.">
+<meta property="og:description" content="Cuisine africaine faite maison, au bord du lac. Ouvert 24 h/24.">
 <meta property="og:image" content="img/egusi-igname-l.webp">
 <link rel="icon" href="../../favicon.png">
 <link rel="preload" as="image" href="img/egusi-igname-l.webp" imagesrcset="img/egusi-igname-s.webp 600w, img/egusi-igname-l.webp 1008w" imagesizes="(min-width:1080px) 56vw, 100vw">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Restaurant","name":"Nyanja","description":"Restaurant de cuisine africaine (site de démonstration, établissement fictif).","servesCuisine":["Africaine","Nigériane","Ouest-africaine","Ougandaise"],"priceRange":"UGX 12 000 – 45 000","address":{"@type":"PostalAddress","addressLocality":"Kampala","addressCountry":"UG"},"openingHours":"Mo-Su 00:00-23:59","acceptsReservations":"True"}
+{"@context":"https://schema.org","@type":"Restaurant","name":"Nyanja","description":"Restaurant de cuisine africaine (site de démonstration, établissement fictif).","servesCuisine":["Africaine","Nigériane","Ouest-africaine","Ougandaise"],"priceRange":"UGX 12 000 – 45 000","openingHours":"Mo-Su 00:00-23:59","acceptsReservations":"True"}
 </script>
 <style>
   /* Règle 60-30-10 : 60 % crème mil · 30 % ébène cacao · 10 % terre cuite piment */
@@ -297,6 +297,130 @@
     .lb .prec,.lb .suiv{top:auto;bottom:70px}
   }
   @media (min-width:1080px) and (max-height:820px){.hero h1{font-size:clamp(44px,9.5vh,84px)}.hero .bloc{padding:112px 0 56px}.hero p.accroche{margin:18px 0 26px}.badge-rond{width:112px;height:112px;bottom:54px}.badge-rond span{font-size:23px}.defiler{display:none}}
+
+  /* Devise, plats signature cliquables */
+  .plat{cursor:pointer}
+  .plat .ajout{position:absolute;right:16px;top:calc(100% * 0);}
+  .plat .ph{position:relative}
+  .plat .plus{position:absolute;right:14px;bottom:14px;width:48px;height:48px;border-radius:50%;border:0;background:var(--piment);color:#fff;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 10px 24px -8px rgba(200,83,43,.9);transition:transform .2s}
+  .plat .plus:hover{transform:scale(1.08)}
+  .piment{color:var(--piment);letter-spacing:1px;font-size:13px}
+  .cmd-bandeau{margin-top:56px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--ebene);color:var(--creme);border-radius:22px;padding:26px 32px}
+  .cmd-bandeau b{display:block;font:400 26px var(--serif)}.cmd-bandeau span{color:#CDBFB1;font-size:15px}
+  /* Ambiance */
+  .ambiance{position:relative;min-height:78vh;display:flex;align-items:center;color:#fff;overflow:hidden;background:var(--ebene);text-align:center}
+  .ambiance img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;filter:saturate(1.1)}
+  .ambiance::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 50%,rgba(30,24,20,.2),rgba(30,24,20,.85))}
+  .ambiance .bloc{position:relative;z-index:1}
+  .ambiance h2{color:#fff}
+  .lecture{width:96px;height:96px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);background:rgba(255,255,255,.12);backdrop-filter:blur(6px);color:#fff;font-size:30px;cursor:pointer;margin:18px auto 22px;display:grid;place-items:center;position:relative;transition:transform .3s,background .3s}
+  .lecture::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(255,255,255,.3);animation:onde 2.4s ease-out infinite}
+  @keyframes onde{from{transform:scale(.85);opacity:1}to{transform:scale(1.35);opacity:0}}
+  .lecture:hover{transform:scale(1.06);background:var(--piment)}
+  .lecture span{margin-left:6px}
+  .video-note{max-width:52ch;margin:0 auto;color:#E4D7C9;font-size:14.5px;border:1px dashed rgba(255,255,255,.35);border-radius:14px;padding:12px 18px}
+  /* Carte interactive */
+  .carte-outils{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;max-width:1040px;margin:0 auto 26px}
+  .devise-choix{display:inline-flex;align-items:center;gap:10px;font:700 13px var(--sans)}
+  .devise{border:1.5px solid var(--filet);border-radius:999px;background:#fff;padding:8px 14px;font:700 13px var(--sans);color:var(--texte);cursor:pointer}
+  .carte-astuce{color:var(--doux);font-size:13.5px}
+  .ligne{display:flex;gap:14px;align-items:center}
+  .ligne .txt{flex:1;cursor:pointer;min-width:0}
+  .ligne .plus{flex:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--piment);background:none;color:var(--piment);font-size:22px;line-height:1;cursor:pointer;transition:background .2s,color .2s}
+  .ligne .plus:hover,.ligne .plus.ok{background:var(--piment);color:#fff}
+  .emporter{max-width:1040px;margin:50px auto 0;display:flex;gap:30px;align-items:center;background:#fff;border:1px solid var(--filet);border-radius:22px;padding:26px}
+  .emporter .qr{flex:none;width:130px;height:130px;border-radius:14px;overflow:hidden;border:1px solid var(--filet)}
+  .emporter b{font:400 26px var(--serif)}.emporter p{color:var(--doux);margin:6px 0 16px;font-size:15px}
+  /* Événements */
+  .evts{background:var(--creme2)}
+  .evt-grille{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+  .evt-cartes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .evt{text-align:left;border:1.5px solid var(--filet);background:var(--creme);border-radius:18px;padding:22px;cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
+  .evt b{display:block;font:400 22px var(--serif);margin-bottom:6px}.evt span{color:var(--doux);font-size:14px}
+  .evt:hover{transform:translateY(-3px)}
+  .evt.on{border-color:var(--piment);background:#fff;box-shadow:0 18px 40px -24px rgba(200,83,43,.6)}
+  form.devis{background:#fff;border-radius:22px;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:16px;border:1px solid var(--filet)}
+  form.devis .btn{grid-column:1/-1;width:100%}
+  /* Carte cadeau */
+  .cadeau-grille{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .carte-k{position:relative;aspect-ratio:1.6;border-radius:26px;padding:34px;color:var(--creme);overflow:hidden;background:linear-gradient(135deg,#2A221C,#1E1814 60%,#3A2418);box-shadow:0 50px 90px -40px rgba(30,24,20,.8);transform:rotate(-4deg);display:flex;flex-direction:column;justify-content:space-between}
+  .carte-k::before{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(200,83,43,.55),transparent 70%)}
+  .ck-haut{display:flex;align-items:center;gap:12px;font:700 12px var(--sans);letter-spacing:.3em;position:relative}
+  .ck-haut svg{width:42px;height:42px}
+  .ck-montant{font:400 clamp(44px,6vw,68px)/1 var(--serif);position:relative}
+  .ck-pour{font:italic 400 20px var(--serif);color:#F0A27F;position:relative}
+  .ck-motif{position:absolute;left:0;right:0;bottom:0;height:10px;background:repeating-linear-gradient(90deg,var(--piment) 0 20px,#F4ECE1 20px 30px,#1E1814 30px 40px)}
+  .ck-texte{color:var(--doux);font-size:17px;margin-bottom:22px}
+  .montants{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+  .montants button{border:1.5px solid var(--filet);background:#fff;border-radius:14px;padding:12px 18px;font:700 15px var(--sans);cursor:pointer;transition:all .2s}
+  .montants button[aria-checked="true"]{background:var(--ebene);color:var(--creme);border-color:var(--ebene)}
+  .cadeau .champ{margin-bottom:14px}
+  .cadeau .btn{margin-top:6px}
+  /* Créneaux */
+  .lbl{font:700 13px var(--sans)}
+  .dispo{display:inline-flex;align-items:center;gap:8px;font:700 13.5px var(--sans);color:#1E7A46;background:#E6F4EA;border-radius:999px;padding:12px 14px}
+  .dispo.peu{color:var(--piment2);background:#FBE7DF}
+  .creneaux{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:8px;margin-top:4px}
+  .creneaux h5{grid-column:1/-1;font:700 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--doux);margin-top:6px}
+  .creneaux button{border:1.5px solid rgba(30,24,20,.16);background:#fff;border-radius:10px;padding:10px 4px;font:700 14px var(--sans);cursor:pointer;transition:all .15s}
+  .creneaux button:hover:not(:disabled){border-color:var(--piment)}
+  .creneaux button[aria-checked="true"]{background:var(--piment);border-color:var(--piment);color:#fff}
+  .creneaux button:disabled{color:#B8AEA6;background:var(--creme2);text-decoration:line-through;cursor:not-allowed}
+  /* Panier */
+  .panier-btn{position:fixed;right:24px;top:96px;z-index:45;display:flex;align-items:center;gap:12px;white-space:nowrap;border:0;border-radius:999px;background:var(--ebene);color:var(--creme);padding:12px 22px 12px 12px;font:700 14px var(--sans);cursor:pointer;box-shadow:0 18px 40px -12px rgba(0,0,0,.55);animation:entre .35s cubic-bezier(.2,.8,.2,1)}
+  .panier-btn[hidden]{display:none}
+  .pb-n{width:30px;height:30px;border-radius:50%;background:var(--piment);display:grid;place-items:center}
+  .panier-btn b{color:#F0A27F}
+  .panier{position:fixed;inset:0;z-index:125}
+  .panier[hidden]{display:none}
+  .pn-voile{position:absolute;inset:0;background:rgba(14,11,9,.55);backdrop-filter:blur(4px)}
+  .pn-boite{position:absolute;right:0;top:0;bottom:0;width:min(460px,100%);background:var(--creme);display:flex;flex-direction:column;animation:glisse .35s cubic-bezier(.2,.8,.2,1)}
+  @keyframes glisse{from{transform:translateX(100%)}}
+  .pn-tete{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--filet)}
+  .pn-tete h3{font-size:28px}
+  .pn-x,.fi-x{width:42px;height:42px;border-radius:50%;border:1px solid var(--filet);background:#fff;cursor:pointer;font-size:15px}
+  .pn-liste{flex:1;overflow:auto;padding:10px 24px}
+  .pn-item{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--filet)}
+  .pn-item b{font:400 18px var(--serif);display:block}.pn-item small{color:var(--doux)}
+  .pn-item .q{display:flex;align-items:center;gap:6px;margin-left:auto}
+  .pn-item .q button{width:32px;height:32px;border-radius:50%;border:1px solid var(--filet);background:#fff;cursor:pointer;font-size:16px}
+  .pn-item .q span{min-width:18px;text-align:center;font-weight:700}
+  .pn-vide{color:var(--doux);text-align:center;padding:40px 10px}
+  .pn-form{padding:18px 24px 24px;border-top:1px solid var(--filet);background:#fff;display:grid;gap:12px}
+  .modes{display:flex;gap:6px;flex-wrap:wrap}
+  .mode{flex:1;border:1.5px solid var(--filet);background:none;border-radius:999px;padding:9px 10px;font:700 12.5px var(--sans);cursor:pointer;white-space:nowrap}
+  .mode.on{background:var(--ebene);color:var(--creme);border-color:var(--ebene)}
+  .pn-form .champ input{padding:11px 13px}
+  .pn-total{display:flex;justify-content:space-between;align-items:baseline;font:700 15px var(--sans)}
+  .pn-total b{font:400 28px var(--serif)}
+  .pn-livr{font-size:12.5px;color:var(--doux);margin-top:-8px}
+  /* Fiche plat */
+  .fiche{position:fixed;inset:0;z-index:126;background:rgba(14,11,9,.7);backdrop-filter:blur(6px);display:grid;place-items:center;padding:18px}
+  .fiche[hidden]{display:none}
+  .fi-boite{position:relative;width:min(940px,100%);max-height:calc(100vh - 36px);overflow:auto;background:var(--creme);border-radius:26px;display:grid;grid-template-columns:1fr 1fr;animation:entre .35s cubic-bezier(.2,.8,.2,1)}
+  .fi-img img{width:100%;height:100%;object-fit:cover;min-height:100%}
+  .fi-info{padding:38px 34px;display:flex;flex-direction:column}
+  .fi-cat{font:700 11.5px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--piment)}
+  .fi-info h3{font-size:clamp(30px,3.4vw,40px);margin:10px 0 12px}
+  .fi-desc{color:var(--doux);font-size:16px}
+  .fi-info dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:24px 0;padding-top:20px;border-top:1px solid var(--filet);font-size:14.5px}
+  .fi-info dt{font-weight:700}.fi-info dd{color:var(--doux)}
+  .fi-bas{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .fi-prix{font:400 32px var(--serif)}
+  .fi-x{position:absolute;top:14px;right:14px;z-index:2}
+  .wa-modale,.fiche,.panier{--x:0}
+  @media (max-width:1080px){.evt-grille,.cadeau-grille{grid-template-columns:1fr;gap:40px}.carte-k{max-width:520px}}
+  @media (max-width:720px){
+    .cmd-bandeau{flex-direction:column;align-items:flex-start;padding:22px}
+    .ligne{gap:10px}.ligne b{font-size:19px}
+    .emporter{flex-direction:column;align-items:flex-start;padding:22px}
+    .evt-cartes{grid-template-columns:1fr 1fr;gap:10px}.evt{padding:16px}.evt b{font-size:18px}
+    form.devis{grid-template-columns:1fr;padding:22px}
+    .carte-k{padding:24px;transform:rotate(-2deg)}
+    .fi-boite{grid-template-columns:1fr}.fi-img{max-height:300px;overflow:hidden}.fi-info{padding:24px 22px}
+    .panier-btn{right:auto;left:50%;transform:translateX(-50%);top:14px;padding:8px 16px 8px 8px;font-size:13px;z-index:46}.panier-btn .pb-n{width:26px;height:26px}
+    .ambiance{min-height:70vh}
+  }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -308,7 +432,7 @@
   <div class="bloc">
     <a class="logo" href="#" aria-label="Nyanja, accueil">
       <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M11 21a9 9 0 0 1 18 0Z" fill="#C8532B"/><path d="M8 25c3-2 5-2 8 0s5 2 8 0 5-2 8 0M10 30c3-2 5-2 7.5 0s5 2 7.5 0 4.5-2 6 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <div><b>NYANJA</b><small data-en="African cuisine · Kampala">Cuisine africaine · Kampala</small></div>
+      <div><b>NYANJA</b><small data-en="African cuisine · by the lake">Cuisine africaine · au bord du lac</small></div>
     </a>
     <nav aria-label="Menu principal">
       <a href="#maison" data-en="Our house">La maison</a>
@@ -332,17 +456,17 @@
     <div class="bloc">
       <div class="infos">
         <span class="pastille"><i></i><span data-en="Open now · 24/7">Ouvert maintenant · 24 h/24</span></span>
-        <span class="pastille" data-en="Kololo · Kampala">Kololo · Kampala</span>
+        <span class="pastille" data-en="Delivery &amp; takeaway">Livraison &amp; à emporter</span>
       </div>
       <h1 data-en="The taste of home, <em>served day and night.</em>">Le goût de chez nous, <em>servi jour et nuit.</em></h1>
-      <p class="accroche" data-en="Smoky jollof, egusi with hand-pounded yam, fiery pepper soup: the great recipes of Africa, cooked slowly and served generously in the heart of Kampala.">Jollof fumé, egusi et igname pilée à la main, pepper soup qui réveille : les grandes recettes d'Afrique, cuisinées lentement et servies généreusement au cœur de Kampala.</p>
+      <p class="accroche" data-en="Smoky jollof, egusi with hand-pounded yam, fiery pepper soup: the great recipes of Africa, cooked slowly and served generously, by the lake.">Jollof fumé, egusi et igname pilée à la main, pepper soup qui réveille : les grandes recettes d'Afrique, cuisinées lentement et servies généreusement, au bord du lac.</p>
       <div class="actions">
         <a class="btn btn-plein" href="#reserver"><span data-en="Book a table">Réserver une table</span> <span aria-hidden="true">→</span></a>
         <a class="btn btn-ligne" href="#carte" data-en="See the menu">Découvrir la carte</a>
       </div>
     </div>
     <div class="badge-rond" aria-hidden="true">
-      <svg viewBox="0 0 150 150"><defs><path id="cercle" d="M75 75m-58 0a58 58 0 1 1 116 0a58 58 0 1 1-116 0"/></defs><text fill="#F4ECE1" style="font:700 11.5px Manrope;letter-spacing:4.2px"><textPath href="#cercle">OUVERT 24H/24 · FAIT MAISON · KAMPALA ·</textPath></text></svg>
+      <svg viewBox="0 0 150 150"><defs><path id="cercle" d="M75 75m-58 0a58 58 0 1 1 116 0a58 58 0 1 1-116 0"/></defs><text fill="#F4ECE1" style="font:700 11.5px Manrope;letter-spacing:4.2px"><textPath href="#cercle">OUVERT 24H/24 · FAIT MAISON · BORD DU LAC ·</textPath></text></svg>
       <span>24h</span>
     </div>
     <div class="defiler" aria-hidden="true"><span data-en="Scroll">Défiler</span><i></i></div>
@@ -364,12 +488,12 @@
       <div class="rv">
         <span class="sur" data-en="Our house">Notre maison</span>
         <h2 data-en="A cuisine of patience, <em>fire and sharing.</em>">Une cuisine de patience, <em>de feu et de partage.</em></h2>
-        <p data-en="At Nyanja, the sauces simmer for hours, the yam is pounded by hand and the jollof gets its smoky taste from the bottom of the pot. Recipes from Lagos, Douala, Kinshasa and Kampala, gathered at one table.">Chez Nyanja, les sauces mijotent des heures, l'igname est pilée à la main et le jollof prend son goût fumé au fond de la marmite. Des recettes de Lagos, Douala, Kinshasa et Kampala, réunies à une même table.</p>
+        <p data-en="At Nyanja, the sauces simmer for hours, the yam is pounded by hand and the jollof gets its smoky taste from the bottom of the pot. Recipes from Lagos, Douala, Kinshasa, Abidjan and Kampala, gathered at one table.">Chez Nyanja, les sauces mijotent des heures, l'igname est pilée à la main et le jollof prend son goût fumé au fond de la marmite. Des recettes de Lagos, Douala, Kinshasa, Abidjan et Kampala, réunies à une même table.</p>
         <p data-en="Here, you come as a guest and leave as family. Day or night, there is always a seat, a plate and a smile waiting for you.">Ici, on arrive en invité et on repart en famille. De jour comme de nuit, il y a toujours une place, une assiette et un sourire qui vous attendent.</p>
         <div class="chef"><div class="init">AN</div><div><b>Amina Nakato</b><span data-en="Head chef & founder (fictional character)">Cheffe et fondatrice (personnage fictif)</span></div></div>
         <div class="chiffres">
           <div><b data-compte>24</b><span data-en="hours a day, 7/7">heures sur 24, 7 j/7</span></div>
-          <div><b data-compte>4</b><span data-en="countries on the menu">pays à la carte</span></div>
+          <div><b data-compte>5</b><span data-en="countries on the menu">pays à la carte</span></div>
           <div><b data-compte>100 %</b><span data-en="homemade, every day">fait maison, chaque jour</span></div>
         </div>
       </div>
@@ -383,20 +507,8 @@
         <div><span class="sur" data-en="Signature dishes">Les incontournables</span><h2 data-en="Dishes people <em>come back for.</em>">Les plats pour lesquels <em>on revient.</em></h2></div>
         <p data-en="Six recipes that tell our story. Served generously, to share — or not.">Six recettes qui racontent notre histoire. Servies généreusement, à partager… ou pas.</p>
       </div>
-      <div class="plats">
-        <article class="plat"><div class="ph"><img src="img/jollof-s.webp" srcset="img/jollof-s.webp 600w, img/jollof-l.webp 951w" sizes="(max-width:720px) 80vw, 33vw" width="600" height="598" alt="Riz jollof et riz sauté, poulet, poisson braisé et sauce arachide" loading="lazy"></div><span class="tag" data-en="Most loved">Le plus aimé</span><span class="prix">35 000 UGX</span>
-          <h3 data-en="Royal jollof">Jollof royal</h3><p data-en="Smoky jollof and fried rice, grilled chicken, braised fish and a creamy groundnut sauce.">Riz jollof fumé et riz sauté, poulet grillé, poisson braisé et sauce arachide onctueuse.</p><div class="mots"><span data-en="Generous">Généreux</span><span data-en="To share">À partager</span></div></article>
-        <article class="plat"><div class="ph"><img src="img/egusi-foufou-s.webp" srcset="img/egusi-foufou-s.webp 600w, img/egusi-foufou-l.webp 948w" sizes="(max-width:720px) 80vw, 33vw" width="600" height="741" alt="Sauce egusi au bœuf et légumes-feuilles avec foufou" loading="lazy"></div><span class="prix">38 000 UGX</span>
-          <h3 data-en="Egusi & fufu">Egusi &amp; foufou</h3><p data-en="Melon-seed sauce with beef and bitter leaves, served with hand-made fufu and a fresh juice.">Sauce aux graines de courge, bœuf et légumes-feuilles, servie avec un foufou fait main.</p><div class="mots"><span data-en="Tradition">Tradition</span><span data-en="Slow-cooked 3 h">Mijoté 3 h</span></div></article>
-        <article class="plat"><div class="ph"><img src="img/pepper-soup-s.webp" srcset="img/pepper-soup-s.webp 600w, img/pepper-soup-l.webp 994w" sizes="(max-width:720px) 80vw, 33vw" width="600" height="663" alt="Pepper soup au poisson-chat dans un bol" loading="lazy"></div><span class="tag" data-en="Spicy">Pimenté</span><span class="prix">32 000 UGX</span>
-          <h3 data-en="Catfish pepper soup">Pepper soup au poisson-chat</h3><p data-en="A fragrant, peppery broth with catfish, utazi leaves and fresh chili. Wakes you up at any hour.">Un bouillon parfumé et poivré, poisson-chat, feuilles d'utazi et piment frais. Il réveille à toute heure.</p><div class="mots"><span data-en="Spicy">Relevé</span><span data-en="Night favourite">Favori de nuit</span></div></article>
-        <article class="plat"><div class="ph"><img src="img/ananas-s.webp" srcset="img/ananas-s.webp 600w, img/ananas-l.webp 991w" sizes="(max-width:720px) 80vw, 33vw" width="600" height="782" alt="Riz sauté servi dans un ananas avec poulet laqué au sésame" loading="lazy"></div><span class="tag" data-en="Signature">Signature</span><span class="prix">34 000 UGX</span>
-          <h3 data-en="Pineapple rice & glazed chicken">Riz ananas &amp; poulet laqué</h3><p data-en="Vegetable fried rice served in a whole pineapple, sticky honey-glazed chicken and sesame.">Riz sauté aux légumes servi dans un ananas entier, poulet laqué au miel et sésame.</p><div class="mots"><span data-en="House creation">Création maison</span></div></article>
-        <article class="plat"><div class="ph"><img src="img/ofada-s.webp" srcset="img/ofada-s.webp 600w, img/ofada-l.webp 995w" sizes="(max-width:720px) 80vw, 33vw" width="600" height="962" alt="Riz ofada, sauce pimentée avec œuf et plantain frit" loading="lazy"></div><span class="prix">28 000 UGX</span>
-          <h3 data-en="Ofada & plantain">Ofada &amp; plantain</h3><p data-en="Local ofada rice, a spicy pepper sauce with egg, and golden fried plantain.">Riz ofada local, sauce aux piments avec œuf, et plantain doré à la poêle.</p><div class="mots"><span data-en="Spicy option">Pimenté au choix</span></div></article>
-        <article class="plat"><div class="ph"><img src="img/ragout-s.webp" srcset="img/ragout-s.webp 600w, img/ragout-l.webp 796w" sizes="(max-width:720px) 80vw, 33vw" width="600" height="752" alt="Ragoût rouge au bœuf et œufs avec riz aux haricots" loading="lazy"></div><span class="prix">30 000 UGX</span>
-          <h3 data-en="House stew">Ragoût de la maison</h3><p data-en="Beef, assorted meats and eggs in a rich red pepper sauce, with rice and beans.">Bœuf, viandes assorties et œufs dans une riche sauce rouge aux poivrons, avec riz aux haricots.</p><div class="mots"><span data-en="Hearty">Copieux</span></div></article>
-      </div>
+      <div class="plats" id="plats-grille"></div>
+      <div class="cmd-bandeau rv"><div><b data-en="Hungry now? Order online.">Une envie maintenant ? Commandez en ligne.</b><span data-en="Delivery, takeaway or ready when you arrive: add your dishes, we prepare everything.">Livraison, à emporter ou prêt à votre arrivée : ajoutez vos plats, on prépare tout.</span></div><a class="btn btn-plein" href="#carte" data-en="Order now">Commander maintenant</a></div>
     </div>
   </section>
 
@@ -435,51 +547,37 @@
     </div>
   </section>
 
+  <!-- Ambiance (vidéo) -->
+  <section class="ambiance" id="ambiance" aria-label="Vidéo d'ambiance">
+    <img src="img/egusi-foufou-l.webp" width="948" height="1171" alt="" loading="lazy">
+    <div class="bloc">
+      <span class="sur" style="color:#F0A27F" data-en="Ambiance">Ambiance</span>
+      <h2 data-en="Thirty seconds <em>at our table.</em>">Trente secondes <em>à notre table.</em></h2>
+      <button type="button" class="lecture" data-contact="video" aria-label="Lire la vidéo d'ambiance"><span aria-hidden="true">▶</span></button>
+      <p class="video-note" data-en="Video placeholder: on the real website, a 30-second film shot in your restaurant plays here (kitchen, service, the room at night).">Emplacement vidéo : sur le vrai site, un film de 30 secondes tourné dans votre restaurant se lance ici (la cuisine, le service, la salle le soir).</p>
+    </div>
+  </section>
+
   <!-- La carte -->
   <section id="carte">
     <div class="bloc">
       <div class="carte-tete">
         <span class="sur" data-en="The menu">La carte</span>
         <h2 data-en="Everything is cooked <em>to order.</em>">Tout est cuisiné <em>à la commande.</em></h2>
-        <p data-en="Prices in Ugandan shillings, service included.">Prix en shillings ougandais, service compris.</p>
+        <p data-en="Choose your currency: prices convert instantly. Service included.">Choisissez votre monnaie : les prix se convertissent instantanément. Service compris.</p>
       </div>
-      <div class="onglets" role="tablist" aria-label="Catégories de la carte">
-        <button type="button" role="tab" aria-selected="true" aria-controls="c1" id="o1" data-en="Starters">Entrées</button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="c2" id="o2" data-en="Mains">Plats</button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="c3" id="o3" data-en="Soups & sauces">Soupes &amp; sauces</button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="c4" id="o4" data-en="Sweets">Douceurs</button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="c5" id="o5" data-en="Drinks">Boissons</button>
+      <div class="carte-outils">
+        <label class="devise-choix"><span data-en="Prices in">Prix en</span> <select class="devise" aria-label="Monnaie"></select></label>
+        <span class="carte-astuce" data-en="Tap a dish to see it, + to add it to your order.">Touchez un plat pour le découvrir, + pour l'ajouter à votre commande.</span>
       </div>
-      <div class="carte" id="c1" role="tabpanel" aria-labelledby="o1">
-        <div class="ligne"><div class="h"><b data-en="Fried plantain (dodo)">Plantain frit (dodo)</b><span class="pts"></span><span class="p">9 000</span></div><small data-en="Golden and caramelised, chili sauce">Doré et caramélisé, sauce pimentée</small><i data-en="VEG">VÉG</i></div>
-        <div class="ligne"><div class="h"><b data-en="Puff-puff">Beignets puff-puff</b><span class="pts"></span><span class="p">8 000</span></div><small data-en="Light and warm, to share">Légers et chauds, à partager</small><i data-en="VEG">VÉG</i></div>
-        <div class="ligne"><div class="h"><b data-en="Beef suya skewers">Brochettes suya</b><span class="pts"></span><span class="p">16 000</span></div><small data-en="Peanut spice, onion, tomato">Épices à l'arachide, oignon, tomate</small><i data-en="SPICY">PIMENTÉ</i></div>
-        <div class="ligne"><div class="h"><b data-en="Avocado salad">Salade d'avocat</b><span class="pts"></span><span class="p">12 000</span></div><small data-en="Tomato, red onion, lime">Tomate, oignon rouge, citron vert</small><i data-en="VEG">VÉG</i></div>
+      <div class="onglets" role="tablist" aria-label="Catégories de la carte" id="onglets"></div>
+      <div id="panneaux"></div>
+      <p class="carte-note" data-en="Indicative prices, converted automatically. Allergies? Tell us when you order: our kitchen adapts.">Prix indicatifs, convertis automatiquement. Allergies ? Dites-le-nous en commandant : notre cuisine s'adapte.</p>
+      <div class="emporter rv">
+        <div class="qr"><img src="img/qr-carte.png" width="300" height="300" alt="QR code vers la carte en ligne de Nyanja"></div>
+        <div><b data-en="Take the menu with you">Emportez la carte</b><p data-en="Download the menu as PDF, or scan the QR code: it's also printed on every table.">Téléchargez la carte en PDF, ou scannez le QR code : il est aussi imprimé sur chaque table.</p>
+          <a class="btn btn-ligne" href="carte-nyanja.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-en="Download the menu (PDF)">Télécharger la carte (PDF)</span></a></div>
       </div>
-      <div class="carte" id="c2" role="tabpanel" aria-labelledby="o2" hidden>
-        <div class="ligne"><div class="h"><b data-en="Royal jollof">Jollof royal</b><span class="pts"></span><span class="p">35 000</span></div><small data-en="Chicken, braised fish, groundnut sauce">Poulet, poisson braisé, sauce arachide</small></div>
-        <div class="ligne"><div class="h"><b data-en="Pineapple rice & glazed chicken">Riz ananas &amp; poulet laqué</b><span class="pts"></span><span class="p">34 000</span></div><small data-en="Served in a whole pineapple">Servi dans un ananas entier</small></div>
-        <div class="ligne"><div class="h"><b data-en="Ofada & plantain">Ofada &amp; plantain</b><span class="pts"></span><span class="p">28 000</span></div><small data-en="Pepper sauce, egg, fried plantain">Sauce aux piments, œuf, plantain frit</small><i data-en="SPICY">PIMENTÉ</i></div>
-        <div class="ligne"><div class="h"><b data-en="House stew">Ragoût de la maison</b><span class="pts"></span><span class="p">30 000</span></div><small data-en="Beef, eggs, rice and beans">Bœuf, œufs, riz aux haricots</small></div>
-      </div>
-      <div class="carte" id="c3" role="tabpanel" aria-labelledby="o3" hidden>
-        <div class="ligne"><div class="h"><b data-en="Egusi & fufu">Egusi &amp; foufou</b><span class="pts"></span><span class="p">38 000</span></div><small data-en="Beef, bitter leaves, hand-made fufu">Bœuf, légumes-feuilles, foufou fait main</small></div>
-        <div class="ligne"><div class="h"><b data-en="Egusi & pounded yam">Egusi &amp; igname pilée</b><span class="pts"></span><span class="p">40 000</span></div><small data-en="Served on banana leaf">Servi sur feuille de bananier</small></div>
-        <div class="ligne"><div class="h"><b data-en="Catfish pepper soup">Pepper soup au poisson-chat</b><span class="pts"></span><span class="p">32 000</span></div><small data-en="Utazi leaves, fresh chili">Feuilles d'utazi, piment frais</small><i data-en="SPICY">PIMENTÉ</i></div>
-        <div class="ligne"><div class="h"><b data-en="Leaf sauce & roast beef">Sauce feuilles &amp; bœuf rôti</b><span class="pts"></span><span class="p">36 000</span></div><small data-en="With fried plantain">Avec plantain frit</small></div>
-      </div>
-      <div class="carte" id="c4" role="tabpanel" aria-labelledby="o4" hidden>
-        <div class="ligne"><div class="h"><b data-en="Honey puff-puff & mango">Puff-puff au miel &amp; mangue</b><span class="pts"></span><span class="p">10 000</span></div><small data-en="Warm, with fresh mango">Tièdes, avec mangue fraîche</small></div>
-        <div class="ligne"><div class="h"><b data-en="Baked plantain">Plantain rôti</b><span class="pts"></span><span class="p">10 000</span></div><small data-en="Caramel, toasted coconut">Caramel, noix de coco grillée</small></div>
-        <div class="ligne"><div class="h"><b data-en="Passion fruit cream">Crème passion</b><span class="pts"></span><span class="p">12 000</span></div><small data-en="Light and tangy">Légère et acidulée</small></div>
-      </div>
-      <div class="carte" id="c5" role="tabpanel" aria-labelledby="o5" hidden>
-        <div class="ligne"><div class="h"><b data-en="Hibiscus (bissap / zobo)">Bissap (zobo) à l'hibiscus</b><span class="pts"></span><span class="p">6 000</span></div><small data-en="Ginger, pineapple, mint">Gingembre, ananas, menthe</small></div>
-        <div class="ligne"><div class="h"><b data-en="Fresh passion juice">Jus de passion frais</b><span class="pts"></span><span class="p">7 000</span></div><small data-en="Pressed every morning">Pressé chaque matin</small></div>
-        <div class="ligne"><div class="h"><b data-en="Ginger juice">Jus de gingembre</b><span class="pts"></span><span class="p">6 000</span></div><small data-en="Lemon, a little honey">Citron, un peu de miel</small></div>
-        <div class="ligne"><div class="h"><b data-en="Ugandan coffee">Café d'Ouganda</b><span class="pts"></span><span class="p">6 000</span></div><small data-en="Arabica from Mount Elgon">Arabica du mont Elgon</small></div>
-      </div>
-      <p class="carte-note" data-en="Allergies? Tell us when you book: our kitchen adapts.">Allergies ? Dites-le-nous en réservant : notre cuisine s'adapte.</p>
     </div>
   </section>
 
@@ -506,11 +604,58 @@
   <section class="avis-sec" style="padding-top:0">
     <div class="bloc">
       <div class="avis">
-        <figure class="rv"><div class="etoiles" aria-label="5 étoiles sur 5">★★★★★</div><blockquote data-en="“The best jollof in Kampala. We came for dinner and came back the next day for the egusi.”">« Le meilleur jollof de Kampala. On est venus dîner et revenus le lendemain pour l'egusi. »</blockquote><figcaption><b>Grace M.</b> · Kampala</figcaption></figure>
-        <figure class="rv"><div class="etoiles" aria-label="5 étoiles sur 5">★★★★★</div><blockquote data-en="“Booked on WhatsApp in two minutes. The pounded yam tastes exactly like my grandmother's.”">« Réservé sur WhatsApp en deux minutes. L'igname pilée a exactement le goût de celle de ma grand-mère. »</blockquote><figcaption><b>David K.</b> · Entebbe</figcaption></figure>
+        <figure class="rv"><div class="etoiles" aria-label="5 étoiles sur 5">★★★★★</div><blockquote data-en="“The best jollof in town. We came for dinner and came back the next day for the egusi.”">« Le meilleur jollof de la ville. On est venus dîner et revenus le lendemain pour l'egusi. »</blockquote><figcaption><b>Grace M.</b> · Abidjan</figcaption></figure>
+        <figure class="rv"><div class="etoiles" aria-label="5 étoiles sur 5">★★★★★</div><blockquote data-en="“Booked on WhatsApp in two minutes. The pounded yam tastes exactly like my grandmother's.”">« Réservé sur WhatsApp en deux minutes. L'igname pilée a exactement le goût de celle de ma grand-mère. »</blockquote><figcaption><b>David K.</b> · Kinshasa</figcaption></figure>
         <figure class="rv"><div class="etoiles" aria-label="5 étoiles sur 5">★★★★★</div><blockquote data-en="“A pepper soup at 3 am after a flight? Nyanja was open, warm, and perfect.”">« Une pepper soup à 3 h du matin après un vol ? Nyanja était ouvert, chaleureux, et parfait. »</blockquote><figcaption><b>Sarah N.</b> · Nairobi</figcaption></figure>
       </div>
       <p class="exemple" data-en="Example reviews (demo website).">Avis d'exemple (site de démonstration).</p>
+    </div>
+  </section>
+
+  <!-- Événements -->
+  <section id="evenements" class="evts">
+    <div class="bloc">
+      <div class="tete">
+        <div><span class="sur" data-en="Events & private hire">Événements &amp; privatisation</span><h2 data-en="Your big days, <em>our big pots.</em>">Vos grands jours, <em>nos grandes marmites.</em></h2></div>
+        <p data-en="Birthdays, weddings, company dinners: the terrace, the room or the whole restaurant, with a menu designed for you.">Anniversaires, mariages, repas d'entreprise : la terrasse, la salle ou tout le restaurant, avec un menu pensé pour vous.</p>
+      </div>
+      <div class="evt-grille">
+        <div class="evt-cartes">
+          <button type="button" class="evt on" data-t="anniversaire"><b data-en="Birthday">Anniversaire</b><span data-en="10 to 40 guests · cake & music">10 à 40 invités · gâteau &amp; musique</span></button>
+          <button type="button" class="evt" data-t="mariage"><b data-en="Wedding & dowry">Mariage &amp; dot</b><span data-en="Up to 150 guests · buffet">Jusqu'à 150 invités · buffet</span></button>
+          <button type="button" class="evt" data-t="entreprise"><b data-en="Company dinner">Repas d'entreprise</b><span data-en="Seminars, teams, clients">Séminaires, équipes, clients</span></button>
+          <button type="button" class="evt" data-t="traiteur"><b data-en="Catering at home">Traiteur à domicile</b><span data-en="We cook, you celebrate">On cuisine, vous profitez</span></button>
+        </div>
+        <form class="devis" id="form-devis" novalidate>
+          <div class="champ"><label for="d-date" data-en="Event date *">Date de l'événement *</label><input id="d-date" type="date" required><span class="err"></span></div>
+          <div class="champ"><label for="d-inv" data-en="Number of guests *">Nombre d'invités *</label><input id="d-inv" type="number" min="5" max="500" value="30" required><span class="err"></span></div>
+          <div class="champ"><label for="d-nom" data-en="Your name *">Votre nom *</label><input id="d-nom" autocomplete="name" required><span class="err"></span></div>
+          <div class="champ"><label for="d-tel" data-en="Phone *">Téléphone *</label><input id="d-tel" type="tel" inputmode="tel" required placeholder="+225 07 00 00 00 00"><span class="err"></span></div>
+          <div class="champ plein"><label for="d-msg" data-en="Tell us about it (optional)">Racontez-nous (facultatif)</label><textarea id="d-msg" data-en-ph="Theme, budget, dishes you love…" placeholder="Thème, budget, plats que vous aimez…"></textarea></div>
+          <button class="btn btn-plein" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Request a free quote">Demander un devis gratuit</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carte cadeau -->
+  <section id="cadeau" class="cadeau">
+    <div class="bloc cadeau-grille">
+      <div class="carte-k rv" aria-hidden="true">
+        <div class="ck-haut" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M11 21a9 9 0 0 1 18 0Z" fill="#C8532B"/><path d="M8 25c3-2 5-2 8 0s5 2 8 0 5-2 8 0M10 30c3-2 5-2 7.5 0s5 2 7.5 0 4.5-2 6 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>NYANJA</span></div>
+        <b class="ck-montant" id="ck-montant"></b>
+        <span class="ck-pour" id="ck-pour" data-en="For someone special">Pour quelqu'un de spécial</span>
+        <i class="ck-motif"></i>
+      </div>
+      <div class="rv">
+        <span class="sur" data-en="Gift card">Carte cadeau</span>
+        <h2 data-en="Give a feast, <em>not just a gift.</em>">Offrez un festin, <em>pas juste un cadeau.</em></h2>
+        <p class="ck-texte" data-en="Valid 12 months, at the table or for delivery. Sent by WhatsApp in minutes.">Valable 12 mois, à table ou en livraison. Envoyée par WhatsApp en quelques minutes.</p>
+        <div class="montants" role="radiogroup" aria-label="Montant de la carte cadeau" id="montants"></div>
+        <div class="champ"><label for="ck-nom" data-en="Recipient's name">Prénom de la personne</label><input id="ck-nom" data-en-ph="Ex. Mariam" placeholder="Ex. Mariam" maxlength="30"></div>
+        <div class="champ"><label for="ck-mot" data-en="Your message">Votre message</label><input id="ck-mot" data-en-ph="Happy birthday!" placeholder="Joyeux anniversaire !" maxlength="80"></div>
+        <button type="button" class="btn btn-plein" id="ck-offrir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Give this card">Offrir cette carte</span></button>
+      </div>
     </div>
   </section>
 
@@ -529,9 +674,10 @@
       </div>
       <form class="reserver rv" id="form-resa" novalidate>
         <div class="champ"><label for="r-nom" data-en="Full name *">Nom complet *</label><input id="r-nom" name="nom" autocomplete="name" required data-en-ph="Ex. Grace Namutebi" placeholder="Ex. Grace Namutebi"><span class="err" aria-live="polite"></span></div>
-        <div class="champ"><label for="r-tel" data-en="Phone number *">Numéro de téléphone *</label><input id="r-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+256 7XX XXX XXX"><span class="err" aria-live="polite"></span></div>
+        <div class="champ"><label for="r-tel" data-en="Phone number *">Numéro de téléphone *</label><input id="r-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+225 07 00 00 00 00"><span class="err" aria-live="polite"></span></div>
         <div class="champ"><label for="r-date" data-en="Date *">Date *</label><input id="r-date" name="date" type="date" required><span class="err" aria-live="polite"></span></div>
-        <div class="champ"><label for="r-heure" data-en="Time *">Heure *</label><select id="r-heure" name="heure" required></select><span class="err" aria-live="polite"></span></div>
+        <div class="champ"><span class="lbl" data-en="Availability">Disponibilité</span><span class="dispo" id="dispo"></span></div>
+        <div class="champ plein"><span class="lbl" id="l-heure" data-en="Choose a time *">Choisissez un horaire *</span><input type="hidden" id="r-heure"><div class="creneaux" id="creneaux" role="radiogroup" aria-labelledby="l-heure"></div><span class="err" id="err-heure" aria-live="polite"></span></div>
         <div class="champ plein"><label id="l-pers" data-en="Number of guests *">Nombre de personnes *</label>
           <div class="pers" role="group" aria-labelledby="l-pers"><button type="button" data-p="-1" aria-label="Une personne de moins">−</button><output id="r-pers" aria-live="polite">2</output><button type="button" data-p="1" aria-label="Une personne de plus">+</button></div></div>
         <div class="champ plein"><label for="r-msg" data-en="Message (optional)">Message (facultatif)</label><textarea id="r-msg" name="msg" data-en-ph="Birthday, terrace, high chair, allergies…" placeholder="Anniversaire, terrasse, chaise bébé, allergies…"></textarea></div>
@@ -549,22 +695,22 @@
         <span class="sur" data-en="Contact">Contact</span>
         <h2 data-en="Come as you are, <em>whenever you like.</em>">Venez comme vous êtes, <em>quand vous voulez.</em></h2>
         <div class="coord">
-          <a href="#" data-contact="map"><i><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg></i><div><b data-en="Kololo, Kampala, Uganda">Kololo, Kampala, Ouganda</b><span data-en="Fictional address · get directions">Adresse fictive · itinéraire</span></div></a>
-          <a href="#" data-contact="whatsapp"><i><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg></i><div><b>WhatsApp · +256 700 000 000</b><span data-en="Fictional number · reply within 15 min">Numéro fictif · réponse en 15 min</span></div></a>
+          <a href="#" data-contact="map"><i><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg></i><div><b data-en="By the lake, 12 Harbour Road">Au bord du lac, 12 route du Port</b><span data-en="Fictional address · get directions">Adresse fictive · itinéraire</span></div></a>
+          <a href="#" data-contact="whatsapp"><i><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg></i><div><b>WhatsApp · +000 000 000 000</b><span data-en="Fictional number · reply within 15 min">Numéro fictif · réponse en 15 min</span></div></a>
           <div><i><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 10.4V6h-2v7.6l5 3 1-1.7Z"/></svg></i><div><b data-en="Open 24/7">Ouvert 24 h/24 · 7 j/7</b><span data-en="Including public holidays">Y compris les jours fériés</span></div></div>
         </div>
         <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-plein" href="#" data-contact="whatsapp" data-en="Contact the restaurant">Contacter le restaurant</a><a class="btn btn-ligne" href="#reserver" data-en="Book a table">Réserver une table</a></div>
       </div>
-      <div class="plan rv" role="img" aria-label="Plan stylisé de Kampala, Nyanja à Kololo">
+      <div class="plan rv" role="img" aria-label="Plan stylisé : Nyanja au bord du lac">
         <svg viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <rect width="600" height="460" fill="#E8DCCB"/>
-          <path d="M0 380 C120 350 200 420 320 390 S520 330 600 360 V460 H0Z" fill="#B9D3CF"/><text x="40" y="430" fill="#6E8F8A" style="font:italic 15px Fraunces">Lac Victoria</text>
+          <path d="M0 380 C120 350 200 420 320 390 S520 330 600 360 V460 H0Z" fill="#B9D3CF"/><text x="40" y="430" fill="#6E8F8A" style="font:italic 15px Fraunces">Le lac</text>
           <g fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"><path d="M-10 120 C150 140 260 90 610 150"/><path d="M180 -10 C210 140 300 250 330 470"/><path d="M420 -10 C400 120 470 220 610 260"/></g>
           <g fill="none" stroke="#F6EFE6" stroke-width="5"><path d="M0 250 C140 230 260 290 600 250"/><path d="M80 0 C90 200 60 300 120 460"/><path d="M520 0 C500 160 560 300 520 460"/></g>
           <g fill="#D9CBB6"><rect x="40" y="160" width="90" height="60" rx="8"/><rect x="380" y="290" width="110" height="50" rx="8"/><rect x="460" y="80" width="80" height="70" rx="8"/><rect x="200" y="300" width="70" height="40" rx="8"/></g>
-          <circle cx="300" cy="170" r="70" fill="#CFDCC4" opacity=".7"/><text x="262" y="175" fill="#7A8C6D" style="font:600 12px Manrope;letter-spacing:2px">KOLOLO</text>
+          <circle cx="300" cy="170" r="70" fill="#CFDCC4" opacity=".7"/><text x="262" y="175" fill="#7A8C6D" style="font:600 12px Manrope;letter-spacing:2px">LE PORT</text>
         </svg>
-        <div class="epingle"><span>Nyanja · Kololo</span><i></i></div>
+        <div class="epingle"><span>Nyanja · bord du lac</span><i></i></div>
         <a class="btn btn-plein" href="#" data-contact="map" data-en="Get directions">Itinéraire</a>
       </div>
     </div>
@@ -575,8 +721,8 @@
   <div class="bloc">
     <div class="pied">
       <div>
-        <a class="logo" href="#" aria-label="Nyanja"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M11 21a9 9 0 0 1 18 0Z" fill="#C8532B"/><path d="M8 25c3-2 5-2 8 0s5 2 8 0 5-2 8 0M10 30c3-2 5-2 7.5 0s5 2 7.5 0 4.5-2 6 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><div><b>NYANJA</b><small data-en="African cuisine · Kampala">Cuisine africaine · Kampala</small></div></a>
-        <p data-en="Homemade African cuisine, in the heart of Kampala. Open day and night.">Cuisine africaine faite maison, au cœur de Kampala. Ouvert de jour comme de nuit.</p>
+        <a class="logo" href="#" aria-label="Nyanja"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M11 21a9 9 0 0 1 18 0Z" fill="#C8532B"/><path d="M8 25c3-2 5-2 8 0s5 2 8 0 5-2 8 0M10 30c3-2 5-2 7.5 0s5 2 7.5 0 4.5-2 6 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><div><b>NYANJA</b><small data-en="African cuisine · by the lake">Cuisine africaine · au bord du lac</small></div></a>
+        <p data-en="Homemade African cuisine, by the lake. Open day and night.">Cuisine africaine faite maison, au bord du lac. Ouvert de jour comme de nuit.</p>
         <div class="reseaux">
           <a href="#" data-contact="social" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 2c-2.7 0-3 0-4.1.1C4.3 2.3 2.3 4.3 2.1 7.9 2 9 2 9.3 2 12s0 3 .1 4.1c.2 3.6 2.2 5.6 5.8 5.8 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c3.6-.2 5.6-2.2 5.8-5.8.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c-.2-3.6-2.2-5.6-5.8-5.8C15 2 14.7 2 12 2Z"/></svg></a>
           <a href="#" data-contact="social" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 2h-3.3v13.2a2.9 2.9 0 1 1-2-2.8V9a6.3 6.3 0 1 0 5.3 6.2V8.6a7.7 7.7 0 0 0 4.4 1.4V6.7a4.4 4.4 0 0 1-4.4-4.7Z"/></svg></a>
@@ -584,7 +730,7 @@
         </div>
       </div>
       <div><h4 data-en="Explore">Explorer</h4><ul><li><a href="#maison" data-en="Our house">La maison</a></li><li><a href="#plats" data-en="Signature dishes">Nos plats</a></li><li><a href="#carte" data-en="Menu">La carte</a></li><li><a href="#galerie" data-en="Gallery">Galerie</a></li></ul></div>
-      <div><h4 data-en="Visit">Nous trouver</h4><ul><li data-en="Kololo, Kampala, Uganda">Kololo, Kampala, Ouganda</li><li data-en="Open 24/7">Ouvert 24 h/24</li><li><a href="#" data-contact="whatsapp">WhatsApp</a></li></ul></div>
+      <div><h4 data-en="Visit">Nous trouver</h4><ul><li data-en="By the lake (fictional address)">Au bord du lac (adresse fictive)</li><li data-en="Open 24/7">Ouvert 24 h/24</li><li><a href="#" data-contact="whatsapp">WhatsApp</a></li></ul></div>
       <div><h4 data-en="Book">Réserver</h4><ul><li><a href="#reserver" data-en="Book a table">Réserver une table</a></li><li><a href="#" data-contact="whatsapp" data-en="Groups & events">Groupes &amp; événements</a></li><li><a href="#" data-contact="whatsapp" data-en="Delivery">Livraison</a></li></ul></div>
     </div>
     <div class="bas"><span>© 2026 Nyanja · <span data-en="Fictional restaurant, demo website">Restaurant fictif, site de démonstration</span></span><span data-en="Designed and built by <a href='../../'>Lumen Web</a>">Conçu et réalisé par <a href="../../">Lumen Web</a></span></div>
@@ -599,10 +745,54 @@
   <button type="button" class="fermer" aria-label="Fermer">✕</button><button type="button" class="prec" aria-label="Photo précédente">‹</button><button type="button" class="suiv" aria-label="Photo suivante">›</button>
 </div>
 
+<!-- Bouton panier -->
+<button type="button" class="panier-btn" id="panier-btn" hidden aria-controls="panier"><span class="pb-n" id="pb-n">0</span><span data-en="My order">Ma commande</span><b id="pb-total"></b></button>
+
+<!-- Panier -->
+<aside class="panier" id="panier" aria-label="Votre commande" hidden>
+  <div class="pn-voile" data-fermer></div>
+  <div class="pn-boite" role="dialog" aria-modal="true" aria-labelledby="pn-titre">
+    <div class="pn-tete"><h3 id="pn-titre" data-en="Your order">Votre commande</h3><button type="button" class="pn-x" data-fermer aria-label="Fermer">✕</button></div>
+    <div class="pn-liste" id="pn-liste"></div>
+    <div class="pn-form">
+      <div class="modes" role="radiogroup" aria-label="Mode">
+        <button type="button" class="mode on" data-m="livraison" data-en="Delivery">Livraison</button>
+        <button type="button" class="mode" data-m="emporter" data-en="Takeaway">À emporter</button>
+        <button type="button" class="mode" data-m="place" data-en="Ready when I arrive">Prêt à mon arrivée</button>
+      </div>
+      <div class="champ"><label for="c-nom" data-en="Name *">Nom *</label><input id="c-nom" autocomplete="name"><span class="err"></span></div>
+      <div class="champ"><label for="c-tel" data-en="Phone *">Téléphone *</label><input id="c-tel" type="tel" inputmode="tel" autocomplete="tel"><span class="err"></span></div>
+      <div class="champ" id="c-adr-champ"><label for="c-adr" data-en="Delivery address *">Adresse de livraison *</label><input id="c-adr" autocomplete="street-address"><span class="err"></span></div>
+      <div class="pn-total"><span data-en="Total">Total</span><b id="pn-total"></b></div>
+      <p class="pn-livr" id="pn-livr"></p>
+      <button type="button" class="btn btn-plein" id="pn-envoyer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Order on WhatsApp">Commander sur WhatsApp</span></button>
+    </div>
+  </div>
+</aside>
+
+<!-- Fiche plat -->
+<div class="fiche" id="fiche" role="dialog" aria-modal="true" aria-labelledby="fi-nom" hidden>
+  <div class="fi-boite">
+    <button type="button" class="fi-x" aria-label="Fermer">✕</button>
+    <div class="fi-img"><img alt=""></div>
+    <div class="fi-info">
+      <span class="fi-cat"></span>
+      <h3 id="fi-nom"></h3>
+      <p class="fi-desc"></p>
+      <dl>
+        <dt data-en="Spice level">Piment</dt><dd class="fi-pim"></dd>
+        <dt data-en="Ingredients">Ingrédients</dt><dd class="fi-ing"></dd>
+        <dt data-en="Allergens">Allergènes</dt><dd class="fi-all"></dd>
+      </dl>
+      <div class="fi-bas"><b class="fi-prix"></b><button type="button" class="btn btn-plein fi-ajout"></button></div>
+    </div>
+  </div>
+</div>
+
 <!-- Message WhatsApp préparé (démonstration) -->
 <div class="wa-modale" id="wa-modale" role="dialog" aria-modal="true" aria-labelledby="wa-titre" hidden>
   <div class="wa-boite">
-    <div class="wa-tete"><div class="av">N</div><div><b id="wa-titre">Nyanja · Réservations</b><small data-en="online · replies within 15 min">en ligne · répond en 15 min</small></div></div>
+    <div class="wa-tete"><div class="av">N</div><div><b id="wa-titre">Nyanja</b><small data-en="online · replies within 15 min">en ligne · répond en 15 min</small></div></div>
     <div class="wa-fil"><div class="bulle" id="wa-bulle"></div></div>
     <div class="wa-bas">
       <p id="wa-explique"></p>
@@ -612,83 +802,7 @@
 </div>
 
 <script src="../demo.js"></script>
-<script>
-(function () {
-  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const en = () => document.documentElement.lang === "en";
-
-  /* Jour / Nuit */
-  const vJ = $("#v-jour"), vN = $("#v-nuit"), heure = $("#v-heure");
-  function moment(m) {
-    $$(".bascule button").forEach(b => b.setAttribute("aria-selected", b.dataset.m === m));
-    $("#m-jour").hidden = m !== "jour"; $("#m-nuit").hidden = m !== "nuit";
-    vJ.classList.toggle("cache", m !== "jour"); vN.classList.toggle("cache", m !== "nuit");
-    heure.textContent = m === "jour" ? (en() ? "☀ 12:30 pm · lunch" : "☀ 12 h 30 · déjeuner") : (en() ? "☾ 11:45 pm · dinner & terrace" : "☾ 23 h 45 · dîner & terrasse");
-    heure.dataset.m = m;
-  }
-  $$(".bascule button").forEach(b => b.addEventListener("click", () => moment(b.dataset.m)));
-  const h = new Date().getHours(); moment(h >= 6 && h < 18 ? "jour" : "nuit");
-
-  /* Onglets de la carte (clavier compris) */
-  const ong = $$(".onglets button");
-  function carte(i) { ong.forEach((b, j) => { b.setAttribute("aria-selected", j === i); b.tabIndex = j === i ? 0 : -1; $("#" + b.getAttribute("aria-controls")).hidden = j !== i; }); }
-  ong.forEach((b, i) => { b.addEventListener("click", () => carte(i)); b.addEventListener("keydown", e => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { const k = (i + (e.key === "ArrowRight" ? 1 : -1) + ong.length) % ong.length; carte(k); ong[k].focus(); } }); });
-  carte(0);
-
-  /* Galerie plein écran */
-  const lb = $("#lb"), photos = $$(".galerie button"); let cur = 0, avant = null;
-  function voir(i) { cur = (i + photos.length) % photos.length; const im = photos[cur].querySelector("img");
-    lb.querySelector("img").src = im.dataset.l || im.currentSrc; lb.querySelector("img").alt = im.alt; lb.querySelector("p").textContent = im.alt + " · " + (cur + 1) + "/" + photos.length; }
-  photos.forEach((b, i) => b.addEventListener("click", () => { avant = b; voir(i); lb.hidden = false; lb.querySelector(".fermer").focus(); }));
-  const fermerLb = () => { lb.hidden = true; if (avant) avant.focus(); };
-  lb.querySelector(".fermer").onclick = fermerLb; lb.querySelector(".prec").onclick = () => voir(cur - 1); lb.querySelector(".suiv").onclick = () => voir(cur + 1);
-  lb.addEventListener("click", e => { if (e.target === lb) fermerLb(); });
-  document.addEventListener("keydown", e => { if (lb.hidden) return; if (e.key === "Escape") fermerLb(); if (e.key === "ArrowRight") voir(cur + 1); if (e.key === "ArrowLeft") voir(cur - 1); });
-
-  /* Réservation */
-  const f = $("#form-resa"), selH = $("#r-heure"), dateIn = $("#r-date"), out = $("#r-pers"); let pers = 2;
-  for (let m = 0; m < 24 * 60; m += 30) { const o = document.createElement("option"); const hh = String(Math.floor(m / 60)).padStart(2, "0"), mm = String(m % 60).padStart(2, "0"); o.value = hh + ":" + mm; o.textContent = hh + " h " + mm; selH.appendChild(o); }
-  const now = new Date(), iso = d => d.toISOString().slice(0, 10);
-  dateIn.min = iso(now); dateIn.value = iso(now);
-  const prochain = Math.ceil((now.getHours() * 60 + now.getMinutes() + 60) / 30) * 30 % (24 * 60); selH.value = String(Math.floor(prochain / 60)).padStart(2, "0") + ":" + String(prochain % 60).padStart(2, "0");
-  $$(".pers button").forEach(b => b.addEventListener("click", () => { pers = Math.min(20, Math.max(1, pers + +b.dataset.p)); out.textContent = pers; recap(); }));
-  const jolieDate = v => { if (!v) return ""; const d = new Date(v + "T12:00"); return d.toLocaleDateString(en() ? "en-GB" : "fr-FR", { weekday: "long", day: "numeric", month: "long" }); };
-  function recap() {
-    const t = selH.value.replace(":", " h "), n = pers;
-    $("#recap-txt").innerHTML = en()
-      ? `Table for <b>${n} ${n > 1 ? "people" : "person"}</b>, <b>${jolieDate(dateIn.value)}</b> at <b>${selH.value}</b>. Your WhatsApp message will be ready to send.`
-      : `Table pour <b>${n} personne${n > 1 ? "s" : ""}</b>, <b>${jolieDate(dateIn.value)}</b> à <b>${t}</b>. Votre message WhatsApp sera prêt à envoyer.`;
-  }
-  ["input", "change"].forEach(ev => f.addEventListener(ev, recap)); recap();
-  function erreur(id, msg) { const c = $(id).closest(".champ"); c.classList.toggle("ko", !!msg); c.querySelector(".err").textContent = msg || ""; $(id).setAttribute("aria-invalid", !!msg); return !msg; }
-  f.addEventListener("submit", e => {
-    e.preventDefault();
-    const nom = $("#r-nom").value.trim(), tel = $("#r-tel").value.trim(), msg = $("#r-msg").value.trim();
-    let ok = erreur("#r-nom", nom.length < 2 ? (en() ? "Please enter your name." : "Indiquez votre nom.") : "");
-    ok = erreur("#r-tel", !/^[+\d][\d\s().-]{7,}$/.test(tel) ? (en() ? "Please enter a valid phone number." : "Indiquez un numéro valide.") : "") && ok;
-    ok = erreur("#r-date", !dateIn.value || dateIn.value < dateIn.min ? (en() ? "Choose today or a later date." : "Choisissez aujourd'hui ou une date à venir.") : "") && ok;
-    if (!ok) { f.querySelector(".ko input, .ko select").focus(); return; }
-    const texte = en()
-      ? `Hello Nyanja 👋\nI'd like to book a table:\n\n👤 Name: ${nom}\n📞 Phone: ${tel}\n📅 Date: ${jolieDate(dateIn.value)}\n🕐 Time: ${selH.value}\n👥 Guests: ${pers}` + (msg ? `\n💬 Message: ${msg}` : "") + `\n\nThank you!`
-      : `Bonjour Nyanja 👋\nJe souhaite réserver une table :\n\n👤 Nom : ${nom}\n📞 Téléphone : ${tel}\n📅 Date : ${jolieDate(dateIn.value)}\n🕐 Heure : ${selH.value.replace(":", " h ")}\n👥 Personnes : ${pers}` + (msg ? `\n💬 Message : ${msg}` : "") + `\n\nMerci !`;
-    $("#wa-bulle").innerHTML = ""; $("#wa-bulle").textContent = texte;
-    const s = document.createElement("small"); s.textContent = new Date().toTimeString().slice(0, 5) + " ✓✓"; $("#wa-bulle").appendChild(s);
-    $("#wa-explique").innerHTML = en()
-      ? "<b>This is a demo:</b> on the real website, WhatsApp opens right now with this message already written, addressed to the restaurant. Nothing has been sent."
-      : "<b>Ceci est une démonstration :</b> sur le vrai site, WhatsApp s'ouvre à cet instant avec ce message déjà écrit, adressé au restaurant. Rien n'a été envoyé.";
-    // Sur le vrai site : window.open("https://wa.me/<numéro du restaurant>?text=" + encodeURIComponent(texte))
-    avantWa = document.activeElement; $("#wa-modale").hidden = false; $("#wa-fermer").focus();
-  });
-  let avantWa = null;
-  const fermerWa = () => { $("#wa-modale").hidden = true; if (avantWa) avantWa.focus(); };
-  $("#wa-fermer").addEventListener("click", fermerWa);
-  $("#wa-modale").addEventListener("click", e => { if (e.target.id === "wa-modale") fermerWa(); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#wa-modale").hidden) fermerWa(); });
-
-  /* Langue : remettre à jour les textes calculés */
-  $$(".lg button").forEach(b => b.addEventListener("click", () => setTimeout(() => { recap(); moment(heure.dataset.m || "jour"); }, 0)));
-})();
-</script>
+<script src="nyanja.js"></script>
 <script>window.ANIM={marque:"NYANJA",fond:"#1E1814",texte:"#F4ECE1",accent:"#C8532B",police:"'Fraunces',Georgia,serif",signature:"nyanja"};</script>
 <script src="../vendor/gsap.min.js"></script><script src="../vendor/ScrollTrigger.min.js"></script><script src="../vendor/lenis.min.js"></script><script src="../anim.js"></script>
 </body>

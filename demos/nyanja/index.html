@@ -421,6 +421,21 @@
     .panier-btn{right:auto;left:50%;transform:translateX(-50%);top:14px;padding:8px 16px 8px 8px;font-size:13px;z-index:46}.panier-btn .pb-n{width:26px;height:26px}
     .ambiance{min-height:70vh}
   }
+
+  .envois{display:flex;gap:10px;flex-wrap:wrap;grid-column:1/-1}
+  .envois .btn{flex:1 1 200px}
+  form.reserver .envois .btn,form.devis .envois .btn{width:auto}
+  .btn-mail{color:var(--texte);border-color:rgba(30,24,20,.25);background:#fff}
+  .btn-mail:hover{background:var(--ebene);color:var(--creme);border-color:var(--ebene)}
+  .cadeau .envois{margin-top:6px}.cadeau .envois .btn{margin:0}
+  .pn-form .envois .btn{flex:1 1 100%}
+  .mail-tete{display:none;background:#fff;padding:14px 18px;border-bottom:1px solid #E5E5E5;font-size:13px;color:#555;gap:4px}
+  .mail-tete span{display:inline-block;width:52px;color:#888}.mail-tete b{color:#222;font-weight:600}
+  .wa-boite.mail .mail-tete{display:grid}
+  .wa-boite.mail .wa-tete{background:#2B231D}
+  .wa-boite.mail .wa-fil{background:#fff}
+  .wa-boite.mail .bulle{background:#fff;box-shadow:none;border-radius:0;max-width:100%;margin:0;padding:4px 2px;color:#222;font-size:14.5px}
+  .wa-boite.mail .bulle small{text-align:left}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -632,7 +647,7 @@
           <div class="champ"><label for="d-nom" data-en="Your name *">Votre nom *</label><input id="d-nom" autocomplete="name" required><span class="err"></span></div>
           <div class="champ"><label for="d-tel" data-en="Phone *">Téléphone *</label><input id="d-tel" type="tel" inputmode="tel" required placeholder="+225 07 00 00 00 00"><span class="err"></span></div>
           <div class="champ plein"><label for="d-msg" data-en="Tell us about it (optional)">Racontez-nous (facultatif)</label><textarea id="d-msg" data-en-ph="Theme, budget, dishes you love…" placeholder="Thème, budget, plats que vous aimez…"></textarea></div>
-          <button class="btn btn-plein" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Request a free quote">Demander un devis gratuit</span></button>
+          <div class="envois"><button class="btn btn-plein" data-via="wa" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Request a free quote">Demander un devis gratuit</span></button><button type="submit" class="btn btn-ligne btn-mail" data-via="mail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3 6 9 7 9-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span data-en="By email">Par e-mail</span></button></div>
         </form>
       </div>
     </div>
@@ -654,7 +669,7 @@
         <div class="montants" role="radiogroup" aria-label="Montant de la carte cadeau" id="montants"></div>
         <div class="champ"><label for="ck-nom" data-en="Recipient's name">Prénom de la personne</label><input id="ck-nom" data-en-ph="Ex. Mariam" placeholder="Ex. Mariam" maxlength="30"></div>
         <div class="champ"><label for="ck-mot" data-en="Your message">Votre message</label><input id="ck-mot" data-en-ph="Happy birthday!" placeholder="Joyeux anniversaire !" maxlength="80"></div>
-        <button type="button" class="btn btn-plein" id="ck-offrir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Give this card">Offrir cette carte</span></button>
+        <div class="envois"><button type="button" class="btn btn-plein" data-via="wa" id="ck-offrir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Give this card">Offrir cette carte</span></button><button type="button" id="ck-mail" class="btn btn-ligne btn-mail" data-via="mail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3 6 9 7 9-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span data-en="By email">Par e-mail</span></button></div>
       </div>
     </div>
   </section>
@@ -665,7 +680,7 @@
       <div class="rv">
         <span class="sur" style="color:#F0A27F" data-en="Reservation">Réservation</span>
         <h2 data-en="Your table, <em>in two minutes.</em>">Votre table, <em>en deux minutes.</em></h2>
-        <p class="intro" data-en="Fill in the form: we prepare your WhatsApp message, you just press send. We confirm within 15 minutes, day and night.">Remplissez le formulaire : nous préparons votre message WhatsApp, vous n'avez plus qu'à l'envoyer. Confirmation en 15 minutes, de jour comme de nuit.</p>
+        <p class="intro" data-en="Fill in the form, then choose WhatsApp or email: your message is already written. We confirm within 15 minutes, day and night.">Remplissez le formulaire, puis choisissez WhatsApp ou e-mail : votre message est déjà rédigé. Confirmation en 15 minutes, de jour comme de nuit.</p>
         <ul class="garanties">
           <li data-en="Free booking, no deposit">Réservation gratuite, sans acompte</li>
           <li data-en="Birthdays and groups: tell us in the message">Anniversaires et groupes : dites-le dans le message</li>
@@ -682,7 +697,7 @@
           <div class="pers" role="group" aria-labelledby="l-pers"><button type="button" data-p="-1" aria-label="Une personne de moins">−</button><output id="r-pers" aria-live="polite">2</output><button type="button" data-p="1" aria-label="Une personne de plus">+</button></div></div>
         <div class="champ plein"><label for="r-msg" data-en="Message (optional)">Message (facultatif)</label><textarea id="r-msg" name="msg" data-en-ph="Birthday, terrace, high chair, allergies…" placeholder="Anniversaire, terrasse, chaise bébé, allergies…"></textarea></div>
         <div class="recap" aria-live="polite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg><span id="recap-txt"></span></div>
-        <button class="btn btn-plein" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Book on WhatsApp">Réserver sur WhatsApp</span></button>
+        <div class="envois"><button class="btn btn-plein" data-via="wa" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Book on WhatsApp">Réserver sur WhatsApp</span></button><button type="submit" class="btn btn-ligne btn-mail" data-via="mail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3 6 9 7 9-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span data-en="Book by email">Réserver par e-mail</span></button></div>
         <p class="petit" data-en="Your details are only used for your booking.">Vos informations servent uniquement à votre réservation.</p>
       </form>
     </div>
@@ -697,6 +712,7 @@
         <div class="coord">
           <a href="#" data-contact="map"><i><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg></i><div><b data-en="By the lake, 12 Harbour Road">Au bord du lac, 12 route du Port</b><span data-en="Fictional address · get directions">Adresse fictive · itinéraire</span></div></a>
           <a href="#" data-contact="whatsapp"><i><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg></i><div><b>WhatsApp · +000 000 000 000</b><span data-en="Fictional number · reply within 15 min">Numéro fictif · réponse en 15 min</span></div></a>
+          <a href="#" data-contact="email"><i><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zm1.5 1.5v.6l7.5 5.6 7.5-5.6v-.6z"/></svg></i><div><b>reservations@nyanja.example</b><span data-en="Fictional address · reply within the hour">Adresse fictive · réponse dans l'heure</span></div></a>
           <div><i><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 10.4V6h-2v7.6l5 3 1-1.7Z"/></svg></i><div><b data-en="Open 24/7">Ouvert 24 h/24 · 7 j/7</b><span data-en="Including public holidays">Y compris les jours fériés</span></div></div>
         </div>
         <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-plein" href="#" data-contact="whatsapp" data-en="Contact the restaurant">Contacter le restaurant</a><a class="btn btn-ligne" href="#reserver" data-en="Book a table">Réserver une table</a></div>
@@ -730,7 +746,7 @@
         </div>
       </div>
       <div><h4 data-en="Explore">Explorer</h4><ul><li><a href="#maison" data-en="Our house">La maison</a></li><li><a href="#plats" data-en="Signature dishes">Nos plats</a></li><li><a href="#carte" data-en="Menu">La carte</a></li><li><a href="#galerie" data-en="Gallery">Galerie</a></li></ul></div>
-      <div><h4 data-en="Visit">Nous trouver</h4><ul><li data-en="By the lake (fictional address)">Au bord du lac (adresse fictive)</li><li data-en="Open 24/7">Ouvert 24 h/24</li><li><a href="#" data-contact="whatsapp">WhatsApp</a></li></ul></div>
+      <div><h4 data-en="Visit">Nous trouver</h4><ul><li data-en="By the lake (fictional address)">Au bord du lac (adresse fictive)</li><li data-en="Open 24/7">Ouvert 24 h/24</li><li><a href="#" data-contact="whatsapp">WhatsApp</a></li><li><a href="#" data-contact="email">reservations@nyanja.example</a></li></ul></div>
       <div><h4 data-en="Book">Réserver</h4><ul><li><a href="#reserver" data-en="Book a table">Réserver une table</a></li><li><a href="#" data-contact="whatsapp" data-en="Groups & events">Groupes &amp; événements</a></li><li><a href="#" data-contact="whatsapp" data-en="Delivery">Livraison</a></li></ul></div>
     </div>
     <div class="bas"><span>© 2026 Nyanja · <span data-en="Fictional restaurant, demo website">Restaurant fictif, site de démonstration</span></span><span data-en="Designed and built by <a href='../../'>Lumen Web</a>">Conçu et réalisé par <a href="../../">Lumen Web</a></span></div>
@@ -765,7 +781,7 @@
       <div class="champ" id="c-adr-champ"><label for="c-adr" data-en="Delivery address *">Adresse de livraison *</label><input id="c-adr" autocomplete="street-address"><span class="err"></span></div>
       <div class="pn-total"><span data-en="Total">Total</span><b id="pn-total"></b></div>
       <p class="pn-livr" id="pn-livr"></p>
-      <button type="button" class="btn btn-plein" id="pn-envoyer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Order on WhatsApp">Commander sur WhatsApp</span></button>
+      <div class="envois"><button type="button" class="btn btn-plein" data-via="wa" id="pn-envoyer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.6 13.6 0 0 1-5.2-4.6c-.4-.5-1.2-1.7-1.2-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.2 1.5Z"/></svg><span data-en="Order on WhatsApp">Commander sur WhatsApp</span></button><button type="button" id="pn-mail" class="btn btn-ligne btn-mail" data-via="mail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3 6 9 7 9-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span data-en="Order by email">Commander par e-mail</span></button></div>
     </div>
   </div>
 </aside>
@@ -792,7 +808,8 @@
 <!-- Message WhatsApp préparé (démonstration) -->
 <div class="wa-modale" id="wa-modale" role="dialog" aria-modal="true" aria-labelledby="wa-titre" hidden>
   <div class="wa-boite">
-    <div class="wa-tete"><div class="av">N</div><div><b id="wa-titre">Nyanja</b><small data-en="online · replies within 15 min">en ligne · répond en 15 min</small></div></div>
+    <div class="wa-tete"><div class="av">N</div><div><b id="wa-titre">Nyanja</b><small id="wa-sous" data-en="online · replies within 15 min">en ligne · répond en 15 min</small></div></div>
+    <div class="mail-tete"><div><span data-en="To">À</span> <b>reservations@nyanja.example</b></div><div><span data-en="Subject">Objet</span> <b id="mail-objet"></b></div></div>
     <div class="wa-fil"><div class="bulle" id="wa-bulle"></div></div>
     <div class="wa-bas">
       <p id="wa-explique"></p>

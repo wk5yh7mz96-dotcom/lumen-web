@@ -152,12 +152,22 @@
 
   /* ---------- Message WhatsApp (démonstration) ---------- */
   let avantWa = null;
+  let via = "wa";
   function whatsapp(titre, texte) {
-    $("#wa-titre").textContent = "Nyanja · " + titre;
+    const mail = via === "mail", boite = $("#wa-modale .wa-boite");
+    boite.classList.toggle("mail", mail);
+    $("#wa-sous").textContent = mail ? T("Nouveau message", "New message") : T("en ligne · répond en 15 min", "online · replies within 15 min");
+    $("#mail-objet").textContent = titre + " · " + T("site Nyanja", "Nyanja website");
+    if (mail) texte = texte.replace(/ 👋/, ",").replace(/[👤📞📅🕐👥💬🛵🥡🍽️📍💰🎉🎁💝✍️]\uFE0F? ?/gu, "") + "\n\n—\n" + T("Envoyé depuis le site de Nyanja", "Sent from the Nyanja website");
+    $("#wa-titre").textContent = mail ? T("Votre e-mail", "Your email") : "Nyanja · " + titre;
     const bulle = $("#wa-bulle"); bulle.textContent = texte;
-    const s = document.createElement("small"); s.textContent = new Date().toTimeString().slice(0, 5) + " ✓✓"; bulle.appendChild(s);
-    $("#wa-explique").innerHTML = T("<b>Ceci est une démonstration :</b> sur le vrai site, WhatsApp s'ouvre à cet instant avec ce message déjà écrit, adressé au restaurant. Rien n'a été envoyé.",
-      "<b>This is a demo:</b> on the real website, WhatsApp opens right now with this message already written, addressed to the restaurant. Nothing has been sent.");
+    const s = document.createElement("small"); s.textContent = mail ? "" : new Date().toTimeString().slice(0, 5) + " ✓✓"; bulle.appendChild(s);
+    $("#wa-explique").innerHTML = mail
+      ? T("<b>Ceci est une démonstration :</b> sur le vrai site, votre messagerie s'ouvre à cet instant avec cet e-mail déjà écrit, adressé au restaurant. Rien n'a été envoyé.",
+          "<b>This is a demo:</b> on the real website, your email app opens right now with this email already written, addressed to the restaurant. Nothing has been sent.")
+      : T("<b>Ceci est une démonstration :</b> sur le vrai site, WhatsApp s'ouvre à cet instant avec ce message déjà écrit, adressé au restaurant. Rien n'a été envoyé.",
+          "<b>This is a demo:</b> on the real website, WhatsApp opens right now with this message already written, addressed to the restaurant. Nothing has been sent.");
+    // Vrai site (e-mail) : location.href = "mailto:<adresse>?subject=" + encodeURIComponent(objet) + "&body=" + encodeURIComponent(texte)
     // Sur le vrai site : window.open("https://wa.me/<numéro du restaurant>?text=" + encodeURIComponent(texte))
     avantWa = document.activeElement; $("#wa-modale").hidden = false; $("#wa-fermer").focus();
   }
@@ -170,7 +180,7 @@
   const telOk = v => /^[+\d][\d\s().-]{7,}$/.test(v.trim());
 
   /* Commande */
-  $("#pn-envoyer").onclick = () => {
+  const commander = () => {
     if (!nbArticles()) return;
     const nomC = $("#c-nom"), tel = $("#c-tel"), adr = $("#c-adr");
     let ok = erreur(nomC, nomC.value.trim().length < 2 ? T("Indiquez votre nom.", "Please enter your name.") : "");
@@ -183,6 +193,9 @@
       `Bonjour Nyanja 👋\nJe voudrais commander :\n\n${lignes}\n\n${modeTxt}` + (mode === "livraison" ? `\n📍 Adresse : ${adr.value.trim()}\n🛵 Livraison : ${prix(1.5)}` : "") + `\n💰 Total : ${$("#pn-total").textContent}\n\n👤 ${nomC.value.trim()} · ${tel.value.trim()}\n\nMerci !`,
       `Hello Nyanja 👋\nI'd like to order:\n\n${lignes}\n\n${modeTxt}` + (mode === "livraison" ? `\n📍 Address: ${adr.value.trim()}\n🛵 Delivery: ${prix(1.5)}` : "") + `\n💰 Total: ${$("#pn-total").textContent}\n\n👤 ${nomC.value.trim()} · ${tel.value.trim()}\n\nThank you!`));
   };
+
+  $("#pn-envoyer").onclick = () => { via = "wa"; commander(); };
+  $("#pn-mail").onclick = () => { via = "mail"; commander(); };
 
   /* ---------- Réservation : créneaux ---------- */
   const f = $("#form-resa"), dateIn = $("#r-date"), heureIn = $("#r-heure"), out = $("#r-pers"); let pers = 2;
@@ -211,12 +224,12 @@
   const jolieDate = v => v ? new Date(v + "T12:00").toLocaleDateString(en() ? "en-GB" : "fr-FR", { weekday: "long", day: "numeric", month: "long" }) : "";
   const heureTxt = () => heureIn.value ? (en() ? heureIn.value : heureIn.value.replace(":", " h ")) : T("(choisissez un horaire)", "(choose a time)");
   function recap() {
-    $("#recap-txt").innerHTML = T(`Table pour <b>${pers} personne${pers > 1 ? "s" : ""}</b>, <b>${jolieDate(dateIn.value)}</b> à <b>${heureTxt()}</b>. Votre message WhatsApp sera prêt à envoyer.`,
-      `Table for <b>${pers} ${pers > 1 ? "people" : "person"}</b>, <b>${jolieDate(dateIn.value)}</b> at <b>${heureTxt()}</b>. Your WhatsApp message will be ready to send.`);
+    $("#recap-txt").innerHTML = T(`Table pour <b>${pers} personne${pers > 1 ? "s" : ""}</b>, <b>${jolieDate(dateIn.value)}</b> à <b>${heureTxt()}</b>. Votre message sera prêt à envoyer, sur WhatsApp ou par e-mail.`,
+      `Table for <b>${pers} ${pers > 1 ? "people" : "person"}</b>, <b>${jolieDate(dateIn.value)}</b> at <b>${heureTxt()}</b>. Your message will be ready to send, by WhatsApp or email.`);
   }
   f.addEventListener("input", recap);
   f.addEventListener("submit", e => {
-    e.preventDefault();
+    e.preventDefault(); via = (e.submitter && e.submitter.dataset.via) || "wa";
     const nomR = $("#r-nom"), tel = $("#r-tel"), msg = $("#r-msg").value.trim();
     let ok = erreur(nomR, nomR.value.trim().length < 2 ? T("Indiquez votre nom.", "Please enter your name.") : "");
     ok = erreur(tel, !telOk(tel.value) ? T("Indiquez un numéro valide.", "Please enter a valid phone number.") : "") && ok;
@@ -234,7 +247,7 @@
   $$(".evt").forEach(b => b.onclick = () => { typeEvt = b.dataset.t; $$(".evt").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-pressed", x === b); }); });
   $("#d-date").min = iso(now);
   $("#form-devis").addEventListener("submit", e => {
-    e.preventDefault();
+    e.preventDefault(); via = (e.submitter && e.submitter.dataset.via) || "wa";
     const dd = $("#d-date"), inv = $("#d-inv"), nm = $("#d-nom"), tl = $("#d-tel");
     let ok = erreur(dd, !dd.value ? T("Choisissez une date.", "Choose a date.") : "");
     ok = erreur(inv, !(+inv.value >= 5) ? T("5 invités minimum.", "At least 5 guests.") : "") && ok;
@@ -256,12 +269,15 @@
   }
   $("#montants").addEventListener("click", e => { const b = e.target.closest("button[data-v]"); if (!b) return; montant = +b.dataset.v; rendreCadeau(); });
   $("#ck-nom").addEventListener("input", rendreCadeau);
-  $("#ck-offrir").onclick = () => {
+  const offrir = () => {
     const n = $("#ck-nom").value.trim(), mo = $("#ck-mot").value.trim();
     whatsapp(T("Cartes cadeaux", "Gift cards"), T(
       `Bonjour Nyanja 👋\nJe voudrais offrir une carte cadeau :\n\n🎁 Montant : ${prix(montant)}` + (n ? `\n💝 Pour : ${n}` : "") + (mo ? `\n✍️ Message : « ${mo} »` : "") + `\n\nComment puis-je payer ? Merci !`,
       `Hello Nyanja 👋\nI'd like to give a gift card:\n\n🎁 Amount: ${prix(montant)}` + (n ? `\n💝 For: ${n}` : "") + (mo ? `\n✍️ Message: “${mo}”` : "") + `\n\nHow can I pay? Thank you!`));
   };
+
+  $("#ck-offrir").onclick = () => { via = "wa"; offrir(); };
+  $("#ck-mail").onclick = () => { via = "mail"; offrir(); };
 
   /* ---------- Jour / Nuit ---------- */
   const vJ = $("#v-jour"), vN = $("#v-nuit"), heure = $("#v-heure");

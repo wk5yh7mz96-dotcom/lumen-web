@@ -578,11 +578,11 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
           <button type="button" role="tab" data-d="clinique"><span data-t="d3h">Clinique</span><i></i></button>
         </div>
         <div class="scene"><div class="scene3d" id="scene3d">
-          <div class="ordi"><div class="lcran"><div class="lbar"><i></i><i></i><i></i><span class="url">lumen-web-africa.onrender.com/demos/restaurant</span></div>
+          <div class="ordi"><div class="lcran"><div class="lbar"><i></i><i></i><i></i><span class="url">lumen-web-africa.onrender.com/demos/nyanja</span></div>
             <div class="defil"><img class="v-pc" src="vitrine/pc-restaurant-fr.webp" width="880" height="3178" alt="Aperçu d'un site réalisé par Lumen Web, sur ordinateur" fetchpriority="low"></div></div><div class="socle"></div></div>
           <div class="tel"><div class="defil"><img class="v-tel" src="vitrine/tel-restaurant-fr.webp" width="300" height="3538" alt="Le même site sur téléphone" fetchpriority="low"></div></div></div>
         </div>
-        <a class="voir-demo" id="v-lien" href="demos/restaurant/"><span data-t="v-open">Ouvrir cette démonstration</span> →</a>
+        <a class="voir-demo" id="v-lien" href="demos/nyanja/"><span data-t="v-open">Ouvrir cette démonstration</span> →</a>
       </div>
 </div>
         <div class="f-col app">
@@ -684,7 +684,7 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
     </div>
     <div class="bloc g-liste" id="g-liste">
       <a href="https://lestagiaire-ia.netlify.app" target="_blank" rel="noopener">Le Stagiaire & l'IA</a>
-      <a href="demos/restaurant/" data-t="d1h">Restaurant</a>
+      <a href="demos/nyanja/" data-t="d1h">Restaurant</a>
       <a href="demos/hotel/" data-t="d2h">Hôtel & lodge</a>
       <a href="demos/clinique/" data-t="d3h">Clinique</a>
     </div>
@@ -1053,8 +1053,8 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
     if (i === vIdx && !force) return;
     vIdx = i; const d = DEMOS[i];
     vit.querySelectorAll(".onglets button").forEach((b, j) => { b.classList.toggle("on", j === i); b.setAttribute("aria-selected", j === i); });
-    vit.querySelector(".url").textContent = "lumen-web-africa.onrender.com/demos/" + d;
-    document.getElementById("v-lien").href = "demos/" + d + "/";
+    vit.querySelector(".url").textContent = "lumen-web-africa.onrender.com/demos/" + (d === "restaurant" ? "nyanja" : d);
+    document.getElementById("v-lien").href = "demos/" + (d === "restaurant" ? "nyanja" : d) + "/";
     let restant = 2;
     [vPc, vTel].forEach(img => {
       img.classList.add("cache");
@@ -1263,9 +1263,9 @@ if(!/[?&]capture/.test(location.search)&&!LW_RETOUR){document.documentElement.cl
     stagiaire: { url:"https://lestagiaire-ia.netlify.app", reel:true,
       fr:{ t:"Le Stagiaire & l'IA", d:"Site d'une chaîne YouTube éducative, en ligne et utilisé chaque semaine.", p:["Design sur mesure, parfait sur téléphone","Indexé par Google","Image de partage soignée sur WhatsApp","Statistiques de visites"], v:"Voir le site" },
       en:{ t:"Le Stagiaire & l'IA", d:"Website for an educational YouTube channel, live and used every week.", p:["Custom design, perfect on mobile","Indexed by Google","Polished WhatsApp share preview","Visitor analytics"], v:"Visit the site" } },
-    restaurant: { url:"demos/restaurant/",
-      fr:{ t:"Chez Mama Nkosi", d:"Démonstration d'un site de restaurant : on a faim avant même d'avoir réservé.", p:["Menu en photos et carte élégante","Réservation par WhatsApp, e-mail ou SMS","Galerie, avis et événements","Français et anglais"], v:"Ouvrir la démo" },
-      en:{ t:"Chez Mama Nkosi", d:"Restaurant website demo: you're hungry before you've even booked.", p:["Photo menu and elegant carte","Bookings by WhatsApp, email or SMS","Gallery, reviews and events","English and French"], v:"Open the demo" } },
+    restaurant: { url:"demos/nyanja/",
+      fr:{ t:"Nyanja", d:"Démonstration d'un site de restaurant qui vend : on commande, on réserve et on offre en quelques gestes.", p:["Commande en ligne avec panier","Réservation par créneaux, WhatsApp ou e-mail","Fiches plats, prix dans 7 monnaies","Événements, carte cadeau, carte PDF"], v:"Ouvrir la démo" },
+      en:{ t:"Nyanja", d:"A restaurant website that sells: order, book and give a gift card in a few taps.", p:["Online ordering with a cart","Time-slot booking by WhatsApp or email","Dish details, prices in 7 currencies","Events, gift card, PDF menu"], v:"Open the demo" } },
     hotel: { url:"demos/hotel/",
       fr:{ t:"Kivu Horizon", d:"Démonstration d'un site de lodge : le calme du lac dès la première image.", p:["Barre de réservation dès l'accueil","Chambres avec photos et prix","Expériences et restaurant","Avis clients et FAQ"], v:"Ouvrir la démo" },
       en:{ t:"Kivu Horizon", d:"Lodge website demo: the calm of the lake from the very first image.", p:["Booking bar right on the homepage","Rooms with photos and prices","Experiences and restaurant","Guest reviews and FAQ"], v:"Open the demo" } },
